@@ -1,14 +1,14 @@
 export const BRAND_NAME = 'Professional Travel & Visa Services';
 export const BRAND_SHORT = 'PTVS';
-export const PHONE = '+92 319 4910973';
-export const WA = 'https://wa.me/923194910973';
+export const PHONE = '+92 337 3398405';
+export const WA = 'https://wa.me/923373398405';
 export const EMAIL = 'info.professionalvisa@gmail.com';
 export const ADDRESS = 'Office # 8 Civic Centre, near Gourmet Bakery, Barkat Market, Lahore';
 
 export const aiReplyBank = [
-  { keywords: ['visa', 'saudi', 'work visa', 'visit visa', 'qvp'], response: 'We assist with Saudi work visas, visit visas, QVP processing, document review, and submission support. Please share your case type and required documents and we will guide you clearly.' },
+  { keywords: ['visa', 'saudi', 'work visa', 'visit visa', 'qvp'], response: 'We assist with Saudi visa requirements, work and visit visa guidance, and document review. For Saudi embassy attestation, the key mandatory steps are HEC, MOFA, and Mosadaqa, depending on your document type and case.' },
   { keywords: ['umrah', 'hajj', 'package', 'travel'], response: 'Yes, we provide Umrah and travel support including flight coordination, hotel guidance, package selection, and family or VIP arrangements based on your budget.' },
-  { keywords: ['attestation', 'mofa', 'hec', 'embassy'], response: 'We support HEC, MOFA, Mosadaqa, embassy attestation, and related document verification services for Saudi visa requirements and professional applications.' },
+  { keywords: ['attestation', 'mofa', 'hec', 'mosadaqa', 'embassy'], response: 'For Saudi embassy attestation, HEC, MOFA, and Mosadaqa are generally the mandatory steps. QVP is not mandatory for embassy attestation in every case; it depends on the visa type and sponsor requirements.' },
   { keywords: ['price', 'cost', 'fee', 'sar', 'budget'], response: 'The cost depends on the visa type, document status, and service level. We can give a clear estimate after reviewing your case and requirements.' },
   { keywords: ['document', 'required', 'passport', 'degree', 'experience'], response: 'The required documents vary by visa type. Common items include passport, degree, transcripts, experience certificate, photos, and attested paperwork. We can confirm the exact list for your case.' },
   { keywords: ['hello', 'hi', 'hey', 'assalam'], response: 'Hello! I can help with Saudi visa guidance, attestation support, Umrah packages, and general travel documentation. What do you need help with?' },
@@ -22,8 +22,8 @@ export const stats = [
 ];
 
 export const highlights = [
-  { title: 'Visa strategy & filing', text: 'End-to-end Saudi work, visit, and QVP support built around your exact case requirements.', icon: '01' },
-  { title: 'Government document handling', text: 'Expert guidance for HEC, MOFA, embassy, and Saudi Culture verification steps.', icon: '02' },
+  { title: 'Visa strategy & filing', text: 'End-to-end Saudi work and visit visa support built around your exact case requirements and attestation path.', icon: '01' },
+  { title: 'Government document handling', text: 'Expert guidance for HEC, MOFA, Mosadaqa, and embassy verification steps.', icon: '02' },
   { title: 'Travel itinerary planning', text: 'Flights, hotel coordination, and Umrah packages designed for comfort and peace of mind.', icon: '03' },
   { title: 'Transparent communication', text: 'Clear timelines, realistic expectations, and regular updates at every stage.', icon: '04' },
 ];
@@ -36,7 +36,8 @@ export const processSteps = [
 ];
 
 export const faq = [
-  { q: 'Do you handle both visa and attestation work?', a: 'Yes. We manage Saudi visa processing, QVP, HEC, MOFA, embassy attestation, and supporting travel arrangements under one service model.' },
+  { q: 'Do you handle both visa and attestation work?', a: 'Yes. We manage Saudi visa processing, document review, HEC, MOFA, Mosadaqa, embassy attestation, and supporting travel arrangements under one service model.' },
+  { q: 'Is QVP mandatory for embassy attestation?', a: 'Not always. For many embassy-attestation cases, HEC, MOFA, and Mosadaqa are the key mandatory requirements. QVP depends on the visa type and sponsor requirements.' },
   { q: 'Is the service suitable for working professionals?', a: 'Absolutely. We specialise in professional visa documents, experience letters, degree verification, and sponsor-aligned submission files.' },
   { q: 'Can you help with Umrah packages too?', a: 'Yes. We offer economy, family, premium, and VIP Umrah packages with hotel and travel coordination support.' },
   { q: 'How quickly can I get a response?', a: 'Most inquiries receive a response within 24 hours via WhatsApp or email, depending on the request type and document review.' },
@@ -62,21 +63,21 @@ export const services = [
 ];
 
 export const saudiSections = [
-  { id: 'work-visa', title: 'Saudi work visa', text: 'We check your job title, degree and experience against your sponsor\'s visa, then prepare the file for QVP, stamping and Iqama.' },
+  { id: 'work-visa', title: 'Saudi work visa', text: 'We check your job title, degree and experience against your sponsor\'s visa requirements and prepare the correct attestation path.' },
   { id: 'visit-visa', title: 'Saudi visit visa', text: 'Application support, document review and status tracking for visit visas.' },
-  { id: 'qvp', title: 'QVP visa processing', text: 'Degree attestation, mandatory experience certificates and submission on the QVP portal.', link: '/guides/qvp' },
+  { id: 'qvp', title: 'QVP visa processing', text: 'QVP support may be required depending on the visa type and sponsor process; we assess if it applies to your case.', link: '/guides/qvp' },
   { id: 'tasheer', title: 'Tasheer appointment', text: 'Appointment booking, visa center guidance and document preparation before you submit.' },
   { id: 'biometric', title: 'Biometric appointment', text: 'We help you book and prepare for your biometric appointment.' },
   { id: 'medical', title: 'Medical appointment', text: 'Scheduling, approved medical center guidance and report follow-up.' },
-  { id: 'mofa', title: 'MOFA attestation', text: 'Ministry of Foreign Affairs attestation, after HEC for degrees.' },
-  { id: 'mosadaqa', title: 'Mosadaqa / Saudi Culture', text: 'Degree verification for professional visas. About SAR 600 and 15-20 working days.', link: '/guides/mosadaqa' },
-  { id: 'embassy', title: 'Saudi Embassy attestation', text: 'Final embassy or consulate attestation once QVP and Mosadaqa are done.' },
+  { id: 'mofa', title: 'MOFA attestation', text: 'Ministry of Foreign Affairs attestation, after HEC for degrees and as required for the case.' },
+  { id: 'mosadaqa', title: 'Mosadaqa / Saudi Culture', text: 'Degree verification required in many professional visa and embassy cases. About SAR 600 and 15-20 working days.', link: '/guides/mosadaqa' },
+  { id: 'embassy', title: 'Saudi Embassy attestation', text: 'Final embassy or consulate attestation after HEC, MOFA, and Mosadaqa where applicable.' },
 ];
 
 export const guides = {
   mosadaqa: {
     title: 'Mosadaqa verification (Bachelor / Master)',
-    intro: 'Mosadaqa verification is required for degree authentication and all professional visas. The embassy will not process documents without the Mosadaqa report, QVP verification, and MOFA and Embassy attestation.',
+    intro: 'Mosadaqa verification is required in many cases for degree authentication and professional visa processing. For Saudi embassy attestation, HEC, MOFA, and Mosadaqa are commonly the mandatory steps, while QVP depends on the visa type and sponsor requirements.',
     blocks: [
       ['Before you apply', ['Bachelor and Master degrees with transcripts', 'Degrees attested by HEC Pakistan and MOFA', 'Clear scans: degrees, transcripts, passport, photos', 'Bachelor: minimum 120-130 credit hours. Master (MBA or equivalent): 30-36. Distance learning and virtual universities are often rejected.']],
       ['Steps', ['Create an account at mosadaqa.sa with your email and mobile number', 'Choose New Request: country of study, university, Bachelor and Master degrees', 'Upload degrees, transcripts, passport, HEC and MOFA attested documents and stamp pictures', 'Pay about SAR 600 by Visa or Mastercard', 'Mosadaqa sends your file to the university for verification', 'Track status: Under Review, Sent to University, Approved or Un Approved']],
