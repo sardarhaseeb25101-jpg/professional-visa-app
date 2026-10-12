@@ -1,6 +1,16 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route, Link, NavLink, useParams } from 'react-router-dom';
 import { services, saudiSections, guides, stats, highlights, processSteps, faq, testimonials, packagePlans, PHONE, WA, EMAIL, ADDRESS, BRAND_NAME, BRAND_SHORT, aiReplyBank } from './content.js';
+import {
+  countryMenu,
+  saudiAttestationServices,
+  saudiAttestationPages,
+  uaeAttestationPage,
+  qatarAttestationPage,
+  turkeyAttestationPage,
+  vietnamAttestationPage,
+  bahrainAttestationPage
+} from './countries/index.js';
 import { AdminLogin } from './AdminLogin.jsx';
 import { AdminDashboard } from './AdminDashboard.jsx';
 import { UmrahPackages } from './UmrahPackages.jsx';
@@ -22,15 +32,35 @@ function Layout({ children, theme, onToggleTheme }) {
         <span className="brand-mark">{BRAND_SHORT}</span>
         <span className="brand">{BRAND_NAME}</span>
       </Link>
-      <nav><NavLink to="/saudi-visa-services">Saudi services</NavLink>
+      <nav>
+        <NavLink to="/">Home</NavLink>
+        <div className="country-menu">
+          <button type="button" className="country-menu__trigger">Services ▾</button>
+          <div className="country-menu__panel">
+            {countryMenu.map((item) => item.disabled ? (
+              <span key={item.country} className="country-menu__item country-menu__item--disabled">
+                <span className="country-menu__flag">{item.flag || '🌍'}</span>
+                <span>{item.country}</span>
+              </span>
+            ) : (
+              <NavLink key={item.country} to={item.path} className="country-menu__item">
+                <span className="country-menu__flag">{item.flag || '🌍'}</span>
+                <span>{item.country}</span>
+              </NavLink>
+            ))}
+          </div>
+        </div>
         <NavLink to="/umrah-packages">Umrah packages</NavLink>
         <NavLink to="/attestation-calculator">Attestation calculator</NavLink>
         <NavLink to="/guides/mosadaqa">Mosadaqa guide</NavLink>
         <NavLink to="/guides/qvp">QVP guide</NavLink>
-        <NavLink to="/admin">Admin</NavLink></nav>
-      <button type="button" className="theme-toggle" onClick={onToggleTheme}>
-        {theme === 'luxury' ? 'Dark mode' : 'Luxury mode'}
-      </button>
+      </nav>
+      <div className="nav-actions">
+        <button type="button" className="theme-toggle" onClick={onToggleTheme}>
+          {theme === 'luxury' ? 'Dark mode' : 'Luxury mode'}
+        </button>
+        <Link to="/attestation-calculator" className="btn header-cta">Get consultation</Link>
+      </div>
     </header>
     <main>{children}</main>
     <footer><p><b>{BRAND_NAME}</b></p><p>{ADDRESS}</p>
@@ -128,14 +158,26 @@ function Home() {
       <section className="hero parallax-panel">
         <div className="hero__content parallax-layer" data-depth="0.18">
           <div className="eyebrow">Trusted visa, attestation & travel specialists</div>
-          <h1>Professional support from paperwork to passport to pilgrimage.</h1>
+          <h1>Your journey starts with the right guidance.</h1>
           <p>
-            We help individuals, families, and professionals navigate Saudi visa applications,
-            QVP processing, document attestation, and Umrah travel with clarity, speed, and expert follow-through.
+            Navigate Saudi visa applications, QVP processing, document attestation, degree verification, and Umrah travel with professional guidance, clear requirements, and service tailored to your journey.
           </p>
           <div className="row">
-            <Link className="btn" to="/attestation-calculator">Check what you need</Link>
+            <Link className="btn" to="/attestation-calculator">Explore our services</Link>
             <a className="btn ghost" href={WA}>Chat on WhatsApp</a>
+          </div>
+
+          <div className="hero__badges" aria-label="Supported destinations">
+            {['Saudi Arabia', 'UAE', 'Qatar', 'Turkey', 'Vietnam', 'Bahrain'].map((place) => (
+              <span key={place} className="hero__badge">{place}</span>
+            ))}
+          </div>
+
+          <div className="hero__proof" aria-label="Service highlights">
+            <span>HEC support</span>
+            <span>MOFA guidance</span>
+            <span>Saudi embassy paperwork</span>
+            <span>Umrah planning</span>
           </div>
 
           <div className="hero__stats">
@@ -173,6 +215,10 @@ function Home() {
           <span className="kicker">Why clients choose us</span>
           <h2>Clear guidance, dependable execution, and honest support.</h2>
         </div>
+        <div className="trust-note-box">
+          <strong>Trusted for complex case preparation.</strong>
+          <span>Every application is reviewed with a practical, transparent process that keeps the paperwork and timeline under control.</span>
+        </div>
         <div className="grid highlight-grid">
           {highlights.map((item) => (
             <div key={item.title} className="panel feature-card parallax-layer" data-depth="0.12">
@@ -196,6 +242,48 @@ function Home() {
               <h3>{step.title}</h3>
               <p>{step.text}</p>
             </article>
+          ))}
+        </div>
+      </section>
+
+      <section className="section section--soft parallax-panel">
+        <div className="results-showcase">
+          <div className="results-showcase__copy">
+            <span className="kicker">Why families and professionals choose us</span>
+            <h2>Support that keeps your application organized, transparent, and moving.</h2>
+            <p>From first document review to embassy filing, we help you understand every stage, reduce unnecessary delays, and prepare a cleaner application from the start.</p>
+          </div>
+          <div className="results-grid">
+            <div className="result-card">
+              <strong>1:1</strong>
+              <span>case review</span>
+            </div>
+            <div className="result-card">
+              <strong>24h</strong>
+              <span>response window</span>
+            </div>
+            <div className="result-card">
+              <strong>100%</strong>
+              <span>clarity-first guidance</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section country-spotlight parallax-panel">
+        <div className="section-heading">
+          <span className="kicker">Country coverage</span>
+          <h2>Focused expertise across the destinations clients trust most.</h2>
+        </div>
+        <div className="country-grid">
+          {countryMenu.map((country) => (
+            <Link key={country.country} to={country.path} className="country-card parallax-layer" data-depth="0.08">
+              <span className="country-card__flag">{country.flag}</span>
+              <div>
+                <strong>{country.country}</strong>
+                <small>Visa & attestation support</small>
+              </div>
+            </Link>
           ))}
         </div>
       </section>
@@ -329,6 +417,17 @@ function Home() {
           </div>
         </div>
       </section>
+
+      <section className="cta-band parallax-panel">
+        <div>
+          <span className="kicker">Ready when you are</span>
+          <h2>Let’s plan the right next step for your visa, attestation, or Umrah journey.</h2>
+        </div>
+        <div className="row cta-band__actions">
+          <a className="btn" href={WA}>WhatsApp now</a>
+          <a className="btn ghost" href={`tel:${PHONE.replace(/\s+/g, '')}`}>Call {PHONE}</a>
+        </div>
+      </section>
     </div>
   </>);
 }
@@ -341,6 +440,218 @@ function Saudi() {
     <InquiryForm /></section>);
 }
 
+function SaudiArabiaAttestationHome() {
+  const trustPoints = [
+    'Clear guidance for HEC, MOFA, and Saudi embassy requirements',
+    'Support for academic, personal, professional, and commercial documents',
+    'Prepared checklists and processing expectations before submission',
+  ];
+
+  const documentCategories = [
+    'Degree & transcript',
+    'Diploma & education',
+    'Marriage & family',
+    'Birth & B-form',
+    'School records',
+    'Professional certificates',
+    'Police & legal docs',
+    'Commercial papers',
+  ];
+
+  return (
+    <section className="page attestation-landing">
+      <div className="service-hero premium-hero">
+        <div className="premium-hero__content">
+          <span className="kicker">Saudi Arabia attestation</span>
+          <h1>Saudi Arabia Attestation & Document Legalization</h1>
+          <p className="lead">Reliable assistance for degree verification, marriage records, birth certificates, police reports, business documents, and other paperwork required for Saudi Arabia.</p>
+          <div className="hero-cta-row">
+            <a className="btn ghost" href={WA} target="_blank" rel="noreferrer">WhatsApp us</a>
+          </div>
+          <div className="trust-pills">
+            {trustPoints.map((item) => <span key={item}>{item}</span>)}
+          </div>
+        </div>
+
+        <div className="premium-hero__card panel">
+          <div className="mini-kicker">Service snapshot</div>
+          <h3>Document review support for Saudi Arabia</h3>
+          <ul>
+            <li>Saudi embassy and consulate requirements</li>
+            <li>HEC, MOFA, and Saudi Cultural Mission guidance</li>
+            <li>Professional visa and family documentation support</li>
+          </ul>
+          <div className="stat-row">
+            <div>
+              <strong>15-20d</strong>
+              <span>typical degree pipeline</span>
+            </div>
+            <div>
+              <strong>3-7d</strong>
+              <span>shorter family checks</span>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div className="document-filter-wrap">
+        <div className="document-filter-header">
+          <span className="mini-kicker">Popular document types</span>
+        </div>
+        <div className="document-pills">
+          {documentCategories.map((item) => <span key={item}>{item}</span>)}
+        </div>
+      </div>
+
+      <div className="info-grid">
+        <div className="panel stat-box">
+          <strong>Our services at a glance</strong>
+          <ul>
+            <li>Saudi Embassy and Consulate Attestation</li>
+            <li>Saudi Cultural Mission Degree Attestation</li>
+            <li>HEC Degree Attestation Assistance</li>
+            <li>Diploma and Educational Certificate Attestation</li>
+            <li>Marriage and Birth Certificate Attestation</li>
+            <li>Professional Certificate Attestation</li>
+            <li>Police Character Certificate Attestation</li>
+            <li>Commercial Document Legalization</li>
+          </ul>
+        </div>
+        <div className="panel stat-box">
+          <strong>Why choose us</strong>
+          <ul>
+            <li>Clear documentation guidance</li>
+            <li>Assistance across academic, personal, professional, and commercial documents</li>
+            <li>Structured application preparation</li>
+            <li>Support for Saudi Arabia requirements and submission checklists</li>
+          </ul>
+        </div>
+      </div>
+
+      <div className="page-section">
+        <h2>About Professional Travel & Visa Services</h2>
+        <p>Professional Travel & Visa Services provides guidance and assistance for document attestation and legalization procedures for Saudi Arabia. We understand that preparing official documents for international use can involve several stages, different authorities, and specific paperwork. Our aim is to make the process easier to understand by helping clients identify the relevant requirements and organize their documentation.</p>
+      </div>
+
+      <div className="page-section process-band" id="attestation-services">
+        <div className="section-heading compact-header">
+          <span className="kicker">How it works</span>
+          <h2>A clear path from document review to final submission.</h2>
+        </div>
+        <div className="process-timeline">
+          <div className="timeline-item">
+            <span>01</span>
+            <h3>Document review</h3>
+            <p>We assess the document type, visa purpose, and authority involved.</p>
+          </div>
+          <div className="timeline-item">
+            <span>02</span>
+            <h3>Checklist preparation</h3>
+            <p>We clarify which supporting papers, translations, and copies are required.</p>
+          </div>
+          <div className="timeline-item">
+            <span>03</span>
+            <h3>Submission support</h3>
+            <p>We help you organize the file so it is ready for embassy or authority review.</p>
+          </div>
+        </div>
+      </div>
+
+      <div className="page-section">
+        <h2>Our attestation services</h2>
+        <div className="service-grid">
+          {saudiAttestationServices.map((service) => (
+            <article key={service.slug} className="panel service-page-card">
+              <div className="service-card__badge">Saudi</div>
+              <h3>{service.title}</h3>
+              <p>{service.summary}</p>
+              <Link to={`/saudi-arabia-attestation/${service.slug}`}>View requirements</Link>
+            </article>
+          ))}
+        </div>
+      </div>
+
+      <InquiryForm quote={{ country: 'Saudi Arabia', service: 'Saudi Arabia document attestation' }} />
+    </section>
+  );
+}
+
+function SaudiAttestationDetail() {
+  const { slug } = useParams();
+  const page = saudiAttestationPages[slug];
+
+  if (!page) {
+    return <section className="page"><h1>Service not found</h1><p className="lead">This attestation page does not exist yet.</p></section>;
+  }
+
+  return (
+    <section className="page narrow">
+      <div className="service-hero">
+        <span className="kicker">Saudi Arabia attestation</span>
+        <h1>{page.title}</h1>
+        <p className="lead">{page.intro}</p>
+      </div>
+
+      <div className="info-grid">
+        <div className="panel stat-box">
+          <strong>Estimated processing time</strong>
+          <p>{page.process}</p>
+        </div>
+        <div className="panel stat-box">
+          <strong>Typical authority route</strong>
+          <p>HEC, MOFA, Saudi Cultural Mission, Saudi Embassy / Consulate, or relevant provincial authority depending on the document.</p>
+        </div>
+      </div>
+
+      <div className="page-section">
+        <h2>Required documents</h2>
+        <ul>{page.checklist.map((item) => <li key={item}>{item}</li>)}</ul>
+      </div>
+
+      <div className="page-section">
+        <h2>Important requirements</h2>
+        <ul>{page.important.map((item) => <li key={item}>{item}</li>)}</ul>
+      </div>
+
+      <div className="page-section">
+        <h2>Processing note</h2>
+        <p>{page.note}</p>
+      </div>
+
+      <InquiryForm quote={{ country: 'Saudi Arabia', document: page.title, service: page.title }} />
+    </section>
+  );
+}
+
+function CountryContentPage({ page }) {
+  if (!page) {
+    return <section className="page"><h1>Country service not found</h1></section>;
+  }
+
+  return (
+    <section className="page narrow">
+      <div className="service-hero">
+        <span className="kicker">Document attestation</span>
+        <h1>{page.title}</h1>
+        <p className="lead">{page.intro}</p>
+      </div>
+
+      {page.sections.map((section) => (
+        <div key={section.id || section.heading} className="page-section">
+          <h2>{section.heading}</h2>
+          {section.text && <p>{section.text}</p>}
+          <ul>
+            {section.required.map((item) => <li key={item}>{item}</li>)}
+          </ul>
+          {section.note && <p><strong>Note:</strong> {section.note}</p>}
+        </div>
+      ))}
+
+      <InquiryForm quote={{ country: page.title, document: page.title, service: page.title }} />
+    </section>
+  );
+}
+
 function Guide() {
   const g = guides[useParams().slug];
   if (!g) return <section className="page"><h1>Guide not found</h1></section>;
@@ -350,12 +661,46 @@ function Guide() {
     <InquiryForm /></section>);
 }
 
+const fallbackCalculator = {
+  countries: ['Saudi Arabia', 'UAE', 'Qatar', 'Kuwait', 'Bahrain', 'Oman', 'Europe / Other'],
+  documents: ['Degree Certificate', 'Diploma', 'Transcript', 'Experience Certificate', 'Marriage Certificate', 'Birth Certificate', 'Commercial Document'],
+  services: {
+    'Saudi Arabia': [
+      { id: 'mofa', label: 'MOFA only', days: 'Usually 7-15 working days, depending on the document and authority route.' },
+      { id: 'mofa-mosadaqa', label: 'MOFA + Mosadaqa', days: 'Typically 15-20 working days for degree-related cases.' },
+      { id: 'full', label: 'MOFA + Mosadaqa + Embassy', days: 'Often 15-25 working days, plus embassy processing time.' },
+      { id: 'embassy', label: 'Saudi Embassy / Consulate only', days: 'Timing depends on authority queue and document type.' },
+    ],
+    default: [
+      { id: 'mofa', label: 'MOFA attestation', days: 'The timeline depends on the country and document type.' },
+      { id: 'embassy', label: 'MOFA + Embassy attestation', days: 'Requires the full authority and document checklist before final submission.' },
+    ],
+  },
+  baseDocs: ['Original document', 'Clear passport copy (bio page)', 'CNIC copy'],
+  extraDocs: {
+    'Degree Certificate': ['Matching transcript', 'HEC attestation (before MOFA)'],
+    Diploma: ['Matching transcript', 'HEC attestation (before MOFA)'],
+    Transcript: ['Matching degree', 'HEC attestation (before MOFA)'],
+    'Experience Certificate': ['Company letterhead, stamp and signature', 'Job title, From-To dates, HR contact details'],
+    'Marriage Certificate': ['NADRA / Nikah Nama as applicable'],
+    'Birth Certificate': ['NADRA birth certificate'],
+    'Commercial Document': ['Chamber / company registration papers'],
+  },
+  mosadaqaDocs: ['Degree and transcript scans', 'HEC and MOFA stamp pictures', 'Name must match passport'],
+};
+
 function Calculator() {
   const [cfg, setCfg] = useState(null);
   const [sel, setSel] = useState({ country: 'Saudi Arabia', document: 'Degree Certificate', service: '' });
-  useEffect(() => { fetch('/api/attestation').then(r => r.json()).then(setCfg).catch(() => setCfg(false)); }, []);
-  if (cfg === false) return <section className="page"><p>Could not load the calculator. Is the server running?</p></section>;
+  useEffect(() => {
+    fetch('/api/attestation')
+      .then((r) => r.ok ? r.json() : Promise.reject(new Error('Fetch failed')))
+      .then(setCfg)
+      .catch(() => setCfg(fallbackCalculator));
+  }, []);
+
   if (!cfg) return <section className="page"><p>Loading...</p></section>;
+
   const opts = cfg.services[sel.country] || cfg.services.default;
   const svc = opts.find(o => o.id === sel.service) || opts[0];
   const docs = [...cfg.baseDocs, ...(cfg.extraDocs[sel.document] || []),
@@ -443,6 +788,13 @@ export default function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/saudi-visa-services" element={<Saudi />} />
+          <Route path="/saudi-arabia-attestation" element={<SaudiArabiaAttestationHome />} />
+          <Route path="/saudi-arabia-attestation/:slug" element={<SaudiAttestationDetail />} />
+          <Route path="/country/uae" element={<CountryContentPage page={uaeAttestationPage} />} />
+          <Route path="/country/qatar" element={<CountryContentPage page={qatarAttestationPage} />} />
+          <Route path="/country/turkey" element={<CountryContentPage page={turkeyAttestationPage} />} />
+          <Route path="/country/vietnam" element={<CountryContentPage page={vietnamAttestationPage} />} />
+          <Route path="/country/bahrain" element={<CountryContentPage page={bahrainAttestationPage} />} />
           <Route path="/umrah-packages" element={<UmrahPackages />} />
           <Route path="/attestation-calculator" element={<Calculator />} />
           <Route path="/guides/:slug" element={<Guide />} />

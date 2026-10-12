@@ -1,35 +1,49 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
+const fallbackPackages = [
+  {
+    _id: 'fallback-economy',
+    name: 'Economy',
+    description: 'A practical Umrah option for travelers who want a straightforward plan, comfortable support, and clear pricing.',
+    duration: 12,
+    pricePerPerson: 185000,
+    groupSize: '2-4 travelers',
+    inclusions: ['Visa guidance', 'Hotel coordination', 'Travel consultation', 'Ground transfer support'],
+  },
+  {
+    _id: 'fallback-premium',
+    name: 'Premium',
+    description: 'A more refined experience with upgraded hotel support and a smoother, more relaxed travel rhythm.',
+    duration: 14,
+    pricePerPerson: 245000,
+    groupSize: '2-6 travelers',
+    inclusions: ['Premium hotel guidance', 'Visa support', 'Priority planning', 'Travel coordination'],
+  },
+];
+
 export function UmrahPackages() {
-  const [packages, setPackages] = useState([]);
+  const [packages, setPackages] = useState(fallbackPackages);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     fetch('/api/packages')
-      .then((r) => r.json())
+      .then((r) => r.ok ? r.json() : Promise.reject(new Error('Failed to fetch packages')))
       .then((data) => {
-        setPackages(data);
+        setPackages(Array.isArray(data) && data.length ? data : fallbackPackages);
         setLoading(false);
       })
-      .catch(() => setLoading(false));
+      .catch(() => {
+        setPackages(fallbackPackages);
+        setLoading(false);
+      });
   }, []);
 
   if (loading) return <section className="page"><p>Loading packages...</p></section>;
 
-  if (packages.length === 0) {
-    return (
-      <section className="page narrow">
-        <h1>Umrah Packages</h1>
-        <p>Packages coming soon. Contact us for details.</p>
-        <Link to="/" className="btn">Back to Home</Link>
-      </section>
-    );
-  }
-
   return (
     <section className="page">
-      <h1>Umrah Packages 2024-2025</h1>
+      <h1>Umrah Packages</h1>
       <p className="lead">Choose the perfect Umrah package tailored to your budget and preferences.</p>
 
       <div className="grid" style={{ marginTop: '40px' }}>
