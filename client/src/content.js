@@ -6,26 +6,27 @@ export const EMAIL = 'info.professionalvisa@gmail.com';
 export const ADDRESS = 'Office # 8 Civic Centre, near Gourmet Bakery, Barkat Market, Lahore';
 
 export const aiReplyBank = [
-  { keywords: ['visa', 'saudi', 'work visa', 'visit visa', 'qvp'], response: 'We assist with Saudi visa requirements, work and visit visa guidance, and document review. For Saudi embassy attestation, the key mandatory steps are HEC, MOFA, and Mosadaqa, depending on your document type and case.' },
+  { keywords: ['visa', 'saudi', 'work visa', 'visit visa', 'qvp', 'qvp certificate'], response: 'We assist with Saudi visa requirements, QVP certificate and verification support, work and visit visa guidance, and document review. For Saudi embassy attestation, the common mandatory steps are HEC, MOFA, and Mosadaqa / Saudi Culture, depending on your document type and case.' },
   { keywords: ['umrah', 'hajj', 'package', 'travel'], response: 'Yes, we provide Umrah and travel support including flight coordination, hotel guidance, package selection, and family or VIP arrangements based on your budget.' },
-  { keywords: ['attestation', 'mofa', 'hec', 'mosadaqa', 'embassy'], response: 'For Saudi embassy attestation, HEC, MOFA, and Mosadaqa are generally the mandatory steps. QVP is not mandatory for embassy attestation in every case; it depends on the visa type and sponsor requirements.' },
+  { keywords: ['attestation', 'mofa', 'hec', 'mosadaqa', 'saudi culture', 'embassy'], response: 'For Saudi embassy attestation, HEC, MOFA, and Mosadaqa / Saudi Culture are often required. QVP certificate and verification may also apply depending on the visa type and sponsor requirements.' },
   { keywords: ['price', 'cost', 'fee', 'sar', 'budget'], response: 'The cost depends on the visa type, document status, and service level. We can give a clear estimate after reviewing your case and requirements.' },
   { keywords: ['document', 'required', 'passport', 'degree', 'experience'], response: 'The required documents vary by visa type. Common items include passport, degree, transcripts, experience certificate, photos, and attested paperwork. We can confirm the exact list for your case.' },
-  { keywords: ['hello', 'hi', 'hey', 'assalam'], response: 'Hello! I can help with Saudi visa guidance, attestation support, Umrah packages, and general travel documentation. What do you need help with?' },
+  { keywords: ['hello', 'hi', 'hey', 'assalam'], response: 'Hello! I can help with Saudi visa guidance, QVP verification, Mosadaqa / Saudi Culture support, attestation help, Umrah packages, and general travel documentation. What do you need help with?' },
 ];
 
 export const stats = [
-  { value: '5000+', label: 'Clients guided' },
-  { value: '24/7', label: 'WhatsApp support' },
-  { value: '99%', label: 'Document review accuracy' },
-  { value: '15-20d', label: 'Average attestation cycle' },
+  { value: '24h', label: 'response time' },
+  { value: '3-5d', label: 'family document timing' },
+  { value: 'HEC', label: 'document handling' },
+  { value: 'Gulf', label: 'recruitment reach' },
 ];
 
 export const highlights = [
-  { title: 'Visa strategy & filing', text: 'End-to-end Saudi work and visit visa support built around your exact case requirements and attestation path.', icon: '01' },
-  { title: 'Government document handling', text: 'Expert guidance for HEC, MOFA, Mosadaqa, and embassy verification steps.', icon: '02' },
-  { title: 'Travel itinerary planning', text: 'Flights, hotel coordination, and Umrah packages designed for comfort and peace of mind.', icon: '03' },
-  { title: 'Transparent communication', text: 'Clear timelines, realistic expectations, and regular updates at every stage.', icon: '04' },
+  { title: 'Industry experts', text: 'Industry experts in documents, visas and stamping. Our team knows every step of the process and handles your file from start to finish.', icon: '01' },
+  { title: 'Document handling', text: 'Document handling: HEC, IBCC, ICAP, ICMAP, PM&DC, MOFA, Mosadaqa and embassy attestation, checked before submission to avoid objections.', icon: '02' },
+  { title: 'Visa processing', text: 'Visa processing: work, visit and family visas, E-Wakala, QVP and Takamol skill tests.', icon: '03' },
+  { title: 'Protector and travel', text: 'Protector and travel: protector stamp from the Bureau of Emigration, and air tickets.', icon: '04' },
+  { title: 'Recruitment', text: 'Recruitment: professionals and skilled workers for employers in the Gulf, Europe, Australia and beyond.', icon: '05' },
 ];
  
 export const processSteps = [
@@ -36,11 +37,13 @@ export const processSteps = [
 ];
 
 export const faq = [
-  { q: 'Do you handle both visa and attestation work?', a: 'Yes. We manage Saudi visa processing, document review, HEC, MOFA, Mosadaqa, embassy attestation, and supporting travel arrangements under one service model.' },
-  { q: 'Is QVP mandatory for embassy attestation?', a: 'Not always. For many embassy-attestation cases, HEC, MOFA, and Mosadaqa are the key mandatory requirements. QVP depends on the visa type and sponsor requirements.' },
-  { q: 'Is the service suitable for working professionals?', a: 'Absolutely. We specialise in professional visa documents, experience letters, degree verification, and sponsor-aligned submission files.' },
-  { q: 'Can you help with Umrah packages too?', a: 'Yes. We offer economy, family, premium, and VIP Umrah packages with hotel and travel coordination support.' },
-  { q: 'How quickly can I get a response?', a: 'Most inquiries receive a response within 24 hours via WhatsApp or email, depending on the request type and document review.' },
+  { q: 'Do you handle both visa and attestation work?', a: 'Yes. We help with Saudi visa processing, QVP, HEC, MOFA, Mosadaqa and embassy attestation, and travel bookings, all from one office.' },
+  { q: 'Is QVP the same as embassy attestation?', a: 'No. They are separate. Embassy attestation confirms your document is genuine. QVP (Qualification Verification Program, run by Saudi Arabia\'s Professional Accreditation Center) checks your qualification for a Saudi work visa. Many professional visas need both; we check which apply to your case.' },
+  { q: 'Do you accept distance-learning degrees for Saudi Arabia?', a: 'The Saudi Cultural Attaché generally does not attest degrees earned through distance, online or private/external-candidate study. We will review your degree before you pay any government fees.' },
+  { q: 'How long does attestation take?', a: 'It depends on the document. Family documents usually take 3 to 7 working days; degrees usually take 3 to 5 working days. These are estimates, not guarantees.' },
+  { q: 'How quickly will you reply?', a: 'We aim to reply within 24 hours on WhatsApp or email.' },
+  { q: 'Can you help with Umrah?', a: 'Yes. We offer Economy and Premium Umrah packages with hotel, visa and transfer support.' },
+  { q: 'Do you recruit staff for Saudi employers?', a: 'Yes. We recruit professionals (engineers, doctors, nurses, accountants, safety staff, technicians) and skilled workers for companies in all Gulf countries, Europe (EU), Australia, Malaysia, Uzbekistan and other countries, from sourcing and testing to visa, protector and travel.' },
 ];
 
 export const testimonials = [
@@ -56,22 +59,21 @@ export const packagePlans = [
 ];
 
 export const services = [
-  { title: 'Saudi visa and QVP', items: ['QVP visa processing assistance', 'Visa application support and status tracking', 'Saudi visa stamping and passport submission', 'Tasheer, biometric and medical appointments'] },
-  { title: 'Document attestation', items: ['MOFA attestation', 'Mosadaqa / Saudi Culture attestation', 'Saudi Embassy and Consulate attestation', 'Degrees, diplomas, experience, marriage and birth certificates'] },
-  { title: 'Embassy attestation', items: ['UAE, Qatar, Kuwait, Bahrain and Oman', 'European embassy requirements', 'Other international attestation'] },
-  { title: 'Travel', items: ['International and domestic air tickets', 'Saudi and international hotels', 'Umrah: economy, premium, family and VIP'] },
+  { title: 'Saudi visa and QVP', items: ['Saudi work visas, visit visas and family visa support', 'QVP verification and Takamol skill test guidance', 'Visa stamping, biometrics and medical appointments', 'Protector and travel support for Saudi travel'] },
+  { title: 'Saudi attestation', items: ['HEC, MOFA Pakistan, Mosadaqa and embassy attestation', 'Degree, diploma, marriage and birth certificate attestation', 'School, police, PMDC and commercial document handling', 'Professional and personal record verification'] },
+  { title: 'Recruitment', items: ['Professionals and skilled workers for Gulf employers', 'Audit, accounting, trades and technical staff sourcing', 'Employer and worker document coordination', 'Travel, visa and protector support'] },
+  { title: 'Umrah & travel', items: ['Economy and Premium Umrah packages', 'Hotel and transfer coordination', 'Visa support and consultation', 'Travel planning for families and groups'] },
 ];
 
 export const saudiSections = [
-  { id: 'work-visa', title: 'Saudi work visa', text: 'We check your job title, degree and experience against your sponsor\'s visa requirements and prepare the correct attestation path.' },
-  { id: 'visit-visa', title: 'Saudi visit visa', text: 'Application support, document review and status tracking for visit visas.' },
-  { id: 'qvp', title: 'QVP visa processing', text: 'QVP support may be required depending on the visa type and sponsor process; we assess if it applies to your case.', link: '/guides/qvp' },
-  { id: 'tasheer', title: 'Tasheer appointment', text: 'Appointment booking, visa center guidance and document preparation before you submit.' },
-  { id: 'biometric', title: 'Biometric appointment', text: 'We help you book and prepare for your biometric appointment.' },
-  { id: 'medical', title: 'Medical appointment', text: 'Scheduling, approved medical center guidance and report follow-up.' },
-  { id: 'mofa', title: 'MOFA attestation', text: 'Ministry of Foreign Affairs attestation, after HEC for degrees and as required for the case.' },
-  { id: 'mosadaqa', title: 'Mosadaqa / Saudi Culture', text: 'Degree verification required in many professional visa and embassy cases. About SAR 600 and 15-20 working days.', link: '/guides/mosadaqa' },
-  { id: 'embassy', title: 'Saudi Embassy attestation', text: 'Final embassy or consulate attestation after HEC, MOFA, and Mosadaqa where applicable.' },
+  { id: 'work-visa', title: 'Saudi Work Visa', text: 'Saudi work visas follow either a skilled / labour route or a professional / education-based route depending on the visa title and job category.', link: '/work-visa' },
+  { id: 'visit-visa', title: 'Saudi Visit Visa', text: 'We help with family visit, business visit and tourist visa applications, including document review and status tracking.', link: '/visit-visa' },
+  { id: 'qvp', title: 'QVP', text: 'QVP is Saudi Arabia’s online check of your qualification and work history for professional work visas.', link: '/qvp' },
+  { id: 'skill-test', title: 'Takamol Skill Test', text: 'For trade jobs listed by Saudi Takamol, you must pass a practical skill test before the visa.', link: '/skill-test' },
+  { id: 'visa-stamping', title: 'Visa Stamping', text: 'We submit the passport, book Tasheer and biometrics, and collect the passport with the visa stamped.', link: '/visa-stamping' },
+  { id: 'saudi-attestation', title: 'Saudi Attestation', text: 'Degree, diploma, marriage, birth, police, PMDC and commercial document attestation support for Saudi Arabia.', link: '/saudi-attestation' },
+  { id: 'recruitment', title: 'Recruitment of Skilled Labour and Professionals', text: 'We supply qualified professionals and trained skilled workers to employers in Saudi Arabia and the Gulf.', link: '/recruitment' },
+  { id: 'umrah', title: 'Umrah Packages', text: 'Choose an Umrah package that fits your budget and travel needs, with visa, hotel and transfer support.', link: '/umrah-packages' },
 ];
 
 export const countryMenu = [

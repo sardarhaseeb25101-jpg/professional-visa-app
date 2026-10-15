@@ -15,21 +15,11 @@ import { AdminLogin } from './AdminLogin.jsx';
 import { AdminDashboard } from './AdminDashboard.jsx';
 import { UmrahPackages } from './UmrahPackages.jsx';
 
-function BackgroundParticles() {
-  return (
-    <div className="particle-layer" aria-hidden="true">
-      {Array.from({ length: 24 }).map((_, index) => (
-        <span key={index} className="particle" style={{ '--i': index }} />
-      ))}
-    </div>
-  );
-}
-
-function Layout({ children, theme, onToggleTheme }) {
+function Layout({ children }) {
   return (<>
     <header className="top">
       <Link to="/" className="brand-wrap" aria-label={BRAND_NAME}>
-        <span className="brand-mark">{BRAND_SHORT}</span>
+        <img src="/assets/logo.jpeg" alt={BRAND_NAME} className="brand-logo" />
         <span className="brand">{BRAND_NAME}</span>
       </Link>
       <nav>
@@ -51,20 +41,25 @@ function Layout({ children, theme, onToggleTheme }) {
           </div>
         </div>
         <NavLink to="/umrah-packages">Umrah packages</NavLink>
-        <NavLink to="/attestation-calculator">Attestation calculator</NavLink>
-        <NavLink to="/guides/mosadaqa">Mosadaqa guide</NavLink>
+        <NavLink to="/attestation-calculator">Requirements</NavLink>
+        <NavLink to="/guides/mosadaqa">Mosadaqa / Saudi Culture</NavLink>
         <NavLink to="/guides/qvp">QVP guide</NavLink>
       </nav>
       <div className="nav-actions">
-        <button type="button" className="theme-toggle" onClick={onToggleTheme}>
-          {theme === 'luxury' ? 'Dark mode' : 'Luxury mode'}
-        </button>
         <Link to="/attestation-calculator" className="btn header-cta">Get consultation</Link>
       </div>
     </header>
     <main>{children}</main>
-    <footer><p><b>{BRAND_NAME}</b></p><p>{ADDRESS}</p>
-      <p>{PHONE} · <a href={`mailto:${EMAIL}`}>{EMAIL}</a> · <a href={WA} target="_blank" rel="noreferrer">WhatsApp</a></p></footer>
+    <footer>
+      <div className="footer-trust-block">
+        <p><b>Professional Travel & Visa Services Office:</b> {ADDRESS}</p>
+        <p>OEP / BEOE licence no.: [confirm] · Phone / WhatsApp: {PHONE} · Email: {EMAIL}</p>
+        <p>Office hours: [confirm]</p>
+      </div>
+      <p><b>{BRAND_NAME}</b></p>
+      <p>{ADDRESS}</p>
+      <p>{PHONE} · <a href={`mailto:${EMAIL}`}>{EMAIL}</a> · <a href={WA} target="_blank" rel="noreferrer">WhatsApp</a></p>
+    </footer>
     <a className="wa-float" href={WA} target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">WhatsApp</a>
     <AIChatWidget />
   </>);
@@ -120,7 +115,7 @@ function AIChatWidget() {
           </div>
 
           <div className="ai-quick-answers">
-            {['Saudi visa', 'Umrah package', 'Attestation', 'Price estimate'].map((item) => (
+            {['Saudi visa', 'QVP certificate', 'Saudi Culture', 'Umrah package', 'Attestation', 'Price estimate'].map((item) => (
               <button key={item} type="button" className="ai-pill" onClick={() => setInput(item)}>{item}</button>
             ))}
           </div>
@@ -154,16 +149,15 @@ function Home() {
 
   return (<>
     <div className="page-shell">
-      <BackgroundParticles />
       <section className="hero parallax-panel">
         <div className="hero__content parallax-layer" data-depth="0.18">
           <div className="eyebrow">Trusted visa, attestation & travel specialists</div>
           <h1>Your journey starts with the right guidance.</h1>
           <p>
-            Navigate Saudi visa applications, QVP processing, document attestation, degree verification, and Umrah travel with professional guidance, clear requirements, and service tailored to your journey.
+            Navigate Saudi visa applications, QVP certificate and verification, document attestation, degree verification, and Umrah travel with professional guidance, clear requirements, and service tailored to your journey.
           </p>
           <div className="row">
-            <Link className="btn" to="/attestation-calculator">Explore our services</Link>
+            <Link className="btn" to="/attestation-calculator">View requirements</Link>
             <a className="btn ghost" href={WA}>Chat on WhatsApp</a>
           </div>
 
@@ -191,6 +185,7 @@ function Home() {
         </div>
 
         <div className="hero__visual glass-card parallax-layer" data-depth="0.32" aria-label="Service overview card">
+          <img src="/assets/qvp-pamphlet.jpeg" alt="QVP service overview" className="hero-visual-image" />
           <div className="floating-card primary">
             <span className="card-label">Premium service</span>
             <strong>Saudi work & visit visas</strong>
@@ -201,23 +196,17 @@ function Home() {
             <strong>24h case review</strong>
             <small>WhatsApp guidance available</small>
           </div>
-          <div className="visual-grid">
-            <div><span>QVP</span></div>
-            <div><span>MOFA</span></div>
-            <div><span>Umrah</span></div>
-            <div><span>Embassy</span></div>
-          </div>
         </div>
       </section>
 
       <section className="section parallax-panel">
         <div className="section-heading">
-          <span className="kicker">Why clients choose us</span>
-          <h2>Clear guidance, dependable execution, and honest support.</h2>
+          <span className="kicker">Why choose us</span>
+          <h2>Industry experts in documents, visas and stamping.</h2>
         </div>
         <div className="trust-note-box">
-          <strong>Trusted for complex case preparation.</strong>
-          <span>Every application is reviewed with a practical, transparent process that keeps the paperwork and timeline under control.</span>
+          <strong>Our team knows every step of the process and handles your file from start to finish.</strong>
+          <span>From document handling to visa processing, stamping and recruitment, we work with one clear plan from review to travel.</span>
         </div>
         <div className="grid highlight-grid">
           {highlights.map((item) => (
@@ -230,19 +219,37 @@ function Home() {
         </div>
       </section>
 
-      <section className="section section--dark parallax-panel">
+      <section className="section section--soft parallax-panel">
+        <div className="section-heading">
+          <span className="kicker">Our team in Saudi Arabia and the Gulf</span>
+          <h2>We are close to you.</h2>
+        </div>
+        <div className="team-brief">
+          <p>Besides our office in Pakistan, our team is on the ground in Saudi Arabia and across the Gulf, so employers and applicants can meet us in person. [confirm: cities, e.g. Riyadh, Jeddah, Dammam, Dubai, Doha]</p>
+          <p>Book an appointment to discuss how we can help you with recruitment, visas, attestation or travel. Choose a meeting at your office, at ours, or online.</p>
+          <div className="row cta-row">
+            <Link className="btn" to="/contact">Book an appointment</Link>
+            <a className="btn ghost" href={WA} target="_blank" rel="noreferrer">WhatsApp us</a>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--dark parallax-panel process-visual-section">
         <div className="section-heading light">
           <span className="kicker">How we work</span>
           <h2>A professional process designed to reduce stress and delays.</h2>
         </div>
-        <div className="process-grid">
-          {processSteps.map((step) => (
-            <article key={step.step} className="process-card parallax-layer" data-depth="0.14">
-              <span className="process-step">{step.step}</span>
-              <h3>{step.title}</h3>
-              <p>{step.text}</p>
-            </article>
-          ))}
+        <div className="process-visual-wrap">
+          <img src="/assets/visa-process-roadmap.jpeg" alt="Visa process roadmap" className="process-visual" />
+          <div className="process-grid">
+            {processSteps.map((step) => (
+              <article key={step.step} className="process-card parallax-layer" data-depth="0.14">
+                <span className="process-step">{step.step}</span>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </article>
+            ))}
+          </div>
         </div>
       </section>
 
@@ -254,6 +261,9 @@ function Home() {
             <p>From first document review to embassy filing, we help you understand every stage, reduce unnecessary delays, and prepare a cleaner application from the start.</p>
           </div>
           <div className="results-grid">
+            <div className="result-card result-card--image">
+              <img src="/assets/qvp-available-services.jpeg" alt="QVP available services" />
+            </div>
             <div className="result-card">
               <strong>1:1</strong>
               <span>case review</span>
@@ -432,12 +442,320 @@ function Home() {
   </>);
 }
 
+function ServicePage({ title, intro, sections = [], keyPoints = [] }) {
+  return (
+    <section className="page narrow service-page">
+      <h1>{title}</h1>
+      <p className="lead">{intro}</p>
+
+      {keyPoints.length > 0 && (
+        <div className="info-grid">
+          {keyPoints.map((item) => (
+            <div key={item.title} className="panel stat-box">
+              <strong>{item.title}</strong>
+              <p>{item.text}</p>
+            </div>
+          ))}
+        </div>
+      )}
+
+      {sections.map((section) => (
+        <div key={section.heading} className="page-section">
+          <h2>{section.heading}</h2>
+          {section.text && <p>{section.text}</p>}
+          {section.items && <ul>{section.items.map((item) => <li key={item}>{item}</li>)}</ul>}
+          {section.note && <p><strong>Note:</strong> {section.note}</p>}
+        </div>
+      ))}
+
+      <div className="row cta-row">
+        <Link className="btn" to="/contact">Book an appointment</Link>
+        <a className="btn ghost" href={WA} target="_blank" rel="noreferrer">WhatsApp us</a>
+      </div>
+
+      <p className="page-note">
+        Requirements and processing times are estimates based on current practice and can change at any time. The final checklist is decided by the relevant authority. Contact us before submitting so we can confirm the latest requirements for your case.
+      </p>
+    </section>
+  );
+}
+
 function Saudi() {
   return (<section className="page"><h1>Saudi visa services</h1>
     <p className="lead">Saudi visa services, QVP, Tasheer, biometric and medical appointments, and attestation in one place.</p>
     <div className="grid">{saudiSections.map(s => (<article key={s.id} id={s.id} className="panel"><h2>{s.title}</h2><p>{s.text}</p>
       {s.link && <Link to={s.link}>Read the guide</Link>}</article>))}</div>
     <InquiryForm /></section>);
+}
+
+function SaudiWorkVisaPage() {
+  return (
+    <ServicePage
+      title="Saudi Work Visa: which type is yours?"
+      intro="Saudi work visas follow one of two routes, depending on the job title on your visa."
+      keyPoints={[
+        { title: 'Skilled / labour visa', text: 'Typical jobs include electrician, plumber, welder, mason, driver, technician, cleaner and cook. The main check is a skill test at a NAVTTC-approved centre.' },
+        { title: 'Professional / education-based visa', text: 'Typical jobs include engineer, accountant, IT specialist, manager, teacher, doctor and nurse. The main check is degree attestation and QVP.' }
+      ]}
+      sections={[
+        {
+          heading: 'Skilled / Labour Work Visa (Skill Verification)',
+          items: [
+            'Valid Pakistani passport valid for at least 6 months [confirm].',
+            'CNIC',
+            'Visa number / authorization from your Saudi employer',
+            'Recent passport-size photos with white background',
+            'Takamol skill verification certificate after passing the test',
+            'Medical report from an approved medical centre booked through Wafid',
+            'Biometrics at a Tasheer centre',
+            'Protector stamp from the Bureau of Emigration'
+          ],
+          note: 'For trade jobs listed by Saudi Takamol, you must pass a practical skill test before the visa. No degree or attestation is needed.'
+        },
+        {
+          heading: 'Skill test steps',
+          items: [
+            'Register on the SVP portal (svp-international.pacc.sa) with your passport details.',
+            'Choose your trade, city and test date.',
+            'Pay the fee online: USD 85 per test (about Rs 23,500–24,500), effective 9 September 2026.',
+            'Download your appointment slip.',
+            'Attend the test centre with your original passport and CNIC.',
+            'If you pass, your certificate is uploaded within 24 hours. If you fail, you can book again.'
+          ],
+          note: 'Processing time: [confirm] working days after the test certificate and medical are ready.'
+        },
+        {
+          heading: 'Professional / Education-Based Work Visa',
+          items: [
+            'Passport valid for at least 6 months [confirm], with 2 blank pages',
+            'CNIC',
+            'Visa number / authorization from your Saudi employer',
+            'Employment contract or offer letter',
+            'Recent passport-size photos with white background',
+            'Degree and transcript attested by HEC and MOFA, then verified through Mosadaqa and attested by the Saudi Embassy',
+            'QVP result, where your profession requires it',
+            'Professional council registration where required, e.g. engineers or health workers [confirm]',
+            'Medical report from an approved medical centre (booked through Wafid)',
+            'Biometrics at a Tasheer centre',
+            'Protector stamp from the Bureau of Emigration [confirm for your visa category]'
+          ],
+          note: 'Important: your degree subject and experience must match the job title on your visa. Processing time: [confirm] working days after attestation and QVP are complete.'
+        },
+        {
+          heading: 'We Handle Your Visa from Start to Finish',
+          items: [
+            'E-Wakala in our agency\'s name: ask your Saudi employer to issue the E-Wakala in favour of Professional Travel & Visa Services.',
+            'Visa stamping: we submit your passport and documents, book your Tasheer and biometric appointments, and collect your passport with the visa stamped.',
+            'Protector: we get your protector stamp from the Protector of Emigrants office (Bureau of Emigration & Overseas Employment).',
+            'Premium services: priority handling, fast-track booking, document pickup and passport delivery, file checks before submission, regular WhatsApp updates, and air ticket booking.'
+          ],
+          note: '[confirm: premium package price, or “Contact us for a quote”]. Get started: send your visa number and passport copy on WhatsApp and we will tell you which route applies and what to prepare.'
+        }
+      ]}
+    />
+  );
+}
+
+function SaudiVisitVisaPage() {
+  return (
+    <ServicePage
+      title="Saudi Visit Visa"
+      intro="We help with family visit, business visit and tourist visa applications, including document review and status tracking."
+      sections={[
+        {
+          heading: 'Documents required',
+          items: [
+            'Passport valid for at least 6 months [confirm]',
+            'Recent passport-size photo',
+            'CNIC copy',
+            'Family visit: visa reference number from your relative in Saudi Arabia, their Iqama copy, and proof of relationship (MOFA-attested marriage or birth certificate, as applicable)',
+            'Business visit: invitation from the Saudi company',
+            'Biometrics at a Tasheer centre, where required'
+          ],
+          note: 'Processing time: [confirm] working days.'
+        }
+      ]}
+    />
+  );
+}
+
+function QVPPage() {
+  return (
+    <ServicePage
+      title="QVP (Qualification Verification Program)"
+      intro="QVP is Saudi Arabia's online check of your qualification and work history for professional work visas. It is run by the Professional Accreditation Center (PACC) of the Ministry of Human Resources at qvp.pacc.sa. Your employer's visa will show whether QVP is needed."
+      sections={[
+        {
+          heading: 'Documents required',
+          items: [
+            'Passport bio page',
+            'Degree and transcript (clear colour scans of both sides)',
+            'Professional certificates, if any',
+            'Experience letters on company letterhead with stamp, signature, job title, start and end dates, duties and HR contact',
+            'Saudi job offer letter, if available',
+            'Signed consent form (completed online)'
+          ]
+        },
+        {
+          heading: 'Steps',
+          items: [
+            'Confirm your Saudi job title matches your degree and experience.',
+            'Register on qvp.pacc.sa with details exactly as in your passport.',
+            'Upload clear scans and pay the verification fee.',
+            'QVP contacts your university and, where needed, your employer.',
+            'Reply quickly to any clarification request.',
+            'Your result is shared for visa processing.'
+          ],
+          note: 'Fee: about USD 93 [confirm on portal]. Time: usually around 2 to 3 weeks; delays happen when a university or employer replies slowly.'
+        },
+        {
+          heading: 'Common reasons for delay',
+          items: [
+            'Job title mismatch',
+            'Unclear scans',
+            'Names that do not match the passport',
+            'Incomplete experience letters',
+            'No reply from the university or employer'
+          ]
+        }
+      ]}
+    />
+  );
+}
+
+function SkillTestPage() {
+  return (
+    <ServicePage
+      title="Skilled / Labour Work Visa (Skill Verification)"
+      intro="For trade jobs listed by Saudi Takamol, you must pass a practical skill test before the visa. No degree or attestation is needed. In Pakistan the test is run by Saudi Takamol with NAVTTC, at NAVTTC-approved test centres, in 108 trades."
+      sections={[
+        {
+          heading: 'Documents required',
+          items: [
+            'Valid Pakistani passport (valid for at least 6 months [confirm])',
+            'CNIC',
+            'Visa number / authorization from your Saudi employer',
+            'Recent passport-size photos with white background',
+            'Takamol skill verification certificate (after passing the test)',
+            'Medical report from an approved medical centre (booked through Wafid)',
+            'Biometrics at a Tasheer centre',
+            'Protector stamp from the Bureau of Emigration'
+          ]
+        },
+        {
+          heading: 'Skill test steps',
+          items: [
+            'Register on the SVP portal (svp-international.pacc.sa) with your passport details.',
+            'Choose your trade, city and test date.',
+            'Pay the fee online: USD 85 per test (about Rs 23,500–24,500), effective 9 September 2026.',
+            'Download your appointment slip.',
+            'Attend the test centre with your original passport and CNIC.',
+            'If you pass, your certificate is uploaded to the portal within 24 hours. If you fail, you can book again.'
+          ],
+          note: 'Processing time: [confirm] working days after the test certificate and medical are ready.'
+        }
+      ]}
+    />
+  );
+}
+
+function VisaStampingPage() {
+  return (
+    <ServicePage
+      title="Tasheer Appointment, Biometric Appointment and Medical Appointment"
+      intro="Tasheer centres collect Saudi visa applications and biometrics in Pakistan. We book your appointment and check your file before you go."
+      sections={[
+        {
+          heading: 'Tasheer Appointment',
+          items: [
+            'Bring: original passport, visa documents from your sponsor, photos, CNIC copy, and medical report where required.',
+            'We book the appointment and tell you exactly what to bring.'
+          ]
+        },
+        {
+          heading: 'Biometric Appointment',
+          items: [
+            'Fingerprints and a photo are taken at a Tasheer centre before your visa is issued.',
+            'Bring: original passport, appointment confirmation, CNIC.'
+          ]
+        },
+        {
+          heading: 'Medical Appointment',
+          items: [
+            'Work visa applicants need a medical test at an approved centre, booked through Wafid.',
+            'Bring: original passport, passport photos, CNIC.'
+          ]
+        }
+      ]}
+    />
+  );
+}
+
+function RecruitmentPage() {
+  return (
+    <ServicePage
+      title="Recruitment of Skilled Labour and Professionals"
+      intro="We supply qualified Pakistani professionals and trained, tested skilled workers to companies in all Gulf countries, Europe (EU), Australia, Malaysia, Uzbekistan and other countries worldwide. As a licensed Overseas Employment Promoter [confirm: OEP licence no.], we handle the full process from sourcing to deployment."
+      sections={[
+        {
+          heading: 'Countries we recruit for',
+          items: [
+            'Gulf (all GCC countries): Saudi Arabia, Qatar, UAE, Kuwait, Bahrain, Oman',
+            'Europe: European Union (EU) countries',
+            'Australia: Australia',
+            'Asia: Malaysia, Uzbekistan',
+            'Other countries: any other country with a valid demand from a registered employer'
+          ],
+          note: 'The steps below show our Saudi process. For other countries we follow that country\'s visa, skill test and medical rules, and our team will share the exact checklist with you.'
+        },
+        {
+          heading: 'Professionals we recruit',
+          items: [
+            'Engineering: civil, mechanical, electrical, chemical, petroleum and other engineers',
+            'Healthcare: doctors, specialists, nurses and allied health staff',
+            'Finance and accounting: Chartered Accountants (CA), accountants, finance officers and managers',
+            'Health and safety: safety officers, safety supervisors and HSE managers',
+            'Technical: technicians, electronic devices technicians, IT and maintenance staff',
+            'Management and admin: managers, HR, sales, administration and office staff'
+          ]
+        },
+        {
+          heading: 'Why employers choose us',
+          items: [
+            'Workers screened and trade-tested before selection',
+            'One point of contact from demand letter to arrival',
+            'Regular updates on every worker\'s status',
+            'Replacement of unsuitable workers within an agreed period [confirm terms]',
+            'All recruitment done in line with Bureau of Emigration rules'
+          ],
+          note: 'Contact us for a recruitment quote: send your demand on WhatsApp or email, or book an appointment with our team in Saudi Arabia and the Gulf, and we will reply with timelines and charges.'
+        }
+      ]}
+    />
+  );
+}
+
+function ContactPage() {
+  return (
+    <section className="page narrow">
+      <h1>Contact us</h1>
+      <p className="lead">Professional Travel & Visa Services Office: Office # 8 Civic Centre, near Gourmet Bakery, Barkat Market, Lahore. OEP / BEOE licence no.: [confirm]. Phone / WhatsApp: +92 337 3398405. Email: info.professionalvisa@gmail.com. Office hours: [confirm].</p>
+      <div className="info-grid">
+        <div className="panel stat-box">
+          <strong>Book an appointment</strong>
+          <p>We help with recruitment, visas, attestation and travel. Choose a meeting at your office, at ours or online.</p>
+        </div>
+        <div className="panel stat-box">
+          <strong>WhatsApp</strong>
+          <p>Send your details on WhatsApp and we will reply quickly with the next step.</p>
+        </div>
+      </div>
+      <div className="row cta-row">
+        <Link className="btn" to="/">Back to home</Link>
+        <a className="btn ghost" href={WA} target="_blank" rel="noreferrer">WhatsApp us</a>
+      </div>
+    </section>
+  );
 }
 
 function SaudiArabiaAttestationHome() {
@@ -462,7 +780,7 @@ function SaudiArabiaAttestationHome() {
     <section className="page attestation-landing">
       <div className="service-hero premium-hero">
         <div className="premium-hero__content">
-          <span className="kicker">Saudi Arabia attestation</span>
+          <span className="kicker">🇸🇦 Saudi Arabia attestation</span>
           <h1>Saudi Arabia Attestation & Document Legalization</h1>
           <p className="lead">Reliable assistance for degree verification, marriage records, birth certificates, police reports, business documents, and other paperwork required for Saudi Arabia.</p>
           <div className="hero-cta-row">
@@ -478,7 +796,7 @@ function SaudiArabiaAttestationHome() {
           <h3>Document review support for Saudi Arabia</h3>
           <ul>
             <li>Saudi embassy and consulate requirements</li>
-            <li>HEC, MOFA, and Saudi Cultural Mission guidance</li>
+            <li>HEC, MOFA, QVP certificate and verification, and Saudi Culture guidance</li>
             <li>Professional visa and family documentation support</li>
           </ul>
           <div className="stat-row">
@@ -587,7 +905,7 @@ function SaudiAttestationDetail() {
   return (
     <section className="page narrow">
       <div className="service-hero">
-        <span className="kicker">Saudi Arabia attestation</span>
+        <span className="kicker">🇸🇦 Saudi Arabia attestation</span>
         <h1>{page.title}</h1>
         <p className="lead">{page.intro}</p>
       </div>
@@ -631,7 +949,7 @@ function CountryContentPage({ page }) {
   return (
     <section className="page narrow">
       <div className="service-hero">
-        <span className="kicker">Document attestation</span>
+        <span className="kicker">{page.flag || '🌍'} Document attestation</span>
         <h1>{page.title}</h1>
         <p className="lead">{page.intro}</p>
       </div>
@@ -706,7 +1024,7 @@ function Calculator() {
   const docs = [...cfg.baseDocs, ...(cfg.extraDocs[sel.document] || []),
     ...(svc.id.includes('mosadaqa') || svc.id === 'full' ? cfg.mosadaqaDocs : [])];
   const set = k => e => setSel(s => ({ ...s, [k]: e.target.value, ...(k === 'country' ? { service: '' } : {}) }));
-  return (<section className="page narrow"><h1>Document attestation calculator</h1>
+  return (<section className="page narrow"><h1>Document requirements</h1>
     <div className="form">
       <label>Country<select value={sel.country} onChange={set('country')}>{cfg.countries.map(c => <option key={c}>{c}</option>)}</select></label>
       <label>Document<select value={sel.document} onChange={set('document')}>{cfg.documents.map(c => <option key={c}>{c}</option>)}</select></label>
@@ -735,7 +1053,14 @@ function InquiryForm({ quote }) {
     <label>Name<input value={f.name} onChange={on('name')} /></label>
     <label>Phone / WhatsApp<input value={f.phone} onChange={on('phone')} /></label>
     <label>Email (optional)<input value={f.email} onChange={on('email')} /></label>
-    <label>Message<textarea rows="3" value={f.message} onChange={on('message')} /></label>
+      <label>Country<select value={f.country || 'Saudi Arabia'} onChange={on('country')}>
+        <option>Saudi Arabia</option><option>UAE</option><option>Qatar</option><option>Turkey</option><option>Vietnam</option><option>Bahrain</option>
+      </select></label>
+      <label>Service Type<select value={f.serviceType || 'QVP certificate and verification'} onChange={on('serviceType')}>
+        <option>QVP certificate and verification</option><option>Attestation</option><option>Mosadaqa / Saudi Culture</option><option>Saudi visa</option><option>Umrah package</option>
+      </select></label>
+      <label>Document Type<input value={f.documentType || ''} onChange={on('documentType')} placeholder="Degree, passport, marriage certificate..." /></label>
+      <label>Message<textarea rows="4" value={f.message} onChange={on('message')} placeholder="Please share your case details, required document, and any deadline." /></label>
     {state === 'missing' && <p className="err">Enter your name and phone number.</p>}
     {state === 'error' && <p className="err">Could not send. Message us on WhatsApp instead.</p>}
     <div className="row"><button className="btn" onClick={submit} disabled={state === 'sending'}>Send request</button>
@@ -744,33 +1069,9 @@ function InquiryForm({ quote }) {
 
 export default function App() {
   const [adminPassword, setAdminPassword] = useState(localStorage.getItem('adminPassword') || '');
-  const [theme, setTheme] = useState('luxury');
 
   useEffect(() => {
-    const handlePointer = (event) => {
-      const x = (event.clientX / window.innerWidth - 0.5) * 18;
-      const y = (event.clientY / window.innerHeight - 0.5) * 18;
-      document.documentElement.style.setProperty('--pointer-x', `${x}px`);
-      document.documentElement.style.setProperty('--pointer-y', `${y}px`);
-    };
-
-    const handleScroll = () => {
-      const offset = window.scrollY * 0.14;
-      document.documentElement.style.setProperty('--scroll-depth', `${offset}px`);
-    };
-
-    window.addEventListener('pointermove', handlePointer);
-    window.addEventListener('scroll', handleScroll, { passive: true });
-
-    return () => {
-      window.removeEventListener('pointermove', handlePointer);
-      window.removeEventListener('scroll', handleScroll);
-    };
   }, []);
-
-  function handleToggleTheme() {
-    setTheme((currentTheme) => (currentTheme === 'luxury' ? 'dark' : 'luxury'));
-  }
 
   function handleAdminLogin(pwd) {
     setAdminPassword(pwd);
@@ -783,11 +1084,20 @@ export default function App() {
   }
 
   return (
-    <div className={`app-shell ${theme}`}>
-      <Layout theme={theme} onToggleTheme={handleToggleTheme}>
+    <div className="app-shell luxury">
+      <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/saudi-visa-services" element={<Saudi />} />
+          <Route path="/work-visa" element={<SaudiWorkVisaPage />} />
+          <Route path="/visit-visa" element={<SaudiVisitVisaPage />} />
+          <Route path="/qvp" element={<QVPPage />} />
+          <Route path="/skill-test" element={<SkillTestPage />} />
+          <Route path="/visa-stamping" element={<VisaStampingPage />} />
+          <Route path="/recruitment" element={<RecruitmentPage />} />
+          <Route path="/recruitment/audit-firms" element={<RecruitmentPage />} />
+          <Route path="/recruitment/employers" element={<RecruitmentPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="/saudi-arabia-attestation" element={<SaudiArabiaAttestationHome />} />
           <Route path="/saudi-arabia-attestation/:slug" element={<SaudiAttestationDetail />} />
           <Route path="/country/uae" element={<CountryContentPage page={uaeAttestationPage} />} />
