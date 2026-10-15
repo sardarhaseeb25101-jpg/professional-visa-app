@@ -157,6 +157,27 @@ main { min-height: 70vh; }
   gap: 12px;
 }
 
+.mobile-menu-toggle {
+  display: none;
+  width: 44px;
+  height: 44px;
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.04);
+  border-radius: 12px;
+  padding: 10px 8px;
+  cursor: pointer;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: stretch;
+}
+
+.mobile-menu-toggle span {
+  display: block;
+  height: 2px;
+  background: #fff;
+  border-radius: 2px;
+}
+
 .header-cta {
   padding: 10px 18px;
   font-size: 0.9rem;
@@ -1785,30 +1806,51 @@ footer a {
 
 @media (max-width: 768px) {
   .top {
-    justify-content: center;
+    justify-content: space-between;
     gap: 12px 16px;
     padding: 16px 4vw;
+    position: sticky;
   }
 
   .brand-wrap {
-    width: 100%;
-    justify-content: center;
+    width: auto;
+    justify-content: flex-start;
   }
 
   .brand {
     font-size: 1.1rem;
   }
 
+  .mobile-menu-toggle {
+    display: flex;
+    margin-left: auto;
+  }
+
   .top nav {
-    justify-content: center;
-    gap: 4px 16px;
-    font-size: 0.9rem;
+    display: none;
     width: 100%;
-    order: 3;
+    order: 4;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px 0;
+    padding: 10px 0 4px;
+    background: rgba(5, 39, 23, 0.96);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 16px;
+    padding: 14px;
+  }
+
+  .top nav.nav-open {
+    display: flex;
   }
 
   .top nav a {
-    white-space: nowrap;
+    white-space: normal;
+    width: 100%;
+  }
+
+  .nav-actions {
+    display: none;
   }
 
   .hero {

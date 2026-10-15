@@ -16,15 +16,32 @@ import { AdminDashboard } from './AdminDashboard.jsx';
 import { UmrahPackages } from './UmrahPackages.jsx';
 
 function Layout({ children }) {
+  const [menuOpen, setMenuOpen] = useState(false);
+
+  const closeMenu = () => setMenuOpen(false);
+
   return (<>
     <header className="top">
-      <Link to="/" className="brand-wrap" aria-label={BRAND_NAME}>
+      <Link to="/" className="brand-wrap" aria-label={BRAND_NAME} onClick={closeMenu}>
         <img src="/assets/logo.jpeg" alt={BRAND_NAME} className="brand-logo" />
         <span className="brand">{BRAND_NAME}</span>
       </Link>
-      <nav>
-        <NavLink to="/">Home</NavLink>
-        <div className="country-menu">
+
+      <button
+        type="button"
+        className="mobile-menu-toggle"
+        aria-label="Toggle navigation"
+        aria-expanded={menuOpen}
+        onClick={() => setMenuOpen((value) => !value)}
+      >
+        <span />
+        <span />
+        <span />
+      </button>
+
+      <nav className={menuOpen ? 'nav-open' : ''}>
+        <NavLink to="/" onClick={closeMenu}>Home</NavLink>
+        <div className="country-menu" onClick={closeMenu}>
           <button type="button" className="country-menu__trigger">Services ▾</button>
           <div className="country-menu__panel">
             {countryMenu.map((item) => item.disabled ? (
@@ -33,20 +50,20 @@ function Layout({ children }) {
                 <span>{item.country}</span>
               </span>
             ) : (
-              <NavLink key={item.country} to={item.path} className="country-menu__item">
+              <NavLink key={item.country} to={item.path} className="country-menu__item" onClick={closeMenu}>
                 <span className="country-menu__flag">{item.flag || '🌍'}</span>
                 <span>{item.country}</span>
               </NavLink>
             ))}
           </div>
         </div>
-        <NavLink to="/umrah-packages">Umrah packages</NavLink>
-        <NavLink to="/attestation-calculator">Requirements</NavLink>
-        <NavLink to="/guides/mosadaqa">Mosadaqa / Saudi Culture</NavLink>
-        <NavLink to="/guides/qvp">QVP guide</NavLink>
+        <NavLink to="/umrah-packages" onClick={closeMenu}>Umrah packages</NavLink>
+        <NavLink to="/attestation-calculator" onClick={closeMenu}>Requirements</NavLink>
+        <NavLink to="/guides/mosadaqa" onClick={closeMenu}>Mosadaqa / Saudi Culture</NavLink>
+        <NavLink to="/guides/qvp" onClick={closeMenu}>QVP guide</NavLink>
       </nav>
       <div className="nav-actions">
-        <Link to="/attestation-calculator" className="btn header-cta">Get consultation</Link>
+        <Link to="/attestation-calculator" className="btn header-cta" onClick={closeMenu}>Get consultation</Link>
       </div>
     </header>
     <main>{children}</main>
@@ -579,6 +596,236 @@ function SaudiVisitVisaPage() {
   );
 }
 
+function QvpTakamolPage() {
+  return (
+    <ServicePage
+      title="QVP / Takamol Skill Verification Program"
+      intro="The Saudi Takamol Skill Verification Program (SVP) checks whether candidates in designated occupations meet the skill level required for employment in Saudi Arabia. It is not a job placement or training program."
+      sections={[
+        {
+          heading: 'Who may need this service?',
+          items: [
+            'Skilled workers travelling to Saudi Arabia for employment in occupations where skill verification is mandatory.',
+            'Applicants whose work visa depends on a recognized professional or technical assessment.'
+          ]
+        },
+        {
+          heading: 'How the process works',
+          items: [
+            'Confirm whether the applicant’s occupation requires SVP / QVP verification.',
+            'Register through the official portal using the required personal information.',
+            'Select the relevant trade, city, and available assessment date.',
+            'Complete payment and download the appointment slip.',
+            'Attend the assigned assessment centre with the required original documents.'
+          ],
+          note: 'Please confirm current fees and appointment availability on the official portal before quoting a customer.'
+        },
+        {
+          heading: 'Documents to prepare',
+          items: [
+            'Valid passport',
+            'CNIC',
+            'Any additional documents requested by the official portal or assessing authority.'
+          ]
+        },
+        {
+          heading: 'Our assistance',
+          items: [
+            'Explain registration requirements and eligibility.',
+            'Prepare applicant details and required documents before booking.',
+            'Guide applicants through appointment booking and test-day preparation.',
+            'Review the next steps after registration and before the assessment.'
+          ]
+        }
+      ]}
+    />
+  );
+}
+
+function NavttcAppointmentPage() {
+  return (
+    <ServicePage
+      title="NAVTTC Appointment Assistance"
+      intro="NAVTTC is Pakistan’s national vocational and technical training authority. In the Saudi employment process, NAVTTC is also involved in implementing the Takamol Skill Verification Program and related vocational assessment procedures."
+      sections={[
+        {
+          heading: 'Who may need assistance?',
+          items: [
+            'Applicants who need help identifying the correct vocational assessment or registration route.',
+            'Candidates who need help understanding the required documents and appointment process.'
+          ]
+        },
+        {
+          heading: 'How we can help',
+          items: [
+            'Explain the relevant registration process.',
+            'Help applicants identify the appropriate assessment or appointment type.',
+            'Review personal details and required documents.',
+            'Guide applicants through appointment instructions.',
+            'Explain what to prepare before attending an assessment.'
+          ]
+        },
+        {
+          heading: 'Information to prepare',
+          items: [
+            'CNIC',
+            'Passport',
+            'Qualification or trade details where applicable',
+            'Any official letter, portal instruction, or appointment slip received from the authority.'
+          ]
+        },
+        {
+          heading: 'Important note',
+          items: [
+            'Please confirm whether the customer means a NAVTTC-related trade test, skill assessment, or Takamol appointment before quoting the service.',
+            'The required information may vary by assessment type and authority instructions.'
+          ]
+        }
+      ]}
+    />
+  );
+}
+
+function WafidMedicalPage() {
+  return (
+    <ServicePage
+      title="GAMCA / Wafid Medical Appointment"
+      intro="Wafid is the medical examination program used for eligible individuals travelling to participating GCC countries for work or residence. It was previously commonly known as GAMCA."
+      sections={[
+        {
+          heading: 'Who needs this service?',
+          items: [
+            'Applicants whose visa process requires a Wafid medical examination for the destination country.',
+            'Candidates who need help understanding the official portal instructions before attending the medical centre.'
+          ]
+        },
+        {
+          heading: 'How the process works',
+          items: [
+            'Provide the required applicant and passport information.',
+            'Select the country of application, city, and destination country on the official booking system.',
+            'Complete the required payment and generate the appointment slip.',
+            'Visit the medical centre assigned by the system.',
+            'Check the medical report through the official Wafid portal when available.'
+          ]
+        },
+        {
+          heading: 'Information required',
+          items: [
+            'Valid passport details',
+            'Full name and date of birth',
+            'Nationality and gender',
+            'Contact information',
+            'Destination country and city details as requested.'
+          ]
+        },
+        {
+          heading: 'Our assistance',
+          items: [
+            'Appointment registration guidance',
+            'Pre-submission information review',
+            'Appointment slip guidance',
+            'Instructions for attending the assigned centre',
+            'Guidance on checking the medical result after the report is available.'
+          ],
+          note: 'The medical centre is assigned by the official Wafid system; applicants should not assume they can choose any centre they prefer.'
+        }
+      ]}
+    />
+  );
+}
+
+function VisaStampingProtectorPage() {
+  return (
+    <ServicePage
+      title="Visa Stamping & Protector Services"
+      intro="Preparing to travel to Saudi Arabia for employment? Our visa stamping and protector assistance helps applicants understand their documentation and procedural steps before overseas employment."
+      sections={[
+        {
+          heading: 'A. Visa stamping assistance',
+          items: [
+            'Reviewing the relevant visa and passport details.',
+            'Providing a document checklist.',
+            'Guidance on required attestations and supporting documents.',
+            'Explaining the applicable submission process.',
+            'Helping applicants understand the next steps.'
+          ]
+        },
+        {
+          heading: 'B. Protector of Emigrants assistance',
+          items: [
+            'Explaining the protector registration process.',
+            'Helping organize employment and identity documents.',
+            'Guidance on applicable registration and insurance requirements.',
+            'Assistance understanding appointments, fees, and submission instructions.',
+            'Guidance to ensure the required formalities are completed before departure.'
+          ]
+        },
+        {
+          heading: 'Documents to prepare',
+          items: [
+            'Passport and relevant visa documents',
+            'CNIC',
+            'Employment contract or offer documentation',
+            'Medical and qualification documents where applicable',
+            'Photographs and any other supporting paperwork required by the relevant authority.'
+          ],
+          note: 'This is a general preparation checklist, not a universal list. The applicable authority’s current requirements should be confirmed for each applicant.'
+        }
+      ]}
+    />
+  );
+}
+
+function WakalaServicesPage() {
+  return (
+    <ServicePage
+      title="Wakala Services"
+      intro="Wakala generally refers to an authorization or power of attorney that allows a person or organization to act on another party’s behalf. In Saudi visa and recruitment-related processes, the exact meaning and documentation depend on the purpose of the authorization."
+      sections={[
+        {
+          heading: 'Who may need Wakala assistance?',
+          items: [
+            'Customers, employers, or recruitment partners who need help understanding an authorization document connected with a Saudi Arabia process.',
+            'Applicants who need help reviewing names, passport details, and supporting information before approval.'
+          ]
+        },
+        {
+          heading: 'Our assistance includes',
+          items: [
+            'Explaining the purpose of the required Wakala.',
+            'Helping review names, passport details, and other information.',
+            'Guidance on the documents needed for the specific authorization.',
+            'Explaining applicable attestation or verification steps.',
+            'Providing guidance on the relevant submission process.'
+          ]
+        },
+        {
+          heading: 'Documents to prepare',
+          items: [
+            'Passport details',
+            'CNIC',
+            'Employer or sponsor information',
+            'Authorization particulars',
+            'Supporting documents relevant to the transaction.'
+          ]
+        },
+        {
+          heading: 'How the process works',
+          items: [
+            'Explain the purpose for which the Wakala is required.',
+            'Confirm the applicable document format and authority.',
+            'Prepare and review the necessary information.',
+            'Complete the required authorization, verification, or attestation steps.',
+            'Follow the relevant authority’s instructions for submission and acceptance.'
+          ],
+          note: 'Please confirm which type of Wakala your company actually processes before finalizing the service, because recruitment authorization, embassy-related Wakala, and legal power of attorney may involve different procedures.'
+        }
+      ]}
+    />
+  );
+}
+
 function QVPPage() {
   return (
     <ServicePage
@@ -1020,19 +1267,30 @@ function Calculator() {
   if (!cfg) return <section className="page"><p>Loading...</p></section>;
 
   const opts = cfg.services[sel.country] || cfg.services.default;
-  const svc = opts.find(o => o.id === sel.service) || opts[0];
+  const svc = opts.find((o) => o.id === sel.service) || opts[0];
   const docs = [...cfg.baseDocs, ...(cfg.extraDocs[sel.document] || []),
     ...(svc.id.includes('mosadaqa') || svc.id === 'full' ? cfg.mosadaqaDocs : [])];
-  const set = k => e => setSel(s => ({ ...s, [k]: e.target.value, ...(k === 'country' ? { service: '' } : {}) }));
-  return (<section className="page narrow"><h1>Document requirements</h1>
-    <div className="form">
-      <label>Country<select value={sel.country} onChange={set('country')}>{cfg.countries.map(c => <option key={c}>{c}</option>)}</select></label>
-      <label>Document<select value={sel.document} onChange={set('document')}>{cfg.documents.map(c => <option key={c}>{c}</option>)}</select></label>
-      <label>Service<select value={svc.id} onChange={set('service')}>{opts.map(o => <option key={o.id} value={o.id}>{o.label}</option>)}</select></label></div>
-    <div className="panel result"><h2>Required documents</h2><ul>{docs.map(d => <li key={d}>{d}</li>)}</ul>
-      <h2>Estimated timeline</h2><p>{svc.days}</p></div>
-    <h2>Get started</h2>
-    <InquiryForm quote={{ country: sel.country, document: sel.document, service: svc.label }} /></section>);
+  const set = (k) => (e) => setSel((s) => ({ ...s, [k]: e.target.value, ...(k === 'country' ? { service: '' } : {}) }));
+
+  return (
+    <section className="page narrow">
+      <h1>Document requirements</h1>
+      <div className="form">
+        <label>Country<select value={sel.country} onChange={set('country')}>{cfg.countries.map((c) => <option key={c}>{c}</option>)}</select></label>
+        <label>Document<select value={sel.document} onChange={set('document')}>{cfg.documents.map((c) => <option key={c}>{c}</option>)}</select></label>
+        <label>Service<select value={svc.id} onChange={set('service')}>{opts.map((o) => <option key={o.id} value={o.id}>{o.label}</option>)}</select></label>
+      </div>
+      <div className="panel result">
+        <h2>Estimated timeline</h2>
+        <p>{svc.days}</p>
+        {svc.price && <p><strong>Typical fee range:</strong> {svc.price}</p>}
+        <h2>Required documents</h2>
+        <ul>{docs.map((d) => <li key={d}>{d}</li>)}</ul>
+      </div>
+      <h2>Get started</h2>
+      <InquiryForm quote={{ country: sel.country, document: sel.document, service: svc.label }} />
+    </section>
+  );
 }
 
 function InquiryForm({ quote }) {
@@ -1048,7 +1306,7 @@ function InquiryForm({ quote }) {
       setState(r.ok ? 'sent' : 'error');
     } catch { setState('error'); }
   }
-  if (state === 'sent') return <p className="ok">Request sent. We will contact you on {f.phone}.</p>;
+  if (state === 'sent') return <p className="ok">Request sent. We will contact you on {f.phone}. For faster support, send the same details on WhatsApp too.</p>;
   return (<div className="form">
     <label>Name<input value={f.name} onChange={on('name')} /></label>
     <label>Phone / WhatsApp<input value={f.phone} onChange={on('phone')} /></label>
@@ -1063,6 +1321,7 @@ function InquiryForm({ quote }) {
       <label>Message<textarea rows="4" value={f.message} onChange={on('message')} placeholder="Please share your case details, required document, and any deadline." /></label>
     {state === 'missing' && <p className="err">Enter your name and phone number.</p>}
     {state === 'error' && <p className="err">Could not send. Message us on WhatsApp instead.</p>}
+    <p className="muted-note">This form is sent to the site backend. For immediate delivery, send the same request on WhatsApp and we will confirm receipt.</p>
     <div className="row"><button className="btn" onClick={submit} disabled={state === 'sending'}>Send request</button>
       <a className="btn ghost" href={WA}>WhatsApp us</a></div></div>);
 }
@@ -1091,6 +1350,11 @@ export default function App() {
           <Route path="/saudi-visa-services" element={<Saudi />} />
           <Route path="/work-visa" element={<SaudiWorkVisaPage />} />
           <Route path="/visit-visa" element={<SaudiVisitVisaPage />} />
+          <Route path="/saudi-arabia/qvp-takamol-svp" element={<QvpTakamolPage />} />
+          <Route path="/saudi-arabia/navttc-appointment" element={<NavttcAppointmentPage />} />
+          <Route path="/gcc/wafid-gamca-medical" element={<WafidMedicalPage />} />
+          <Route path="/saudi-arabia/visa-stamping-protector" element={<VisaStampingProtectorPage />} />
+          <Route path="/saudi-arabia/wakala-services" element={<WakalaServicesPage />} />
           <Route path="/qvp" element={<QVPPage />} />
           <Route path="/skill-test" element={<SkillTestPage />} />
           <Route path="/visa-stamping" element={<VisaStampingPage />} />

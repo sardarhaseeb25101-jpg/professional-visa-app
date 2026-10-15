@@ -6,14 +6,14 @@ export default {
     'Marriage Certificate', 'Birth Certificate', 'Commercial Document'],
   services: {
     'Saudi Arabia': [
-      { id: 'mofa', label: 'MOFA only', days: 'TBC' },
-      { id: 'mofa-mosadaqa', label: 'MOFA + Mosadaqa', days: '15-20 working days (Mosadaqa)' },
-      { id: 'full', label: 'MOFA + Mosadaqa + Embassy', days: '15-20 working days + embassy time (TBC)' },
-      { id: 'embassy', label: 'Saudi Embassy / Consulate only', days: 'TBC' },
+      { id: 'mofa', label: 'MOFA only', days: 'Usually 7-15 working days for a straightforward document route.', price: 'Approx. PKR 8,000-20,000 depending on the document and authority queue.' },
+      { id: 'mofa-mosadaqa', label: 'MOFA + Mosadaqa', days: 'Typically 15-25 working days for degree-related cases, depending on university response time.', price: 'Approx. PKR 20,000-45,000 including document review and filing support.' },
+      { id: 'full', label: 'MOFA + Mosadaqa + Embassy', days: 'Often 20-35 working days total, plus embassy processing time and document verification.', price: 'Approx. PKR 30,000-70,000 depending on document type and urgency.' },
+      { id: 'embassy', label: 'Saudi Embassy / Consulate only', days: 'Usually 7-20 working days depending on office workload and document type.', price: 'Approx. PKR 10,000-30,000 depending on document category and authority route.' },
     ],
     default: [
-      { id: 'mofa', label: 'MOFA attestation', days: 'TBC' },
-      { id: 'embassy', label: 'MOFA + Embassy attestation', days: 'TBC' },
+      { id: 'mofa', label: 'MOFA attestation', days: 'Usually 7-15 working days depending on document and country rules.', price: 'Approx. PKR 8,000-20,000 for standard document handling.' },
+      { id: 'embassy', label: 'MOFA + Embassy attestation', days: 'Usually 10-25 working days depending on the authority queue and document type.', price: 'Approx. PKR 15,000-35,000 for a complete authority route.' },
     ],
   },
   baseDocs: ['Original document', 'Clear passport copy (bio page)', 'CNIC copy'],
