@@ -2,6 +2,7 @@ import 'dotenv/config';
 import express from 'express';
 import cors from 'cors';
 import mongoose from 'mongoose';
+import nodemailer from 'nodemailer';
 import Inquiry from './models/Inquiry.js';
 import Package from './models/Package.js';
 import Hotel from './models/Hotel.js';
@@ -41,6 +42,52 @@ const fallbackHotels = [
 
 const mongoAvailable = () => Boolean(process.env.MONGO_URI);
 
+const emailConfigured = () => Boolean(process.env.MAIL_HOST && process.env.MAIL_USER && process.env.MAIL_PASS && (process.env.MAIL_TO || process.env.MAIL_USER));
+
+const getMailer = () => {
+  if (!emailConfigured()) return null;
+
+  return nodemailer.createTransport({
+    host: process.env.MAIL_HOST,
+    port: Number(process.env.MAIL_PORT || 587),
+    secure: String(process.env.MAIL_SECURE || 'false').toLowerCase() === 'true' || Number(process.env.MAIL_PORT || 587) === 465,
+    auth: {
+      user: process.env.MAIL_USER,
+      pass: process.env.MAIL_PASS,
+    },
+    tls: {
+      rejectUnauthorized: false,
+    },
+  });
+};
+
+const sendInquiryEmail = async (payload) => {
+  const transporter = getMailer();
+  if (!transporter) return { sent: false, reason: 'MAIL_* settings are not configured.' };
+
+  const mailTo = process.env.MAIL_TO || process.env.MAIL_USER;
+  const subject = `New inquiry from ${payload.name} - ${payload.service || 'General enquiry'}`;
+  const text = [
+    `Name: ${payload.name}`,
+    `Phone: ${payload.phone || 'Not provided'}`,
+    `Email: ${payload.email || 'Not provided'}`,
+    `Service: ${payload.service || 'Not specified'}`,
+    `Country: ${payload.quote?.country || 'Not specified'}`,
+    `Document: ${payload.quote?.document || 'Not specified'}`,
+    '',
+    payload.message || 'No message provided.',
+  ].join('\n');
+
+  const info = await transporter.sendMail({
+    from: process.env.MAIL_FROM || process.env.MAIL_USER,
+    to: mailTo,
+    subject,
+    text,
+  });
+
+  return { sent: true, id: info.messageId };
+};
+
 const adminAuth = (req, res, next) => {
   const pwd = req.headers['x-admin-password'];
   if (!process.env.ADMIN_PASSWORD) return res.status(503).json({ error: 'Admin login is not configured on this server.' });
@@ -54,15 +101,29 @@ app.post('/api/inquiries', async (req, res) => {
   const { name, phone, email, service, message, quote } = req.body || {};
   if (!name || !phone) return res.status(400).json({ error: 'Name and phone are required.' });
 
-  if (!mongoAvailable()) {
-    return res.status(201).json({ id: 'offline-demo', saved: false, message: 'Request accepted in fallback mode.' });
-  }
+  const payload = { name, phone, email, service, message, quote };
 
   try {
-    const doc = await Inquiry.create({ name, phone, email, service, message, quote });
-    res.status(201).json({ id: doc._id, saved: true });
+    const emailResult = emailConfigured() ? await sendInquiryEmail(payload) : { sent: false, reason: 'MAIL_* settings are not configured.' };
+
+    if (mongoAvailable()) {
+      const doc = await Inquiry.create({ name, phone, email, service, message, quote });
+      return res.status(201).json({
+        id: doc._id,
+        saved: true,
+        email: emailResult.sent ? 'sent' : emailResult.reason,
+      });
+    }
+
+    return res.status(201).json({
+      id: 'offline-demo',
+      saved: false,
+      email: emailResult.sent ? 'sent' : emailResult.reason,
+      message: emailResult.sent ? 'Request accepted and email sent.' : 'Request accepted in fallback mode. Configure MAIL_* in the server environment to enable live email delivery.',
+    });
   } catch (e) {
-    res.status(500).json({ error: 'Could not save your request.' });
+    console.error('Could not process inquiry:', e.message);
+    return res.status(500).json({ error: 'Could not save or deliver your request.' });
   }
 });
 
