@@ -171,205 +171,322 @@ function AIChatWidget() {
 }
 
 function Home() {
-  const journey = [
-    { step: '01', title: 'Visa', text: 'Employer issues', href: '/work-visa' },
-    { step: '02', title: 'Wakala', text: 'In our name', href: '/saudi-arabia/wakala-services' },
-    { step: '03', title: 'QVP', text: 'Skill or degree check', href: '/guides/qvp' },
-    { step: '04', title: 'Wafid', text: 'Medical', href: '/gcc/wafid-gamca-medical' },
-    { step: '05', title: 'Tasheer', text: 'Biometrics', href: '/guides/tasheer' },
-    { step: '06', title: 'Stamp', text: 'Embassy', href: '/visa-stamping' },
-    { step: '07', title: 'Protector', text: 'BEOE + OEC', href: '/saudi-arabia/visa-stamping-protector' },
-    { step: '08', title: 'Fly', text: 'Iqama in KSA', href: '/work-visa' },
+  const trustItems = [
+    { title: 'Verified process flow', text: 'Every case follows a structured review before submission.' },
+    { title: 'Dedicated guidance', text: 'Clear support for complex documents and embassy requirements.' },
+    { title: 'Travel-ready planning', text: 'Visa, attestation, and Umrah assistance under one roof.' },
   ];
+  const [activePlan, setActivePlan] = useState(1);
+  const [activeTestimonial, setActiveTestimonial] = useState(0);
 
-  const services = [
-    { tag: 'WKL', title: 'Wakala (E-Wakala)', description: 'Get your employer to issue the Wakala in our name and we handle the rest.', href: '/saudi-arabia/wakala-services', highlight: true },
-    { tag: 'VSA', title: 'Saudi Work Visa', description: 'Skill test or degree attestation and QVP, then stamping.', href: '/work-visa', highlight: true },
-    { tag: 'FAM', title: 'Family Visa', description: 'Parents, in-laws, spouse and children, Iqama visas and extensions.', href: '/visit-visa', highlight: true },
-    { tag: 'MED', title: 'Wafid Medical', description: 'Booking, slip, medical centre and result follow-up.', href: '/gcc/wafid-gamca-medical' },
-    { tag: 'TSH', title: 'Tasheer & Biometrics', description: 'Appointments booked, file checked, passport collected.', href: '/guides/tasheer' },
-    { tag: 'QVP', title: 'QVP & Skills', description: 'Qualification verification and NAVTTC skill tests.', href: '/guides/qvp' },
-    { tag: 'ATT', title: 'Attestation', description: 'HEC, MOFA, Mosadaqa and embassy processing.', href: '/saudi-arabia-attestation' },
-    { tag: 'JOB', title: 'Recruitment', description: 'Gulf, EU, Australia, Malaysia, Uzbekistan and more.', href: '/recruitment' },
-    { tag: 'UMR', title: 'Umrah Packages', description: 'Economy and family packages with visa, hotel and transfers.', href: '/umrah-packages' },
-    { tag: 'PRM', title: 'Premium Packages', description: 'Dedicated case officer and fast-track service.', href: '/contact' },
-    { tag: 'TRN', title: 'Translation & NADRA', description: 'Arabic, English, Urdu translation and other country support.', href: '/contact' },
-  ];
+  const nextPlan = () => setActivePlan((current) => (current + 1) % packagePlans.length);
+  const prevPlan = () => setActivePlan((current) => (current - 1 + packagePlans.length) % packagePlans.length);
+  const nextTestimonial = () => setActiveTestimonial((current) => (current + 1) % testimonials.length);
+  const prevTestimonial = () => setActiveTestimonial((current) => (current - 1 + testimonials.length) % testimonials.length);
 
-  const whoCards = [
-    { title: 'Professionals', text: 'Engineers, doctors, nurses, accountants and managers who need degree verification and Saudi job approval.', href: '/guides/qvp' },
-    { title: 'Skilled workers', text: 'Electricians, welders, cooks, drivers, plumbers and technicians preparing for Saudi employment.', href: '/work-visa' },
-    { title: 'Families', text: 'Parents, spouse, children, visitors and family residence applications with document support.', href: '/visit-visa' },
-    { title: 'Employers', text: 'Recruitment and bulk visa processing for Saudi and Gulf companies.', href: '/recruitment' },
-  ];
-
-  const quickQuestions = [
-    'QVP certificate',
-    'Saudi visa',
-    'Attestation',
-    'Wafid medical',
-    'Family visit visa',
-    'Umrah package',
-  ];
+  const currentPlan = packagePlans[activePlan];
+  const currentTestimonial = testimonials[activeTestimonial];
 
   return (<>
-    <div className="social-strip">
-      <div className="wrap">
-        <a href={WA} target="_blank" rel="noreferrer">WhatsApp: {PHONE}</a>
-        <a href={FACEBOOK_URL} target="_blank" rel="noreferrer">Facebook</a>
-        <a href={TIKTOK_URL} target="_blank" rel="noreferrer">TikTok</a>
-        <a href={WA_CHANNEL} target="_blank" rel="noreferrer">WhatsApp channel</a>
-      </div>
-    </div>
-
-    <section className="hero2">
-      <div id="heroDots" aria-hidden="true" />
-      <div className="wrap hero2-grid">
-        <div className="hero-copy">
-          <div className="pill"><span className="live" /> Trusted visa and attestation partner</div>
-          <h1 className="hero-h">Saudi visas, <em>QVP</em>, attestation and Umrah — handled with care.</h1>
-          <p className="lead">We guide professionals, families and employers through Saudi visa processing, document attestation, Wakala, Wafid medical, Tasheer, QVP and travel support from one office.</p>
-          <div className="btns">
-            <Link className="btn btn-gold btn-lg" to="/attestation-calculator">View requirements</Link>
-            <a className="btn btn-line btn-lg" href={WA} target="_blank" rel="noreferrer">WhatsApp us</a>
+    <div className="page-shell">
+      <section className="hero parallax-panel">
+        <div className="hero__content parallax-layer" data-depth="0.18">
+          <div className="eyebrow">Trusted visa, attestation & travel specialists</div>
+          <h1>Your journey starts with the right guidance.</h1>
+          <p>
+            We help with Saudi visa processing, QVP, HEC, MOFA, Mosadaqa and embassy attestation, and travel bookings, all from one office.
+          </p>
+          <div className="row">
+            <Link className="btn" to="/attestation-calculator">View requirements</Link>
+            <a className="btn ghost" href={WA}>Chat on WhatsApp</a>
           </div>
-          <div className="proof">
-            <div><b>5,000+</b><span>people served</span></div>
-            <div><b>24h</b><span>response window</span></div>
-            <div><b>CEO</b><span>chartered accountant</span></div>
-          </div>
-        </div>
 
-        <div className="pass-wrap">
-          <div className="pass">
-            <div className="pass-top">
-              <div>
-                <div className="pass-no">Professional Travel & Visa Services</div>
+          <div className="hero__badges" aria-label="Supported destinations">
+            {['Saudi Arabia', 'UAE', 'Qatar', 'Turkey', 'Vietnam', 'Bahrain'].map((place) => (
+              <span key={place} className="hero__badge">{place}</span>
+            ))}
+          </div>
+
+          <div className="hero__proof" aria-label="Service highlights">
+            <span>HEC support</span>
+            <span>MOFA guidance</span>
+            <span>Saudi embassy paperwork</span>
+            <span>Umrah planning</span>
+          </div>
+
+          <div className="hero__stats">
+            <div className="mini-stat parallax-layer" data-depth="0.24">
+              <strong>5,000+</strong>
+              <span>people served</span>
+            </div>
+            <div className="mini-stat parallax-layer" data-depth="0.24">
+              <strong>CEO</strong>
+              <span>Chartered Accountant</span>
+            </div>
+            {stats.map((item) => (
+              <div key={item.label} className="mini-stat parallax-layer" data-depth="0.24">
+                <strong>{item.value}</strong>
+                <span>{item.label}</span>
               </div>
-              <div className="stamp">Premium case</div>
-            </div>
-            <div className="pass-route">
-              <b>Visa</b>
-              <span>Wakala · Test · Medical · Stamp</span>
-              <div className="stamp">Saudi / GCC</div>
-            </div>
-            <svg className="arc" viewBox="0 0 220 70" aria-hidden="true">
-              <path d="M8 60 Q110 10 212 60" fill="none" stroke="currentColor" strokeWidth="2" strokeDasharray="4 6" />
-            </svg>
-            <div className="pass-grid">
-              <div><small>Wakala</small><b>Approved</b></div>
-              <div><small>QVP</small><b>Verified</b></div>
-              <div><small>Medical</small><b>Ready</b></div>
-              <div><small>Protector</small><b>Booked</b></div>
-            </div>
-            <div className="pass-foot">
-              <span className="time">Case officer: assigned</span>
-              <div className="barcode" aria-hidden="true" />
-            </div>
-            <span className="st st1">Saudi</span>
-            <span className="st st2">GCC</span>
-          </div>
-        </div>
-      </div>
-
-      <div className="wrap">
-        <div className="askbar">
-          <span className="askbar-ico">✦</span>
-          <input type="text" value="" placeholder="Ask about visa, QVP, attestation, or Umrah..." readOnly />
-          <a className="btn btn-gold" href={WA} target="_blank" rel="noreferrer">Ask on WhatsApp</a>
-        </div>
-        <div className="hero-chips doc-index">
-          {quickQuestions.map((item) => (
-            <span key={item} className="chip">{item}</span>
-          ))}
-        </div>
-      </div>
-    </section>
-
-    <section className="section">
-      <div className="wrap">
-        <div className="journey2">
-          <div className="journey-head">
-            <div>
-              <div className="eyebrow">How we work</div>
-              <h2>A smooth path from paper to passport.</h2>
-            </div>
-            <Link className="btn btn-soft" to="/work-visa">See the full process</Link>
-          </div>
-          <div className="track">
-            {journey.map((item) => (
-              <Link key={item.step} to={item.href} className="stop">
-                <span className="dot">{item.step}</span>
-                <b>{item.title}</b>
-                <small>{item.text}</small>
-              </Link>
             ))}
           </div>
         </div>
-      </div>
-    </section>
 
-    <section className="section services-band">
-      <div className="wrap">
-        <div className="section-head">
-          <div className="eyebrow">Popular services</div>
-          <h2>Everything you need for a clean visa and attestation file.</h2>
+        <div className="hero__visual glass-card parallax-layer" data-depth="0.32" aria-label="Service overview card">
+          <img src="/assets/qvp-pamphlet.jpeg" alt="QVP service overview" className="hero-visual-image" />
+          <div className="floating-card primary">
+            <span className="card-label">Premium service</span>
+            <strong>Saudi work & visit visas</strong>
+            <small>Document review + submission support</small>
+          </div>
+          <div className="floating-card secondary">
+            <span className="card-label">Fast response</span>
+            <strong>24h case review</strong>
+            <small>WhatsApp guidance available</small>
+          </div>
         </div>
-        <div className="grid">
-          {services.map((service) => (
-            <Link key={service.tag} to={service.href} className={`svc ${service.highlight ? 'hl' : ''}`}>
-              <div className="tag">{service.tag}</div>
-              <div className="gi">{service.tag}</div>
-              <h3>{service.title}</h3>
-              <p>{service.description}</p>
-              <span className="go">Read more →</span>
+      </section>
+
+      <section className="section parallax-panel">
+        <div className="section-heading">
+          <span className="kicker">Why choose us</span>
+          <h2>Industry experts in documents, visas and stamping.</h2>
+        </div>
+        <div className="trust-note-box">
+          <strong>Industry experts in documents, visas and stamping. Our team knows every step of the process and handles your file from start to finish.</strong>
+          <span>Our CEO is a Chartered Accountant who personally oversees professional visa files, so engineers, accountants, doctors and other professionals get advice from someone who understands degrees, qualifications and Saudi requirements first-hand.</span>
+        </div>
+        <div className="grid highlight-grid">
+          {highlights.map((item) => (
+            <div key={item.title} className="panel feature-card parallax-layer" data-depth="0.12">
+              <span className="feature-icon">{item.icon}</span>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="section section--soft parallax-panel">
+        <div className="section-heading">
+          <span className="kicker">Our team in Saudi Arabia and the Gulf</span>
+          <h2>We are close to you.</h2>
+        </div>
+        <div className="team-brief">
+          <p>We are close to you. Besides our office in Pakistan, our team is on the ground in Saudi Arabia and across the Gulf, so employers and applicants can meet us in person. [confirm: cities, e.g. Riyadh, Jeddah, Dammam, Dubai, Doha]</p>
+          <p>Book an appointment to discuss how we can help you with recruitment, visas, attestation or travel. Choose a meeting at your office, at ours, or online.</p>
+          <div className="row cta-row">
+            <Link className="btn" to="/contact">Book an appointment</Link>
+            <a className="btn ghost" href={WA} target="_blank" rel="noreferrer">WhatsApp us</a>
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--dark parallax-panel process-visual-section">
+        <div className="section-heading light">
+          <span className="kicker">How we work</span>
+          <h2>A professional process designed to reduce stress and delays.</h2>
+        </div>
+        <div className="process-visual-wrap">
+          <img src="/assets/visa-process-roadmap.jpeg" alt="Visa process roadmap" className="process-visual" />
+          <div className="process-grid">
+            {processSteps.map((step) => (
+              <article key={step.step} className="process-card parallax-layer" data-depth="0.14">
+                <span className="process-step">{step.step}</span>
+                <h3>{step.title}</h3>
+                <p>{step.text}</p>
+              </article>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      <section className="section section--soft parallax-panel">
+        <div className="results-showcase">
+          <div className="results-showcase__copy">
+            <span className="kicker">Why families and professionals choose us</span>
+            <h2>Support that keeps your application organized, transparent, and moving.</h2>
+            <p>From first document review to embassy filing, we help you understand every stage, reduce unnecessary delays, and prepare a cleaner application from the start.</p>
+          </div>
+          <div className="results-grid">
+            <div className="result-card result-card--image">
+              <img src="/assets/qvp-available-services.jpeg" alt="QVP available services" />
+            </div>
+            <div className="result-card">
+              <strong>1:1</strong>
+              <span>case review</span>
+            </div>
+            <div className="result-card">
+              <strong>24h</strong>
+              <span>response window</span>
+            </div>
+            <div className="result-card">
+              <strong>100%</strong>
+              <span>clarity-first guidance</span>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="section country-spotlight parallax-panel">
+        <div className="section-heading">
+          <span className="kicker">Country coverage</span>
+          <h2>Focused expertise across the destinations clients trust most.</h2>
+        </div>
+        <div className="country-grid">
+          {countryMenu.map((country) => (
+            <Link key={country.country} to={country.path} className="country-card parallax-layer" data-depth="0.08">
+              <span className="country-card__flag">{country.flag}</span>
+              <div>
+                <strong>{country.country}</strong>
+                <small>Visa & attestation support</small>
+              </div>
             </Link>
           ))}
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section className="section">
-      <div className="wrap">
-        <div className="section-head">
-          <div className="eyebrow">Who we help</div>
-          <h2>Support for professionals, families and employers.</h2>
+      <section className="section parallax-panel">
+        <div className="section-heading">
+          <span className="kicker">Core services</span>
+          <h2>Everything you need for visa success and international travel.</h2>
         </div>
-        <div className="who">
-          {whoCards.map((card) => (
-            <Link key={card.title} to={card.href} className="who-card">
-              <div className="wi">✦</div>
-              <h3>{card.title}</h3>
-              <p>{card.text}</p>
-              <span className="go">Explore →</span>
-            </Link>
+        <div className="grid">{services.map(s => (
+          <div key={s.title} className="panel service-card parallax-layer" data-depth="0.1">
+            <h3>{s.title}</h3>
+            <ul>{s.items.map(i => <li key={i}>{i}</li>)}</ul>
+          </div>
+        ))}</div>
+      </section>
+
+      <section className="section section--soft parallax-panel">
+        <div className="section-heading">
+          <span className="kicker">Popular destinations</span>
+          <h2>A focused line-up of Saudi visa and documentation services.</h2>
+        </div>
+        <div className="grid service-coverage">
+          {saudiSections.slice(0, 6).map((s) => (
+            <article key={s.id} className="panel coverage-card parallax-layer" data-depth="0.12">
+              <h3>{s.title}</h3>
+              <p>{s.text}</p>
+              {s.link && <Link to={s.link}>Read guide</Link>}
+            </article>
           ))}
         </div>
-      </div>
-    </section>
+      </section>
 
-    <section className="section">
-      <div className="wrap">
-        <div className="section-head">
-          <div className="eyebrow">Why clients choose us</div>
-          <h2>Document accuracy, support, and a structured process.</h2>
+      <section className="section faq-section parallax-panel">
+        <div className="section-heading">
+          <span className="kicker">FAQs</span>
+          <h2>Common questions from clients before they apply.</h2>
         </div>
-        <div className="cols">
-          <div className="card feature">
-            <h3>Clear process</h3>
-            <p>We explain the exact steps, documents, and timelines before a file is submitted.</p>
+        <div className="faq-list">
+          {faq.map((item) => (
+            <div key={item.q} className="faq-item parallax-layer" data-depth="0.1">
+              <h3>{item.q}</h3>
+              <p>{item.a}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="premium-strip parallax-panel">
+        <div className="premium-strip__header">
+          <span className="kicker">The professional promise</span>
+          <h2>Travel support shaped around precision, trust, and speed.</h2>
+        </div>
+        <div className="trust-grid">
+          {trustItems.map((item) => (
+            <div key={item.title} className="trust-card parallax-layer" data-depth="0.12">
+              <div className="trust-icon">✓</div>
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      <section className="section package-slider-section parallax-panel">
+        <div className="section-heading">
+          <span className="kicker">Service plans</span>
+          <h2>Flexible support for every stage of your journey.</h2>
+        </div>
+        <div className="package-slider">
+          <button type="button" className="slider-arrow" onClick={prevPlan} aria-label="Previous plan">‹</button>
+          <div className={`package-card ${currentPlan.highlight ? 'package-card--highlight' : ''}`}>
+            <span className="package-badge">{currentPlan.name}</span>
+            <h3>{currentPlan.price}</h3>
+            <ul>
+              {currentPlan.features.map((feature) => (
+                <li key={feature}>{feature}</li>
+              ))}
+            </ul>
+            <Link className="btn" to="/attestation-calculator">Explore plan</Link>
           </div>
-          <div className="card">
-            <h3>Dedicated handling</h3>
-            <p>Every case is reviewed with the right checks for QVP, visas, attestation, Wafid and protector steps.</p>
+          <button type="button" className="slider-arrow" onClick={nextPlan} aria-label="Next plan">›</button>
+        </div>
+      </section>
+
+      <section className="section testimonial-section parallax-panel">
+        <div className="section-heading">
+          <span className="kicker">Client feedback</span>
+          <h2>People trust us when the process matters most.</h2>
+        </div>
+        <div className="testimonial-carousel">
+          <button type="button" className="slider-arrow" onClick={prevTestimonial} aria-label="Previous testimonial">‹</button>
+          <div className="testimonial-card">
+            <div className="stars">★★★★★</div>
+            <p>“{currentTestimonial.quote}”</p>
+            <div className="testimonial-meta">
+              <strong>{currentTestimonial.name}</strong>
+              <span>{currentTestimonial.role}</span>
+            </div>
           </div>
-          <div className="card">
-            <h3>End-to-end support</h3>
-            <p>From document review to passport handling and travel planning, everything is coordinated in one place.</p>
+          <button type="button" className="slider-arrow" onClick={nextTestimonial} aria-label="Next testimonial">›</button>
+        </div>
+      </section>
+
+      <section className="contact-showcase parallax-panel">
+        <div className="contact-showcase__content">
+          <span className="kicker">Book a consultation</span>
+          <h2>Start your next visa or travel plan with a trusted expert.</h2>
+          <p>
+            Whether you need a fast Saudi visa review, document attestation help, or a premium Umrah package,
+            our consultants are ready to guide your next step.
+          </p>
+          <div className="contact-highlights">
+            <span>Saudi Visa</span>
+            <span>QVP</span>
+            <span>MOFA</span>
+            <span>Umrah</span>
           </div>
         </div>
-      </div>
-    </section>
+        <div className="contact-form-card parallax-layer" data-depth="0.2">
+          <h3>Request a callback</h3>
+          <div className="mini-form">
+            <input type="text" placeholder="Your full name" />
+            <input type="tel" placeholder="Phone / WhatsApp" />
+            <input type="email" placeholder="Email address" />
+            <textarea rows="3" placeholder="Tell us what you need help with" />
+            <div className="row contact-row">
+              <button className="btn" type="button">Send request</button>
+              <a className="btn ghost" href={WA}>WhatsApp</a>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="cta-band parallax-panel">
+        <div>
+          <span className="kicker">Ready when you are</span>
+          <h2>Let’s plan the right next step for your visa, attestation, or Umrah journey.</h2>
+        </div>
+        <div className="row cta-band__actions">
+          <a className="btn" href={WA}>WhatsApp now</a>
+          <a className="btn ghost" href={`tel:${PHONE.replace(/\s+/g, '')}`}>Call {PHONE}</a>
+        </div>
+      </section>
+    </div>
   </>);
 }
 
