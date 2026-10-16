@@ -2,6 +2,9 @@ export const BRAND_NAME = 'Professional Travel & Visa Services';
 export const BRAND_SHORT = 'PTVS';
 export const PHONE = '+92 337 3398405';
 export const WA = 'https://wa.me/923373398405';
+export const WA_CHANNEL = 'https://whatsapp.com/channel/0029VbBVDfNC1FuIbM55930C';
+export const FACEBOOK_URL = 'https://www.facebook.com/share/18bFUxHA2G/';
+export const TIKTOK_URL = 'https://www.tiktok.com/@professionalvisa';
 export const EMAIL = 'info.professionalvisa@gmail.com';
 export const ADDRESS = 'Office # 8 Civic Centre, near Gourmet Bakery, Barkat Market, Lahore';
 
@@ -40,7 +43,7 @@ export const faq = [
   { q: 'Do you handle both visa and attestation work?', a: 'Yes. We help with Saudi visa processing, QVP, HEC, MOFA, Mosadaqa and embassy attestation, and travel bookings, all from one office.' },
   { q: 'Is QVP the same as embassy attestation?', a: 'No. They are separate. Embassy attestation confirms your document is genuine. QVP (Qualification Verification Program, run by Saudi Arabia\'s Professional Accreditation Center) checks your qualification for a Saudi work visa. Many professional visas need both; we check which apply to your case.' },
   { q: 'Do you accept distance-learning degrees for Saudi Arabia?', a: 'The Saudi Cultural Attaché generally does not attest degrees earned through distance, online or private/external-candidate study. We will review your degree before you pay any government fees.' },
-  { q: 'How long does attestation take?', a: 'It depends on the document. Family documents usually take 3 to 7 working days; degrees usually take 3 to 5 working days. These are estimates, not guarantees.' },
+  { q: 'How long does attestation take?', a: 'It depends on the document. Family documents usually take 3 to 12 working days; degrees usually take 15 to 20 working days. These are estimates, not guarantees.' },
   { q: 'How quickly will you reply?', a: 'We aim to reply within 24 hours on WhatsApp or email.' },
   { q: 'Can you help with Umrah?', a: 'Yes. We offer Economy and Premium Umrah packages with hotel, visa and transfer support.' },
   { q: 'Do you recruit staff for Saudi employers?', a: 'Yes. We recruit professionals (engineers, doctors, nurses, accountants, safety staff, technicians) and skilled workers for companies in all Gulf countries, Europe (EU), Australia, Malaysia, Uzbekistan and other countries, from sourcing and testing to visa, protector and travel.' },
@@ -59,10 +62,16 @@ export const packagePlans = [
 ];
 
 export const services = [
-  { title: 'Saudi visa and QVP', items: ['Saudi work visas, visit visas and family visa support', 'QVP verification and Takamol skill test guidance', 'Visa stamping, biometrics and medical appointments', 'Protector and travel support for Saudi travel'] },
-  { title: 'Saudi attestation', items: ['HEC, MOFA Pakistan, Mosadaqa and embassy attestation', 'Degree, diploma, marriage and birth certificate attestation', 'School, police, PMDC and commercial document handling', 'Professional and personal record verification'] },
-  { title: 'Recruitment', items: ['Professionals and skilled workers for Gulf employers', 'Audit, accounting, trades and technical staff sourcing', 'Employer and worker document coordination', 'Travel, visa and protector support'] },
-  { title: 'Umrah & travel', items: ['Economy and Premium Umrah packages', 'Hotel and transfer coordination', 'Visa support and consultation', 'Travel planning for families and groups'] },
+  { title: 'Wakala (E-Wakala) Services', items: ['Visa authorization support', 'Employer and sponsor coordination', 'Bulk and single-worker processing'] },
+  { title: 'Saudi Work Visa – Skilled & Professional', items: ['Skilled / labour visa support', 'Professional / education-based visa guidance', 'Visa stamping and biometrics assistance'] },
+  { title: 'Family Visa & Family Visit Visa', items: ['Family visit and residence support', 'Spouse, children and parent visa guidance', 'Documentation review and follow-up'] },
+  { title: 'Visa Stamping, Tasheer, Biometrics & Medical', items: ['Appointment booking', 'Medical and biometrics checks', 'Passport submission and collection support'] },
+  { title: 'Protector & Air Tickets', items: ['Protector of Emigrants support', 'Travel planning and ticket assistance', 'End-to-end visa travel coordination'] },
+  { title: 'QVP & Takamol Skill Test', items: ['QVP verification guidance', 'Takamol SVP registration support', 'Test preparation and appointment help'] },
+  { title: 'Document Attestation – HEC, IBCC, MOFA, Mosadaqa & Embassy', items: ['Degree and transcript support', 'HEC, MOFA and embassy attestation', 'Mosadaqa and embassy follow-up'] },
+  { title: 'Recruitment of Professionals & Skilled Labour', items: ['Skilled trades recruitment', 'Professional hiring and visa support', 'Employer documentation and onboarding'] },
+  { title: 'Umrah & Family Umrah Visa', items: ['Umrah package support', 'Family Umrah travel planning', 'Visa and hotel coordination'] },
+  { title: 'Certified Translation & NADRA Certificates', items: ['Document translation support', 'NADRA certificates and verification', 'Document preparation for attestation'] },
 ];
 
 export const saudiSections = [
@@ -74,6 +83,7 @@ export const saudiSections = [
   { id: 'saudi-attestation', title: 'Saudi Attestation', text: 'Degree, diploma, marriage, birth, police, PMDC and commercial document attestation support for Saudi Arabia.', link: '/saudi-attestation' },
   { id: 'recruitment', title: 'Recruitment of Skilled Labour and Professionals', text: 'We supply qualified professionals and trained skilled workers to employers in Saudi Arabia and the Gulf.', link: '/recruitment' },
   { id: 'umrah', title: 'Umrah Packages', text: 'Choose an Umrah package that fits your budget and travel needs, with visa, hotel and transfer support.', link: '/umrah-packages' },
+  { id: 'wakala', title: 'Wakala (E-Wakala) Services', text: 'We help employers and workers complete the visa authorization needed to process a Saudi visa on their behalf.', link: '/wakala' },
 ];
 
 export const countryMenu = [

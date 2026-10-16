@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route, Link, NavLink, useParams } from 'react-router-dom';
-import { services, saudiSections, guides, stats, highlights, processSteps, faq, testimonials, packagePlans, PHONE, WA, EMAIL, ADDRESS, BRAND_NAME, BRAND_SHORT, aiReplyBank } from './content.js';
+import { services, saudiSections, guides, stats, highlights, processSteps, faq, testimonials, packagePlans, PHONE, WA, WA_CHANNEL, FACEBOOK_URL, TIKTOK_URL, EMAIL, ADDRESS, BRAND_NAME, BRAND_SHORT, aiReplyBank } from './content.js';
 import {
   countryMenu,
   saudiAttestationServices,
@@ -72,6 +72,11 @@ function Layout({ children }) {
         <p><b>Professional Travel & Visa Services Office:</b> {ADDRESS}</p>
         <p>OEP / BEOE licence no.: [confirm] · Phone / WhatsApp: {PHONE} · Email: {EMAIL}</p>
         <p>Office hours: [confirm]</p>
+      </div>
+      <div className="footer-follow-row" style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', margin: '12px 0 18px', alignItems: 'center' }}>
+        <a className="btn ghost" href={WA_CHANNEL} target="_blank" rel="noreferrer">Follow our WhatsApp channel</a>
+        <a href={FACEBOOK_URL} target="_blank" rel="noreferrer" aria-label="Follow us on Facebook">Facebook</a>
+        <a href={TIKTOK_URL} target="_blank" rel="noreferrer" aria-label="Follow us on TikTok">TikTok</a>
       </div>
       <p><b>{BRAND_NAME}</b></p>
       <p>{ADDRESS}</p>
@@ -171,7 +176,7 @@ function Home() {
           <div className="eyebrow">Trusted visa, attestation & travel specialists</div>
           <h1>Your journey starts with the right guidance.</h1>
           <p>
-            Navigate Saudi visa applications, QVP certificate and verification, document attestation, degree verification, and Umrah travel with professional guidance, clear requirements, and service tailored to your journey.
+            We help with Saudi visa processing, QVP, HEC, MOFA, Mosadaqa and embassy attestation, and travel bookings, all from one office.
           </p>
           <div className="row">
             <Link className="btn" to="/attestation-calculator">View requirements</Link>
@@ -192,6 +197,14 @@ function Home() {
           </div>
 
           <div className="hero__stats">
+            <div className="mini-stat parallax-layer" data-depth="0.24">
+              <strong>5,000+</strong>
+              <span>people served</span>
+            </div>
+            <div className="mini-stat parallax-layer" data-depth="0.24">
+              <strong>CEO</strong>
+              <span>Chartered Accountant</span>
+            </div>
             {stats.map((item) => (
               <div key={item.label} className="mini-stat parallax-layer" data-depth="0.24">
                 <strong>{item.value}</strong>
@@ -222,8 +235,8 @@ function Home() {
           <h2>Industry experts in documents, visas and stamping.</h2>
         </div>
         <div className="trust-note-box">
-          <strong>Our team knows every step of the process and handles your file from start to finish.</strong>
-          <span>From document handling to visa processing, stamping and recruitment, we work with one clear plan from review to travel.</span>
+          <strong>Industry experts in documents, visas and stamping. Our team knows every step of the process and handles your file from start to finish.</strong>
+          <span>Our CEO is a Chartered Accountant who personally oversees professional visa files, so engineers, accountants, doctors and other professionals get advice from someone who understands degrees, qualifications and Saudi requirements first-hand.</span>
         </div>
         <div className="grid highlight-grid">
           {highlights.map((item) => (
@@ -242,7 +255,7 @@ function Home() {
           <h2>We are close to you.</h2>
         </div>
         <div className="team-brief">
-          <p>Besides our office in Pakistan, our team is on the ground in Saudi Arabia and across the Gulf, so employers and applicants can meet us in person. [confirm: cities, e.g. Riyadh, Jeddah, Dammam, Dubai, Doha]</p>
+          <p>We are close to you. Besides our office in Pakistan, our team is on the ground in Saudi Arabia and across the Gulf, so employers and applicants can meet us in person. [confirm: cities, e.g. Riyadh, Jeddah, Dammam, Dubai, Doha]</p>
           <p>Book an appointment to discuss how we can help you with recruitment, visas, attestation or travel. Choose a meeting at your office, at ours, or online.</p>
           <div className="row cta-row">
             <Link className="btn" to="/contact">Book an appointment</Link>
@@ -509,21 +522,21 @@ function SaudiWorkVisaPage() {
   return (
     <ServicePage
       title="Saudi Work Visa: which type is yours?"
-      intro="Saudi work visas follow one of two routes, depending on the job title on your visa."
+      intro="Saudi work visas follow one of two routes, depending on the job title on your visa: Skilled / labour visa or Professional / education-based visa."
       keyPoints={[
-        { title: 'Skilled / labour visa', text: 'Typical jobs include electrician, plumber, welder, mason, driver, technician, cleaner and cook. The main check is a skill test at a NAVTTC-approved centre.' },
-        { title: 'Professional / education-based visa', text: 'Typical jobs include engineer, accountant, IT specialist, manager, teacher, doctor and nurse. The main check is degree attestation and QVP.' }
+        { title: 'Skilled / labour visa', text: 'Typical jobs: electrician, plumber, welder, mason, driver, technician, cleaner, cook. Main check: skill test (Takamol SVP) at a NAVTTC-approved centre.' },
+        { title: 'Professional / education-based visa', text: 'Typical jobs: engineer, accountant, IT specialist, manager, teacher, doctor, nurse. Main check: degree attestation + QVP.' }
       ]}
       sections={[
         {
           heading: 'Skilled / Labour Work Visa (Skill Verification)',
           items: [
-            'Valid Pakistani passport valid for at least 6 months [confirm].',
+            'Valid Pakistani passport (valid for at least 6 months [confirm])',
             'CNIC',
             'Visa number / authorization from your Saudi employer',
             'Recent passport-size photos with white background',
-            'Takamol skill verification certificate after passing the test',
-            'Medical report from an approved medical centre booked through Wafid',
+            'Takamol skill verification certificate (after passing the test)',
+            'Medical report from an approved medical centre (booked through Wafid)',
             'Biometrics at a Tasheer centre',
             'Protector stamp from the Bureau of Emigration'
           ],
@@ -537,7 +550,7 @@ function SaudiWorkVisaPage() {
             'Pay the fee online: USD 85 per test (about Rs 23,500–24,500), effective 9 September 2026.',
             'Download your appointment slip.',
             'Attend the test centre with your original passport and CNIC.',
-            'If you pass, your certificate is uploaded within 24 hours. If you fail, you can book again.'
+            'If you pass, your certificate is uploaded to the portal within 24 hours. If you fail, you can book again.'
           ],
           note: 'Processing time: [confirm] working days after the test certificate and medical are ready.'
         },
@@ -549,22 +562,22 @@ function SaudiWorkVisaPage() {
             'Visa number / authorization from your Saudi employer',
             'Employment contract or offer letter',
             'Recent passport-size photos with white background',
-            'Degree and transcript attested by HEC and MOFA, then verified through Mosadaqa and attested by the Saudi Embassy',
-            'QVP result, where your profession requires it',
+            'Degree and transcript attested by HEC and MOFA, then verified through Mosadaqa and attested by the Saudi Embassy (see Degree Attestation)',
+            'QVP result, where your profession requires it (see QVP)',
             'Professional council registration where required, e.g. engineers or health workers [confirm]',
             'Medical report from an approved medical centre (booked through Wafid)',
             'Biometrics at a Tasheer centre',
             'Protector stamp from the Bureau of Emigration [confirm for your visa category]'
           ],
-          note: 'Important: your degree subject and experience must match the job title on your visa. Processing time: [confirm] working days after attestation and QVP are complete.'
+          note: 'Important: your degree subject and experience must match the job title on your visa. Also usually asked for at visa stamping: a copy of the Saudi company’s Commercial Registration (CR); an experience letter from your Pakistani employer showing the same job title as your visa; your attested degree and certificates with attested Arabic translations; a medical fitness report. [confirm]. Processing time: [confirm] working days after attestation and QVP are complete.'
         },
         {
           heading: 'We Handle Your Visa from Start to Finish',
           items: [
-            'E-Wakala in our agency\'s name: ask your Saudi employer to issue the E-Wakala in favour of Professional Travel & Visa Services.',
+            'E-Wakala in our agency\'s name. Ask your Saudi employer to issue the E-Wakala (visa authorization) in favour of Professional Travel & Visa Services. Once we receive it, we take over your visa file and handle every step on your behalf.',
             'Visa stamping: we submit your passport and documents, book your Tasheer and biometric appointments, and collect your passport with the visa stamped.',
-            'Protector: we get your protector stamp from the Protector of Emigrants office (Bureau of Emigration & Overseas Employment).',
-            'Premium services: priority handling, fast-track booking, document pickup and passport delivery, file checks before submission, regular WhatsApp updates, and air ticket booking.'
+            'Protector: we get your protector stamp from the Protector of Emigrants office (Bureau of Emigration & Overseas Employment), so you are cleared to travel for work.',
+            'Premium services: priority handling, fast-track appointment booking, document pickup and passport delivery, full file check before submission, regular WhatsApp updates, and air ticket booking.'
           ],
           note: '[confirm: premium package price, or “Contact us for a quote”]. Get started: send your visa number and passport copy on WhatsApp and we will tell you which route applies and what to prepare.'
         }
@@ -590,6 +603,19 @@ function SaudiVisitVisaPage() {
             'Biometrics at a Tasheer centre, where required'
           ],
           note: 'Processing time: [confirm] working days.'
+        },
+        {
+          heading: 'Saudi Visa Checklists by Visa Type',
+          items: [
+            'Family Visit Visa for Parents',
+            'Family Visit Visa for Father-in-Law / Mother-in-Law',
+            'Family Visit Visa for Spouse and Children',
+            'Family Residence (Iqama) Visa',
+            'Newborn Visa Endorsement',
+            'Exit/Re-entry Visa Extension',
+            'Business Visit Visa'
+          ],
+          note: 'Each visa below gets its own page or tab. Requirements are for the Saudi Consulate, Karachi unless stated; the Islamabad Embassy may differ slightly. [confirm current lists before publishing]'
         }
       ]}
     />
@@ -780,46 +806,26 @@ function VisaStampingProtectorPage() {
 function WakalaServicesPage() {
   return (
     <ServicePage
-      title="Wakala Services"
-      intro="Wakala generally refers to an authorization or power of attorney that allows a person or organization to act on another party’s behalf. In Saudi visa and recruitment-related processes, the exact meaning and documentation depend on the purpose of the authorization."
+      title="Wakala (E-Wakala) Services"
+      intro="Wakala (also called E-Wakala or visa authorization) is the online authorization a Saudi employer or sponsor issues to a licensed Pakistani agency, allowing that agency to process the visa on the worker’s behalf. Without a Wakala in an agency’s name, the visa cannot be stamped through that agency."
       sections={[
         {
-          heading: 'Who may need Wakala assistance?',
+          heading: 'What we do',
           items: [
-            'Customers, employers, or recruitment partners who need help understanding an authorization document connected with a Saudi Arabia process.',
-            'Applicants who need help reviewing names, passport details, and supporting information before approval.'
+            'Give your Saudi employer our agency details exactly as they must appear on the Wakala',
+            'Check the Wakala once issued: visa number, profession, number of visas and agency name',
+            'Use the Wakala to complete medical, biometrics, visa stamping and protector for each worker',
+            'Handle single visas and bulk Wakala for companies hiring several workers'
           ]
         },
         {
-          heading: 'Our assistance includes',
+          heading: 'What we need',
           items: [
-            'Explaining the purpose of the required Wakala.',
-            'Helping review names, passport details, and other information.',
-            'Guidance on the documents needed for the specific authorization.',
-            'Explaining applicable attestation or verification steps.',
-            'Providing guidance on the relevant submission process.'
-          ]
-        },
-        {
-          heading: 'Documents to prepare',
-          items: [
-            'Passport details',
-            'CNIC',
-            'Employer or sponsor information',
-            'Authorization particulars',
-            'Supporting documents relevant to the transaction.'
-          ]
-        },
-        {
-          heading: 'How the process works',
-          items: [
-            'Explain the purpose for which the Wakala is required.',
-            'Confirm the applicable document format and authority.',
-            'Prepare and review the necessary information.',
-            'Complete the required authorization, verification, or attestation steps.',
-            'Follow the relevant authority’s instructions for submission and acceptance.'
+            'Visa number(s) and the Saudi employer’s name',
+            'Copy of the issued Wakala',
+            'Each worker’s passport and CNIC copies'
           ],
-          note: 'Please confirm which type of Wakala your company actually processes before finalizing the service, because recruitment authorization, embassy-related Wakala, and legal power of attorney may involve different procedures.'
+          note: '[confirm: agency name and licence details as they must appear on the Wakala, and whether we handle Musaned Wakala for domestic workers]'
         }
       ]}
     />
@@ -909,7 +915,7 @@ function SkillTestPage() {
 function VisaStampingPage() {
   return (
     <ServicePage
-      title="Tasheer Appointment, Biometric Appointment and Medical Appointment"
+      title="Visa Stamping, Tasheer, Biometrics & Medical"
       intro="Tasheer centres collect Saudi visa applications and biometrics in Pakistan. We book your appointment and check your file before you go."
       sections={[
         {
@@ -930,7 +936,7 @@ function VisaStampingPage() {
           heading: 'Medical Appointment',
           items: [
             'Work visa applicants need a medical test at an approved centre, booked through Wafid.',
-            'Bring: original passport, passport photos, CNIC.'
+            'Bring: original passport, passport photos, CNIC, Wafid booking slip.'
           ]
         }
       ]}
@@ -942,7 +948,7 @@ function RecruitmentPage() {
   return (
     <ServicePage
       title="Recruitment of Skilled Labour and Professionals"
-      intro="We supply qualified Pakistani professionals and trained, tested skilled workers to companies in all Gulf countries, Europe (EU), Australia, Malaysia, Uzbekistan and other countries worldwide. As a licensed Overseas Employment Promoter [confirm: OEP licence no.], we handle the full process from sourcing to deployment."
+      intro="We supply qualified Pakistani professionals and trained, tested skilled workers to companies in all Gulf countries (Saudi Arabia, Qatar, UAE, Kuwait, Bahrain, Oman), Europe (EU), Australia, Malaysia, Uzbekistan and other countries worldwide. As a licensed Overseas Employment Promoter [confirm: OEP licence no.], we handle the full process from sourcing to deployment."
       sections={[
         {
           heading: 'Countries we recruit for',
@@ -986,11 +992,11 @@ function ContactPage() {
   return (
     <section className="page narrow">
       <h1>Contact us</h1>
-      <p className="lead">Professional Travel & Visa Services Office: Office # 8 Civic Centre, near Gourmet Bakery, Barkat Market, Lahore. OEP / BEOE licence no.: [confirm]. Phone / WhatsApp: +92 337 3398405. Email: info.professionalvisa@gmail.com. Office hours: [confirm].</p>
+      <p className="lead">Professional Travel & Visa Services Office: [confirm full address, city] OEP / BEOE licence no.: [confirm] Phone / WhatsApp: +92 337 3398405 Email: info.professionalvisa@gmail.com Office hours: [confirm].</p>
       <div className="info-grid">
         <div className="panel stat-box">
           <strong>Book an appointment</strong>
-          <p>We help with recruitment, visas, attestation and travel. Choose a meeting at your office, at ours or online.</p>
+          <p>We help with recruitment, visas, attestation and travel. Choose a meeting at your office, at ours, or online.</p>
         </div>
         <div className="panel stat-box">
           <strong>WhatsApp</strong>
