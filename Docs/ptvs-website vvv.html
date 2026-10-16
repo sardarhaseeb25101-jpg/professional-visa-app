@@ -1,0 +1,1506 @@
+<title>Professional Travel & Visa Services</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Source+Sans+3:wght@400;600;700&family=IBM+Plex+Mono:wght@500&display=swap">
+<style>
+/* Layout: sticky green header, one hash-routed page at a time, 1160px column. Signature: the "visa journey" route of stamped stops (Visa → Wakala → Test → Medical → Tasheer → Stamp → Protector → Fly) */
+:root{
+  --bg:#F4F6F1; --surface:#FFFFFF; --surface-2:#EEF2EC; --ink:#13221B; --muted:#55645C; --line:#D9E0D6;
+  --brand:#0D4734; --brand-2:#0A3527; --brand-ink:#FFFFFF; --brand-soft:#E1EDE5;
+  --gold:#A6721A; --gold-bright:#F0C46A; --gold-soft:#F7ECD5;
+  --wa:#1C8C4E; --danger:#B3261E; --ok:#1F7A4A;
+  --display:"Bricolage Grotesque","Segoe UI",system-ui,sans-serif;
+  --body:"Source Sans 3","Segoe UI",system-ui,sans-serif;
+  --mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+  --shadow:0 1px 2px rgba(10,40,28,.06),0 8px 24px rgba(10,40,28,.08);
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0D1411; --surface:#15201B; --surface-2:#1A2721; --ink:#E7EEE9; --muted:#A0B0A7; --line:#283731;
+  --brand:#0B3B2B; --brand-2:#082A1F; --brand-ink:#F1F6F2; --brand-soft:#1B3229; --gold:#E2B45C; --gold-bright:#F0C46A; --gold-soft:#36301C;
+  --wa:#36B26A; --danger:#FF8A80; --ok:#5FD08F; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.3); color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0D1411; --surface:#15201B; --surface-2:#1A2721; --ink:#E7EEE9; --muted:#A0B0A7; --line:#283731;
+  --brand:#0B3B2B; --brand-2:#082A1F; --brand-ink:#F1F6F2; --brand-soft:#1B3229; --gold:#E2B45C; --gold-bright:#F0C46A; --gold-soft:#36301C;
+  --wa:#36B26A; --danger:#FF8A80; --ok:#5FD08F; --shadow:0 1px 2px rgba(0,0,0,.3),0 8px 24px rgba(0,0,0,.3); color-scheme:dark}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion:reduce){html{scroll-behavior:auto}*{transition:none!important;animation:none!important}}
+body{background:var(--bg);color:var(--ink);font:400 17px/1.6 var(--body)}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:30;background:var(--brand-2)}
+a{color:inherit}
+h1,h2,h3,h4{font-family:var(--display);line-height:1.15;text-wrap:balance;margin:0}
+h1{font-size:clamp(2.1rem,5.2vw,3.5rem);font-weight:800;letter-spacing:-.025em}
+h2{font-size:clamp(1.55rem,3vw,2.15rem);font-weight:700;letter-spacing:-.015em}
+h3{font-size:1.22rem;font-weight:700}
+h4{font-size:1.02rem;font-weight:700;margin-top:4px}
+p{margin:0}
+.wrap{max-width:1160px;margin:0 auto;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px))}
+.eyebrow{font:600 .76rem/1 var(--body);text-transform:uppercase;letter-spacing:.13em;color:var(--gold)}
+.on-dark .eyebrow{color:var(--gold-bright)}
+.muted{color:var(--muted)}
+.stack{display:grid;gap:14px}
+:focus-visible{outline:3px solid var(--gold);outline-offset:2px;border-radius:4px}
+
+/* header */
+header.top{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--brand-2);color:var(--brand-ink);box-shadow:0 1px 0 rgba(255,255,255,.06)}
+.top .wrap{display:flex;align-items:center;gap:14px;padding-block:10px;position:relative}
+.logo{display:flex;align-items:center;gap:10px;text-decoration:none;min-width:0}
+.logo-mark{width:42px;height:42px;border-radius:11px;background:linear-gradient(140deg,var(--gold-bright),#C8902F);color:#1B1305;display:grid;place-items:center;font:800 1rem var(--display);flex:none}
+.logo b{font:700 1rem/1.1 var(--display);display:block}
+.logo small{font-size:.74rem;opacity:.75}
+.menu-btn{margin-left:auto;display:none;background:transparent;border:1.5px solid rgba(255,255,255,.35);color:inherit;border-radius:8px;padding:7px 12px;font:600 .9rem var(--body);cursor:pointer}
+nav.main{margin-left:auto;display:flex;flex-wrap:nowrap;gap:2px;justify-content:flex-end}
+nav.main a{text-decoration:none;padding:8px 10px;border-radius:8px;font-weight:600;font-size:.92rem;opacity:.88;white-space:nowrap}
+nav.main a:hover{background:rgba(255,255,255,.09);opacity:1}
+nav.main a[aria-current="page"]{background:rgba(255,255,255,.15);opacity:1}
+nav.main a.ai{background:var(--gold-bright);color:#1B1305;opacity:1}
+@media (max-width:1480px){.logo small{display:none}nav.main a{padding:8px 8px;font-size:.88rem}}
+@media (max-width:1340px){
+  .menu-btn{display:block}
+  nav.main{display:none;position:absolute;left:0;right:0;top:100%;background:var(--brand-2);flex-direction:column;align-items:stretch;padding:8px max(16px,env(safe-area-inset-right,0px)) 16px max(16px,env(safe-area-inset-left,0px));border-top:1px solid rgba(255,255,255,.12)}
+  nav.main.open{display:flex}
+  nav.main a{padding:12px 10px}
+}
+.social-strip{background:var(--brand);color:var(--brand-ink);font-size:.88rem}
+.social-strip .wrap{display:flex;flex-wrap:wrap;gap:6px 18px;align-items:center;padding-block:6px}
+.social-strip a{display:inline-flex;align-items:center;gap:6px;text-decoration:none;font-weight:600;opacity:.92}
+.social-strip a:hover{opacity:1}
+.ico{width:20px;height:20px;flex:none}
+
+/* buttons */
+.btns{display:flex;flex-wrap:wrap;gap:10px}
+.btn{display:inline-flex;align-items:center;gap:8px;text-decoration:none;font:700 .97rem var(--body);padding:12px 18px;border-radius:11px;border:2px solid transparent;cursor:pointer;line-height:1.2;transition:transform .15s,filter .15s}
+.btn:hover{filter:brightness(1.06);transform:translateY(-1px)}
+.btn-gold{background:var(--gold-bright);color:#1B1305}
+.btn-wa{background:var(--wa);color:#fff}
+.btn-line{border-color:currentColor;background:transparent;color:inherit}
+.btn-soft{background:var(--brand-soft);color:var(--ink)}
+.btn[disabled]{opacity:.55;cursor:not-allowed;transform:none}
+
+main{padding-bottom:64px}
+.page-head{background:radial-gradient(1200px 400px at 85% -10%,rgba(240,196,106,.18),transparent 60%),var(--brand);color:var(--brand-ink);padding-block:44px 38px}
+.page-head .wrap{display:grid;gap:12px}
+.page-head p.lead{max-width:68ch;opacity:.92;font-size:1.08rem}
+.crumb{font-size:.85rem;opacity:.75}
+.crumb a{text-decoration:none}
+.section{padding-block:44px}
+.section-head{display:grid;gap:8px;margin-bottom:24px;max-width:72ch}
+
+/* hero */
+.hero{background:radial-gradient(900px 500px at 90% 0%,rgba(240,196,106,.22),transparent 60%),radial-gradient(700px 400px at 0% 100%,rgba(255,255,255,.06),transparent 60%),var(--brand);color:var(--brand-ink);padding-block:56px 40px;overflow:hidden}
+.hero-grid{display:grid;grid-template-columns:1.2fr .95fr;gap:40px;align-items:center}
+.hero p.lead{font-size:1.15rem;max-width:56ch;opacity:.93;margin-block:16px 24px}
+.badges{display:flex;flex-wrap:wrap;gap:10px;margin-top:24px}
+.badge{display:flex;align-items:center;gap:10px;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:12px;padding:10px 14px}
+.badge strong{font:800 1.4rem var(--display);color:var(--gold-bright);font-variant-numeric:tabular-nums}
+.badge span{font-size:.88rem;line-height:1.25;opacity:.92}
+.ask-card{background:var(--surface);color:var(--ink);border-radius:18px;padding:22px;display:grid;gap:14px;box-shadow:0 24px 50px rgba(0,0,0,.28)}
+.ask-card .row{display:flex;gap:8px}
+.ask-card input{flex:1;min-width:0}
+.mini-answers{display:grid;gap:8px;max-height:260px;overflow:auto}
+.mini-a{border:1px solid var(--line);border-radius:10px;padding:10px 12px;font-size:.93rem;background:var(--bg)}
+.mini-a b{display:block;font-family:var(--display);margin-bottom:2px}
+@media (max-width:900px){.hero-grid{grid-template-columns:1fr}}
+
+/* journey */
+.journey{margin-top:34px;background:rgba(0,0,0,.18);border:1px solid rgba(255,255,255,.12);border-radius:16px;padding:18px}
+.journey-head{display:flex;flex-wrap:wrap;gap:8px 16px;align-items:baseline;justify-content:space-between;margin-bottom:14px}
+.track{display:grid;grid-template-columns:repeat(8,minmax(0,1fr));gap:8px;position:relative}
+.track::before{content:"";position:absolute;left:4%;right:4%;top:22px;border-top:2px dashed rgba(240,196,106,.55)}
+.stop{position:relative;display:grid;justify-items:center;gap:8px;text-decoration:none;text-align:center;padding:2px}
+.stop .dot{width:44px;height:44px;border-radius:50%;background:var(--brand-2);border:2px solid var(--gold-bright);display:grid;place-items:center;font:500 .8rem var(--mono);color:var(--gold-bright);transition:transform .15s,background .15s}
+.stop:hover .dot{transform:scale(1.08);background:var(--gold-bright);color:#1B1305}
+.stop b{font:700 .86rem/1.2 var(--display)}
+.stop small{font-size:.74rem;opacity:.75;line-height:1.25}
+@media (max-width:760px){.track{grid-template-columns:repeat(4,minmax(0,1fr));row-gap:18px}.track::before{display:none}}
+
+/* cards / grids */
+.grid{display:grid;gap:14px;grid-template-columns:repeat(auto-fill,minmax(250px,1fr))}
+.svc{display:grid;grid-template-rows:auto auto 1fr auto;gap:8px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px;text-decoration:none;transition:transform .15s,border-color .15s,box-shadow .15s}
+.svc:hover{transform:translateY(-3px);border-color:var(--gold);box-shadow:var(--shadow)}
+.svc .tag{font:500 .7rem var(--mono);color:var(--gold);text-transform:uppercase;letter-spacing:.07em}
+.svc h3{font-size:1.08rem}
+.svc p{font-size:.94rem;color:var(--muted)}
+.svc .go{font-weight:700;font-size:.9rem;color:var(--gold)}
+.svc.hl{background:linear-gradient(180deg,var(--gold-soft),var(--surface) 70%);border:1.5px solid var(--gold)}
+.svc .gi{width:40px;height:40px;border-radius:10px;background:var(--brand-soft);display:grid;place-items:center;font:800 .82rem var(--mono);color:var(--brand)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .svc .gi{color:var(--gold)}}
+:root[data-theme="dark"] .svc .gi{color:var(--gold)}
+.cols{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,320px),1fr))}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:22px;display:grid;gap:12px;align-content:start;min-width:0}
+.card.feature{border:1.5px solid var(--gold);background:linear-gradient(180deg,var(--gold-soft),var(--surface) 40%)}
+ul.check{list-style:none;padding:0;margin:0;display:grid;gap:8px}
+ul.check li{position:relative;padding-left:28px}
+ul.check li::before{content:"";position:absolute;left:2px;top:.42em;width:14px;height:14px;border-radius:4px;border:2px solid var(--gold);background:var(--gold-soft)}
+ul.warn li::before{border-color:var(--danger);background:transparent;border-radius:50%}
+ol.steps{list-style:none;margin:0;padding:0;display:grid;gap:10px;counter-reset:s}
+ol.steps li{counter-increment:s;display:grid;grid-template-columns:32px 1fr;gap:12px;align-items:start}
+ol.steps li::before{content:counter(s);width:30px;height:30px;border-radius:50%;background:var(--brand);color:var(--brand-ink);display:grid;place-items:center;font:700 .85rem var(--mono)}
+.note{background:var(--brand-soft);border-radius:10px;padding:12px 14px;font-size:.95rem}
+.note.warn{background:var(--gold-soft)}
+.time{display:inline-flex;gap:6px;align-items:center;font:500 .82rem var(--mono);color:var(--muted)}
+.kv{display:grid;grid-template-columns:auto 1fr;gap:6px 14px;font-size:.95rem;margin:0}
+.kv dt{font-weight:700}
+.kv dd{margin:0;color:var(--muted)}
+.route{display:flex;flex-wrap:wrap;align-items:center;gap:6px}
+.stamp{font:500 .76rem/1 var(--mono);letter-spacing:.02em;border:1.5px dashed var(--gold);color:var(--gold);padding:6px 8px;border-radius:6px;background:var(--gold-soft)}
+.arrow{color:var(--muted);font-size:.85rem}
+
+/* fact tiles */
+.facts{display:grid;gap:10px;grid-template-columns:repeat(auto-fit,minmax(min(100%,150px),1fr));margin-top:6px}
+.fact{background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);border-radius:14px;padding:14px 16px;display:grid;gap:4px}
+.fact span{font-size:.78rem;text-transform:uppercase;letter-spacing:.1em;opacity:.8}
+.fact b{font:800 1.25rem/1.2 var(--display);color:var(--gold-bright);font-variant-numeric:tabular-nums}
+.fact small{font-size:.82rem;opacity:.85}
+
+/* guide layout */
+.guide{display:grid;grid-template-columns:230px minmax(0,1fr);gap:28px;align-items:start}
+.toc{position:sticky;top:calc(84px + env(safe-area-inset-top,0px));display:grid;gap:2px;font-size:.92rem}
+.toc a{text-decoration:none;padding:7px 10px;border-radius:8px;color:var(--muted);font-weight:600}
+.toc a:hover{background:var(--surface-2);color:var(--ink)}
+.toc .lbl{font:600 .72rem var(--body);text-transform:uppercase;letter-spacing:.12em;color:var(--gold);padding:4px 10px}
+.gsec{scroll-margin-top:96px}
+@media (max-width:900px){.guide{grid-template-columns:1fr}.toc{position:static;display:flex;flex-wrap:wrap;gap:6px}.toc .lbl{display:none}.toc a{border:1px solid var(--line);background:var(--surface)}}
+
+/* chips, search */
+.doc-index{display:flex;flex-wrap:wrap;gap:8px}
+.chip{border:1.5px solid var(--line);background:var(--surface);border-radius:999px;padding:7px 14px;font:600 .9rem var(--body);text-decoration:none;cursor:pointer;color:var(--ink)}
+.chip:hover,.chip.on{border-color:var(--gold);background:var(--gold-soft)}
+input,select,textarea{font:400 1rem var(--body);padding:12px 14px;border-radius:10px;border:1.5px solid var(--line);background:var(--bg);color:var(--ink);width:100%}
+input:focus,select:focus,textarea:focus{border-color:var(--gold);outline:none}
+.search{max-width:460px}
+.doc{scroll-margin-top:96px}
+.empty{padding:16px;color:var(--muted)}
+
+/* tables */
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:14px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:520px;font-size:.95rem}
+th,td{text-align:left;padding:12px 14px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--display);background:var(--surface-2)}
+tr:last-child td{border-bottom:0}
+td.num{font-variant-numeric:tabular-nums;white-space:nowrap;text-align:right}
+.price{font:700 1.05rem var(--display);font-variant-numeric:tabular-nums;white-space:nowrap}
+
+/* faq */
+details{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:14px 18px}
+details+details{margin-top:10px}
+summary{cursor:pointer;font-weight:700;font-family:var(--display);font-size:1.02rem}
+details p{margin-top:10px;color:var(--muted)}
+
+/* AI quick reply */
+.qr{display:grid;grid-template-columns:minmax(0,1fr) 320px;gap:20px;align-items:start}
+@media (max-width:900px){.qr{grid-template-columns:1fr}}
+.chat{background:var(--surface);border:1px solid var(--line);border-radius:18px;display:grid;grid-template-rows:auto 1fr auto;min-height:560px;overflow:hidden}
+.chat-head{display:flex;gap:12px;align-items:center;padding:14px 18px;border-bottom:1px solid var(--line);background:var(--surface-2)}
+.avatar{width:38px;height:38px;border-radius:50%;background:linear-gradient(140deg,var(--gold-bright),#C8902F);display:grid;place-items:center;font:800 .8rem var(--mono);color:#1B1305;flex:none}
+.status{font-size:.82rem;color:var(--muted)}
+.msgs{padding:18px;display:flex;flex-direction:column;gap:12px;overflow-y:auto;max-height:62vh}
+.msg{max-width:88%;padding:12px 14px;border-radius:14px;font-size:.97rem;white-space:pre-wrap;overflow-wrap:anywhere}
+.msg.user{align-self:flex-end;background:var(--brand);color:var(--brand-ink);border-bottom-right-radius:4px}
+.msg.bot{align-self:flex-start;background:var(--surface-2);border-bottom-left-radius:4px}
+.msg .src{display:block;margin-top:8px;font-size:.8rem;color:var(--muted)}
+.msg .acts{display:flex;flex-wrap:wrap;gap:6px;margin-top:10px;white-space:normal}
+.msg .acts button,.msg .acts a{font:600 .82rem var(--body);padding:6px 10px;border-radius:8px;border:1.5px solid var(--line);background:var(--surface);color:var(--ink);cursor:pointer;text-decoration:none}
+.msg .acts button:hover,.msg .acts a:hover{border-color:var(--gold)}
+.composer{display:flex;gap:8px;padding:12px;border-top:1px solid var(--line);background:var(--surface)}
+.composer textarea{min-height:48px;max-height:140px;resize:vertical}
+.tag-ai{display:inline-flex;gap:6px;align-items:center;font:500 .72rem var(--mono);color:var(--gold);text-transform:uppercase;letter-spacing:.08em}
+
+/* form */
+form{display:grid;gap:14px}
+.fgrid{display:grid;gap:14px;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
+label{display:grid;gap:6px;font-weight:600;font-size:.95rem}
+textarea{min-height:100px;resize:vertical}
+.err{color:var(--danger);font-size:.9rem}
+.out{display:grid;gap:10px}
+.out pre{white-space:pre-wrap;background:var(--bg);border:1px solid var(--line);border-radius:10px;padding:12px;font:400 .92rem/1.5 var(--body);margin:0}
+.copytxt{font:500 .95rem var(--mono);user-select:all}
+
+/* bands */
+.band{background:var(--brand);color:var(--brand-ink)}
+.band .card{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.18);color:var(--brand-ink)}
+.socials{display:grid;gap:12px;grid-template-columns:repeat(auto-fit,minmax(min(100%,220px),1fr))}
+.soc{display:flex;gap:14px;align-items:center;background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:16px;text-decoration:none;transition:border-color .15s}
+.soc:hover{border-color:var(--gold)}
+.soc .ico{width:38px;height:38px}
+.soc b{display:block;font-family:var(--display)}
+.soc span{font-size:.9rem;color:var(--muted);overflow-wrap:anywhere}
+
+footer{background:var(--brand-2);color:var(--brand-ink);padding-block:40px 30px;font-size:.95rem}
+footer .wrap{display:grid;gap:24px;grid-template-columns:1.6fr 1fr 1fr 1fr}
+footer a{text-decoration:none;opacity:.88}
+footer a:hover{opacity:1;text-decoration:underline}
+footer ul{list-style:none;padding:0;margin:8px 0 0;display:grid;gap:6px}
+footer .fine{grid-column:1/-1;border-top:1px solid rgba(255,255,255,.16);padding-top:16px;font-size:.84rem;opacity:.75}
+@media (max-width:860px){footer .wrap{grid-template-columns:1fr 1fr}}
+@media (max-width:520px){footer .wrap{grid-template-columns:1fr}}
+.wa-float{position:fixed;right:calc(16px + env(safe-area-inset-right,0px));bottom:calc(16px + env(safe-area-inset-bottom,0px));z-index:25;display:flex;flex-direction:column;gap:8px;align-items:flex-end}
+.fab{border-radius:999px;padding:12px 16px;display:flex;gap:8px;align-items:center;text-decoration:none;font-weight:700;box-shadow:0 8px 24px rgba(0,0,0,.25);border:0;cursor:pointer;font-family:var(--body);font-size:.95rem}
+.fab.wa{background:var(--wa);color:#fff}
+.fab.ai{background:var(--gold-bright);color:#1B1305}
+@media (max-width:520px){.fab span{display:none}}
+.reveal{animation:rise .5s ease both}
+@keyframes rise{from{transform:translateY(8px)}to{transform:none}}
+
+/* ===== homepage v3 ===== */
+.btn-lg{padding:15px 22px;font-size:1.02rem}
+.hero2{position:relative;overflow:hidden;color:var(--brand-ink);padding-block:72px 40px;
+  background:radial-gradient(900px 520px at 88% 10%,rgba(240,196,106,.24),transparent 60%),radial-gradient(800px 500px at -10% 110%,rgba(56,178,108,.22),transparent 60%),linear-gradient(160deg,var(--brand) 0%,var(--brand-2) 100%)}
+#heroDots{position:absolute;inset:0;width:100%;height:100%;opacity:.5;pointer-events:none}
+.hero2 .wrap{position:relative}
+.hero2-grid{display:grid;grid-template-columns:1.15fr .95fr;gap:44px;align-items:center}
+@media (max-width:940px){.hero2-grid{grid-template-columns:1fr}}
+.pill{display:inline-flex;align-items:center;gap:10px;font-size:.88rem;font-weight:600;background:rgba(255,255,255,.08);border:1px solid rgba(255,255,255,.18);padding:7px 14px;border-radius:999px}
+.live{width:8px;height:8px;border-radius:50%;background:#5FD08F;box-shadow:0 0 0 0 rgba(95,208,143,.6);animation:ping 2s infinite}
+@keyframes ping{0%{box-shadow:0 0 0 0 rgba(95,208,143,.6)}80%,100%{box-shadow:0 0 0 10px rgba(95,208,143,0)}}
+.hero-h{font-size:clamp(2.3rem,5.6vw,4rem);line-height:1.04;margin-top:18px}
+.hero-h em{font-style:normal;background:linear-gradient(90deg,var(--gold-bright),#FFE3A3);-webkit-background-clip:text;background-clip:text;color:transparent}
+.hero-copy .lead{font-size:1.15rem;max-width:56ch;opacity:.92;margin-block:18px 26px}
+.proof{display:flex;flex-wrap:wrap;gap:28px;margin-top:30px;padding-top:22px;border-top:1px solid rgba(255,255,255,.16)}
+.proof div{display:grid;gap:2px}
+.proof b{font:800 1.9rem/1 var(--display);color:var(--gold-bright);font-variant-numeric:tabular-nums}
+.proof span{font-size:.86rem;opacity:.85}
+
+.pass-wrap{perspective:1200px}
+.pass{position:relative;background:var(--surface);color:var(--ink);border-radius:20px;padding:22px;display:grid;gap:18px;box-shadow:0 30px 60px rgba(0,0,0,.35);transform:rotate(-1.5deg);transition:transform .4s}
+.pass:hover{transform:rotate(0) translateY(-4px)}
+.pass::before,.pass::after{content:"";position:absolute;left:-12px;top:62%;width:24px;height:24px;border-radius:50%;background:var(--brand-2)}
+.pass::after{left:auto;right:-12px}
+.pass-top{display:flex;justify-content:space-between;align-items:center}
+.pass-no{font:500 .78rem var(--mono);color:var(--muted)}
+.pass-route{display:grid;grid-template-columns:auto 1fr auto;gap:10px;align-items:end}
+.pass-route small,.pass-grid small{display:block;font-size:.72rem;text-transform:uppercase;letter-spacing:.1em;color:var(--muted)}
+.pass-route b{font:800 2.2rem/1 var(--display);letter-spacing:-.02em}
+.pass-route span{display:block;font-size:.76rem;color:var(--muted);max-width:14ch}
+.arc{width:100%;height:auto;color:var(--line);min-width:0}
+.plane{offset-path:path("M8 60 Q100 -10 192 60");offset-rotate:auto;animation:fly 5s ease-in-out infinite}
+@keyframes fly{0%{offset-distance:0%}70%,100%{offset-distance:100%}}
+.pass-grid{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px;border-top:2px dashed var(--line);padding-top:16px}
+.pass-grid b{font:700 .95rem var(--display);color:var(--ok)}
+@media (max-width:520px){.pass-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.pass-route b{font-size:1.7rem}}
+.pass-foot{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.barcode{height:38px;flex:1;min-width:120px;max-width:220px;background:repeating-linear-gradient(90deg,var(--ink) 0 2px,transparent 2px 4px,var(--ink) 4px 5px,transparent 5px 8px,var(--ink) 8px 11px,transparent 11px 13px);opacity:.8;border-radius:2px}
+.st{position:absolute;font:700 .78rem var(--mono);letter-spacing:.12em;border:2.5px solid;border-radius:8px;padding:6px 10px;pointer-events:none}
+.st1{left:40%;top:54px;color:var(--danger);border-color:var(--danger);transform:rotate(12deg);opacity:.75}
+.st2{left:110px;bottom:26px;color:var(--ok);border-color:var(--ok);transform:rotate(-8deg);opacity:.7}
+@media (max-width:520px){.st2{display:none}}
+
+.askbar{margin-top:40px;display:flex;align-items:center;gap:10px;background:var(--surface);border-radius:16px;padding:8px 8px 8px 18px;box-shadow:0 18px 40px rgba(0,0,0,.25)}
+.askbar input{border:0;background:transparent;padding:12px 4px;font-size:1.05rem;min-width:0}
+.askbar input:focus{outline:none}
+.askbar-ico{color:var(--gold);font-size:1.3rem}
+.hero-chips{margin-top:12px}
+.hero-chips .chip{background:rgba(255,255,255,.1);border-color:rgba(255,255,255,.22);color:var(--brand-ink)}
+.hero-chips .chip:hover{background:rgba(255,255,255,.18);border-color:var(--gold-bright)}
+#heroOut{margin-top:12px;max-height:none}
+#heroOut .mini-a{background:var(--surface);color:var(--ink)}
+@media (max-width:560px){.askbar{flex-wrap:wrap;padding:10px}.askbar .btn{width:100%;justify-content:center}}
+
+.marquee{background:var(--brand-2);border-block:1px solid rgba(255,255,255,.08);overflow:hidden;padding-block:14px}
+.marquee-track{display:flex;gap:14px;width:max-content;animation:slide 40s linear infinite}
+.marquee:hover .marquee-track{animation-play-state:paused}
+@keyframes slide{to{transform:translateX(-50%)}}
+.marquee .stamp{background:transparent;color:var(--gold-bright);border-color:rgba(240,196,106,.5);font-size:.8rem;white-space:nowrap}
+
+.journey2{background:linear-gradient(160deg,var(--brand),var(--brand-2));color:var(--brand-ink);border-radius:22px;padding:28px}
+.journey2 .journey-head{align-items:end;margin-bottom:26px}
+.journey2 .eyebrow{color:var(--gold-bright)}
+.journey2 .btn-soft{background:rgba(255,255,255,.1);color:var(--brand-ink)}
+
+.who{display:grid;gap:16px;grid-template-columns:repeat(auto-fit,minmax(min(100%,240px),1fr))}
+.who-card{position:relative;display:grid;gap:10px;align-content:start;padding:24px;border-radius:18px;background:var(--surface);border:1px solid var(--line);text-decoration:none;overflow:hidden;transition:transform .2s,box-shadow .2s,border-color .2s}
+.who-card:hover{transform:translateY(-4px);box-shadow:var(--shadow);border-color:var(--gold)}
+.who-card::after{content:"";position:absolute;right:-40px;top:-40px;width:130px;height:130px;border-radius:50%;background:var(--gold-soft);z-index:0}
+.who-card>*{position:relative;z-index:1}
+.who-card .wi{width:46px;height:46px;padding:10px;border-radius:12px;background:var(--brand);color:var(--gold-bright)}
+.who-card h3{font-size:1.15rem}
+.who-card p{color:var(--muted);font-size:.95rem}
+.who-card .go{font-weight:700;font-size:.9rem;color:var(--gold)}
+
+.services-band{background:linear-gradient(180deg,var(--gold-soft),var(--bg))}
+.svc .wi{width:42px;height:42px;padding:9px;border-radius:11px;background:var(--brand-soft);color:var(--brand)}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .svc .wi{color:var(--gold)}}
+:root[data-theme="dark"] .svc .wi{color:var(--gold)}
+.svc.hl .wi{background:var(--brand);color:var(--gold-bright)}
+
+.why{display:grid;grid-template-columns:1fr 1.05fr;gap:40px;align-items:center}
+@media (max-width:900px){.why{grid-template-columns:1fr}}
+.why-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px}
+@media (max-width:520px){.why-grid{grid-template-columns:1fr}}
+.why-item{display:grid;gap:6px;background:var(--surface);border:1px solid var(--line);border-radius:16px;padding:20px}
+.why-item:nth-child(2),.why-item:nth-child(3){background:var(--brand-soft)}
+.why-item .wi{width:40px;height:40px;padding:8px;border-radius:10px;background:var(--gold-soft);color:var(--gold)}
+.why-item b{font-family:var(--display);font-size:1.05rem}
+.why-item span{font-size:.93rem;color:var(--muted)}
+.wi{fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+
+.how-band{background:linear-gradient(160deg,var(--brand),var(--brand-2));color:var(--brand-ink)}
+.how-band .eyebrow{color:var(--gold-bright)}
+ol.how{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;counter-reset:h}
+@media (max-width:860px){ol.how{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:480px){ol.how{grid-template-columns:1fr}}
+ol.how li{counter-increment:h;display:grid;gap:8px;align-content:start;padding:22px;border-radius:16px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14)}
+ol.how li::before{content:counter(h,decimal-leading-zero);font:800 2rem/1 var(--display);color:var(--gold-bright)}
+ol.how b{font-family:var(--display);font-size:1.1rem}
+ol.how span{opacity:.85;font-size:.95rem}
+
+.faq-wrap{display:grid;grid-template-columns:.8fr 1.2fr;gap:32px;align-items:start}
+@media (max-width:860px){.faq-wrap{grid-template-columns:1fr}}
+.cta-band{display:flex;flex-wrap:wrap;gap:20px;justify-content:space-between;align-items:center;padding:34px;border-radius:22px;color:var(--brand-ink);
+  background:radial-gradient(600px 300px at 100% 0%,rgba(240,196,106,.3),transparent 60%),linear-gradient(140deg,var(--brand),var(--brand-2))}
+@media (prefers-reduced-motion:reduce){.marquee-track,.plane,.live{animation:none!important}}
+#guideGrid,#guideGrid2{grid-template-columns:repeat(auto-fill,minmax(min(100%,320px),1fr))}
+
+/* ===== premium packages ===== */
+.prem-head{background:radial-gradient(800px 400px at 90% 0%,rgba(240,196,106,.32),transparent 60%),linear-gradient(150deg,var(--brand),var(--brand-2))}
+.plans{display:grid;gap:18px;grid-template-columns:repeat(auto-fit,minmax(min(100%,290px),1fr));align-items:stretch}
+.plan{position:relative;display:grid;grid-template-rows:auto auto auto auto 1fr auto;gap:10px;background:var(--surface);border:1px solid var(--line);border-radius:20px;padding:26px;min-width:0}
+.plan h3{font-size:1.35rem}
+.plan .plan-price{font:700 1.05rem var(--display);color:var(--gold)}
+.plan ul{margin-block:6px;align-content:start}
+.plan .btn{justify-content:center;margin-top:8px}
+.plan-hot{border:2px solid var(--gold);box-shadow:0 20px 40px rgba(166,114,26,.18);background:linear-gradient(180deg,var(--gold-soft),var(--surface) 45%)}
+.ribbon{position:absolute;top:-13px;left:24px;background:var(--gold-bright);color:#1B1305;font:700 .76rem var(--body);text-transform:uppercase;letter-spacing:.08em;padding:5px 12px;border-radius:999px}
+.corp-band{background:radial-gradient(700px 360px at 0% 0%,rgba(240,196,106,.18),transparent 60%),linear-gradient(160deg,var(--brand),var(--brand-2));color:var(--brand-ink)}
+.corp-band .eyebrow{color:var(--gold-bright)}
+.plan.dark{background:rgba(255,255,255,.06);border-color:rgba(255,255,255,.16);color:var(--brand-ink)}
+.plan.dark .muted{color:rgba(255,255,255,.75)}
+.plan.dark .plan-price,.plan.dark .eyebrow{color:var(--gold-bright)}
+.plan.dark.plan-hot{background:rgba(240,196,106,.1);border-color:var(--gold-bright);box-shadow:0 20px 40px rgba(0,0,0,.3)}
+.plan.dark .btn-soft{background:rgba(255,255,255,.12);color:var(--brand-ink)}
+table.cmp{min-width:820px}
+table.cmp td:not(:first-child),table.cmp th:not(:first-child){text-align:center}
+.yes{color:var(--ok);font-weight:800}
+.no{color:var(--muted)}
+.prem-teaser{display:grid;grid-template-columns:1.2fr 1fr;gap:28px;align-items:center;padding:34px;border-radius:22px;border:1.5px solid var(--gold);background:linear-gradient(135deg,var(--gold-soft),var(--surface) 60%)}
+@media (max-width:860px){.prem-teaser{grid-template-columns:1fr}}
+.prem-mini{display:grid;gap:10px}
+.prem-mini a{display:flex;justify-content:space-between;gap:12px;align-items:center;padding:14px 16px;border-radius:12px;background:var(--surface);border:1px solid var(--line);text-decoration:none;font-weight:700}
+.prem-mini a:hover{border-color:var(--gold)}
+.prem-mini small{font-weight:400;color:var(--muted);display:block}
+nav.main a.prem{color:var(--gold-bright);opacity:1}
+</style>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="i-fb" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#1877F2"/><path d="M13.4 19.5v-6.1h2.1l.3-2.5h-2.4V9.4c0-.7.2-1.2 1.2-1.2h1.3V6c-.2 0-1-.1-1.9-.1-1.9 0-3.2 1.2-3.2 3.3v1.8H8.7v2.5h2.1v6.1z" fill="#fff"/></symbol>
+  <symbol id="i-tt" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#111"/><path d="M14.6 5.5c.3 1.6 1.3 2.6 2.9 2.7v2.1c-1 0-1.9-.3-2.8-.8v4.3c0 2.6-2.1 4.3-4.4 4-1.9-.2-3.4-1.9-3.3-3.9.1-2.3 2.1-3.9 4.4-3.5v2.2c-.9-.3-2 .2-2.2 1.2-.2.9.5 1.8 1.4 1.8 1 .1 1.7-.7 1.7-1.6V5.5z" fill="#fff"/></symbol>
+  <symbol id="i-wa" viewBox="0 0 24 24"><circle cx="12" cy="12" r="12" fill="#25D366"/><path d="M12 5.6a6.3 6.3 0 0 0-5.4 9.6l-.8 2.9 3-.8A6.3 6.3 0 1 0 12 5.6zm0 11.5c-1 0-1.9-.3-2.7-.8l-.2-.1-1.8.5.5-1.7-.1-.2a5.2 5.2 0 1 1 4.3 2.3zm2.9-3.9c-.2-.1-.9-.5-1.1-.5-.1-.1-.3-.1-.4.1l-.5.6c-.1.1-.2.1-.4 0a4.3 4.3 0 0 1-2.1-1.8c-.2-.3.2-.3.5-1 .1-.1 0-.2 0-.3l-.5-1.2c-.1-.3-.3-.3-.4-.3h-.3c-.1 0-.3 0-.5.2-.2.2-.7.7-.7 1.6 0 1 .7 1.9.8 2 .1.1 1.4 2.1 3.3 2.9 1.2.5 1.7.6 2.3.5.4-.1 1.1-.5 1.3-.9.2-.4.2-.8.1-.9 0-.1-.2-.1-.4-.2z" fill="#fff"/></symbol>
+</svg>
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <symbol id="ic-doc" viewBox="0 0 24 24"><path d="M14 3H7a2 2 0 0 0-2 2v14a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2V8z"/><path d="M14 3v5h5M9 13h6M9 17h4"/><circle cx="16" cy="17" r="2.2"/></symbol>
+  <symbol id="ic-pass" viewBox="0 0 24 24"><rect x="5" y="3" width="14" height="18" rx="2"/><circle cx="12" cy="10" r="3"/><path d="M9 16h6"/></symbol>
+  <symbol id="ic-finger" viewBox="0 0 24 24"><path d="M12 11v3a6 6 0 0 1-1 3.5M8 8.5A4.5 4.5 0 0 1 16.5 11v2a10 10 0 0 1-.6 3.4M5.5 13A7 7 0 0 1 6 8M18.8 10a7 7 0 0 0-10.3-5.5M9 12.5a10 10 0 0 1-1.2 5"/></symbol>
+  <symbol id="ic-plane" viewBox="0 0 24 24"><path d="M10.5 13.5 3 11l1.5-1.5 8 .5 4-4.5a2 2 0 0 1 3 3L15 12.5l.5 8L14 22l-2.5-7.5L8 17v2.5L6.5 21l-1-3.5L2 16.5 3.5 15H6z"/></symbol>
+  <symbol id="ic-family" viewBox="0 0 24 24"><circle cx="8" cy="6" r="2.5"/><circle cx="16" cy="6" r="2.5"/><circle cx="12" cy="13" r="2"/><path d="M4 21v-5a4 4 0 0 1 4-4M20 21v-5a4 4 0 0 0-4-4M9 21v-2a3 3 0 0 1 6 0v2"/></symbol>
+  <symbol id="ic-med" viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="3"/><path d="M12 9v7M8.5 12.5h7M9 5V3h6v2"/></symbol>
+  <symbol id="ic-job" viewBox="0 0 24 24"><rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18M11 13v2h2v-2"/></symbol>
+  <symbol id="ic-kaaba" viewBox="0 0 24 24"><path d="M4 8l8-4 8 4v9l-8 4-8-4z"/><path d="M4 8l8 4 8-4M12 12v9M4 11l8 4 8-4"/></symbol>
+  <symbol id="ic-hand" viewBox="0 0 24 24"><path d="M3 11l4-4 4 2 3-2 4 1 3 3M3 11l5 5c1 1 2 1 3 0M11 16l2 2c1 1 2 1 3 0l1-1M14 15l2 2M21 11l-4 5"/></symbol>
+  <symbol id="ic-stamp" viewBox="0 0 24 24"><path d="M9 3h6l-1 7h3a3 3 0 0 1 3 3v2H4v-2a3 3 0 0 1 3-3h3z"/><path d="M5 19h14"/></symbol>
+  <symbol id="ic-test" viewBox="0 0 24 24"><path d="M14.5 4.5l5 5-9 9H5.5v-5z"/><path d="M12.5 6.5l5 5M3 21h18"/></symbol>
+  <symbol id="ic-lang" viewBox="0 0 24 24"><path d="M4 5h8M8 3v2M6 5c0 4 3 7 6 8M10 5c0 3-2 7-6 9"/><path d="M13 21l4-9 4 9M14.5 18h5"/></symbol>
+  <symbol id="ic-building" viewBox="0 0 24 24"><path d="M4 21V5l8-2v18M12 8l8 2v11M3 21h18M7 8h2M7 12h2M7 16h2M15 13h2M15 17h2"/></symbol>
+</svg>
+
+
+<header class="top">
+  <div class="wrap">
+    <a class="logo" href="#home" aria-label="Professional Travel & Visa Services, home">
+      <span class="logo-mark">PT</span>
+      <span><b>Professional Travel &amp; Visa Services</b><small>Visas · Wakala · Attestation · Recruitment · Umrah</small></span>
+    </a>
+    <button class="menu-btn" id="menuBtn" aria-expanded="false" aria-controls="mainNav">Menu</button>
+    <nav class="main" id="mainNav" aria-label="Main">
+      <a href="#home">Home</a>
+      <a href="#guides">Visa Guides</a>
+      <a href="#work-visa">Work Visa</a>
+      <a href="#wakala">Wakala</a>
+      <a href="#visit-visa">Family &amp; Visit</a>
+      <a href="#attestation">Attestation</a>
+      <a href="#recruitment">Recruitment</a>
+      <a href="#umrah">Umrah</a>
+      <a href="#premium" class="prem">★ Premium</a>
+      <a href="#contact">Contact</a>
+      <a href="#ask" class="ai">✦ AI Quick Reply</a>
+    </nav>
+  </div>
+</header>
+<div class="social-strip">
+  <div class="wrap">
+    <a href="https://www.facebook.com/share/18bFUxHA2G/" target="_blank" rel="noopener"><svg class="ico"><use href="#i-fb"/></svg>Facebook</a>
+    <a href="https://www.tiktok.com/@professionalvisa" target="_blank" rel="noopener"><svg class="ico"><use href="#i-tt"/></svg>TikTok</a>
+    <a href="https://whatsapp.com/channel/0029VbBVDfNC1FuIbM55930C" target="_blank" rel="noopener"><svg class="ico"><use href="#i-wa"/></svg>WhatsApp Channel</a>
+    <span style="margin-left:auto;opacity:.9">WhatsApp: <span class="copytxt">+92 337 3398405</span></span>
+  </div>
+</div>
+
+<main>
+
+<!-- ================= HOME ================= -->
+<section class="page" id="home">
+  <div class="hero2 on-dark">
+    <canvas id="heroDots" aria-hidden="true"></canvas>
+    <div class="wrap hero2-grid">
+      <div class="hero-copy">
+        <p class="pill"><span class="live"></span> Saudi &amp; Gulf visa specialists · Pakistan office + team in KSA</p>
+        <h1 class="hero-h">Your visa, documents and job abroad, <em>handled by experts.</em></h1>
+        <p class="lead">Wakala, Saudi work and family visas, Wafid medical, Tasheer, visa stamping, protector, QVP and skill tests, attestation, recruitment and Umrah. One team from your first question to your flight.</p>
+        <div class="btns">
+          <a class="btn btn-gold btn-lg" href="#contact">Book an appointment</a>
+          <a class="btn btn-wa btn-lg" href="https://wa.me/923373398405" target="_blank" rel="noopener"><svg class="ico"><use href="#i-wa"/></svg>WhatsApp us</a>
+        </div>
+        <div class="proof">
+          <div><b data-count="5000" data-suffix="+">5,000+</b><span>people served</span></div>
+          <div><b>CA</b><span>Chartered Accountant CEO</span></div>
+          <div><b data-count="6">6</b><span>GCC countries covered</span></div>
+        </div>
+      </div>
+
+      <div class="pass-wrap" aria-label="Example travel route from Pakistan to Saudi Arabia">
+        <div class="pass">
+          <div class="pass-top">
+            <span class="eyebrow" style="color:var(--gold)">Boarding pass · Work visa</span>
+            <span class="pass-no">PTVS-KSA</span>
+          </div>
+          <div class="pass-route">
+            <div><small>From</small><b>LHE</b><span>Lahore · Islamabad · Karachi</span></div>
+            <svg class="arc" viewBox="0 0 200 70" aria-hidden="true">
+              <path id="arcPath" d="M8 60 Q100 -10 192 60" fill="none" stroke="currentColor" stroke-width="2" stroke-dasharray="5 6"/>
+              <g class="plane"><path d="M-7 0 L7 0 M0 0 L-3 -5 M0 0 L-3 5 M-6 0 L-8 -3 M-6 0 L-8 3" stroke="var(--gold)" stroke-width="2.2" stroke-linecap="round" fill="none"/></g>
+            </svg>
+            <div style="text-align:right"><small>To</small><b>RUH</b><span>Riyadh · Jeddah · Dammam</span></div>
+          </div>
+          <div class="pass-grid">
+            <div><small>Visa</small><b>Stamped</b></div>
+            <div><small>Medical</small><b>Wafid fit</b></div>
+            <div><small>Protector</small><b>OEC ready</b></div>
+            <div><small>Skill / QVP</small><b>Verified</b></div>
+          </div>
+          <div class="pass-foot">
+            <div class="barcode" aria-hidden="true"></div>
+            <a class="btn btn-soft" href="#g-stamping">See the 8 steps →</a>
+          </div>
+          <span class="st st1">APPROVED</span>
+          <span class="st st2">MOFA ✓</span>
+        </div>
+      </div>
+    </div>
+
+    <div class="wrap">
+      <form class="askbar" id="heroAsk">
+        <span class="askbar-ico" aria-hidden="true">✦</span>
+        <label for="heroQ" style="position:absolute;left:-9999px">Ask a question</label>
+        <input id="heroQ" placeholder="Ask anything: Wafid medical fee, QVP time, protector, Tasheer biometrics…" autocomplete="off">
+        <button class="btn btn-gold" type="submit">Get answer</button>
+      </form>
+      <div class="doc-index hero-chips" id="heroChips"></div>
+      <div class="mini-answers" id="heroOut"></div>
+    </div>
+  </div>
+
+  <div class="marquee" aria-label="Authorities and portals we work with">
+    <div class="marquee-track" id="marquee"></div>
+  </div>
+
+  <div class="section">
+    <div class="wrap">
+      <div class="journey2">
+        <div class="journey-head"><div><p class="eyebrow">Saudi work visa journey</p><h2 style="margin-top:6px">8 steps from visa to flight. We handle all of them.</h2></div><a class="btn btn-soft" href="#guides">All visa guides →</a></div>
+        <div class="track" id="track"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">Who we help</p><h2>Whatever your reason to travel, we know the route</h2></div>
+      <div class="who" id="who"></div>
+    </div>
+  </div>
+
+  <div class="section services-band">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">Our services</p><h2>Everything for your move to Saudi Arabia and the Gulf</h2></div>
+      <div class="grid" id="svcGrid"></div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-bottom:0">
+    <div class="wrap prem-teaser">
+      <div class="stack">
+        <p class="eyebrow">★ Premium &amp; corporate</p>
+        <h2>Premium service for individuals. A complete hiring desk for companies.</h2>
+        <p class="muted">We provide premium service with dedicated support staff and step-by-step guidance at every stage. Fast-track appointments, pickup and delivery for individuals. Wakala, sourcing, testing, bulk visas, protector and weekly reports for Saudi and Gulf companies.</p>
+        <div class="btns"><a class="btn btn-gold" href="#premium">See premium packages</a><a class="btn btn-soft" href="#p-company">For companies →</a></div>
+      </div>
+      <div class="prem-mini">
+        <a href="#p-individual"><span>Premium<small>Priority file, start to finish</small></span><span>→</span></a>
+        <a href="#p-individual"><span>Family Premium<small>Family visit, Iqama and Umrah</small></span><span>→</span></a>
+        <a href="#p-company"><span>Corporate Premium<small>Recruitment + visas for companies</small></span><span>→</span></a>
+        <a href="#p-company"><span>Enterprise Partnership<small>Ongoing hiring desk</small></span><span>→</span></a>
+      </div>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="wrap why">
+      <div class="stack why-copy">
+        <p class="eyebrow">Why choose us</p>
+        <h2>Experts in professional visas, led by a Chartered Accountant</h2>
+        <p>Our CEO is a Chartered Accountant who personally oversees professional visa files, so engineers, accountants, doctors and other professionals get advice from someone who understands degrees, qualifications and Saudi requirements first-hand.</p>
+        <p>Our team has handled the visa, attestation and recruitment files of <b>5,000+ people</b>, and checks every name, date and stamp before submission so files are not returned with objections.</p>
+        <div class="btns"><a class="btn btn-gold" href="#contact">Talk to our team</a><a class="btn btn-soft" href="#ask">✦ Ask AI</a></div>
+      </div>
+      <div class="why-grid">
+        <div class="why-item"><svg class="wi"><use href="#ic-doc"/></svg><b>Document handling</b><span>HEC, IBCC, ICAP, ICMAP, PM&amp;DC, MOFA, Mosadaqa and embassy attestation</span></div>
+        <div class="why-item"><svg class="wi"><use href="#ic-pass"/></svg><b>Visa processing</b><span>Work, visit and family visas, Wakala, QVP and Takamol skill tests</span></div>
+        <div class="why-item"><svg class="wi"><use href="#ic-finger"/></svg><b>Visa stamping</b><span>Wafid medical, Tasheer, biometrics, passport submission and collection</span></div>
+        <div class="why-item"><svg class="wi"><use href="#ic-plane"/></svg><b>Protector &amp; travel</b><span>Bureau of Emigration protector, OEC and air tickets</span></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section how-band on-dark">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">How we work</p><h2>Four simple steps</h2></div>
+      <ol class="how">
+        <li><b>Send your details</b><span>Visa number, passport copy or your question on WhatsApp.</span></li>
+        <li><b>Free file check</b><span>We tell you the exact route, documents and fees for your case.</span></li>
+        <li><b>We do the work</b><span>Dedicated support staff guide you at each step: appointments, attestation, medical, Tasheer and protector.</span></li>
+        <li><b>You fly</b><span>Passport stamped, protector done, ticket booked.</span></li>
+      </ol>
+    </div>
+  </div>
+
+  <div class="section">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">Visa guides</p><h2>Complete guides to every step, from official sources</h2><p class="muted">Fees, documents, timelines and rules for Wafid (GAMCA), Tasheer, visa stamping, protector, QVP and the Takamol skill test.</p></div>
+      <div class="grid" id="guideGrid"></div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0">
+    <div class="wrap cols" style="align-items:stretch">
+      <div class="card" id="finder">
+        <p class="eyebrow">Quick check</p>
+        <h2 style="font-size:1.5rem">Which Saudi work visa is yours?</h2>
+        <p class="muted">Choose the kind of job on your visa.</p>
+        <div class="doc-index" role="group" aria-label="Job type">
+          <button class="chip" data-job="skilled">Electrician, plumber, welder, driver, technician, cook</button>
+          <button class="chip" data-job="pro">Engineer, accountant, IT, manager, teacher, doctor, nurse</button>
+          <button class="chip" data-job="unsure">I'm not sure</button>
+        </div>
+        <div class="note warn" id="finderOut">Pick an option above to see your route.</div>
+      </div>
+      <div class="card feature">
+        <p class="eyebrow">Our team in Saudi Arabia and the Gulf</p>
+        <h2 style="font-size:1.5rem">We are close to you</h2>
+        <p>Besides our office in Pakistan, our team is in Saudi Arabia and across the Gulf. Meet us at your office, at ours, or online to discuss recruitment, visas, attestation or travel.</p>
+        <p><b>Audit &amp; accounting recruitment:</b> we recruit for the Big 4, Top 10 firms and leading audit firms in Saudi Arabia and the Gulf.</p>
+        <div class="btns"><a class="btn btn-gold" href="#contact">Book an appointment</a><a class="btn btn-soft" href="#audit-firms">For audit firms →</a></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0">
+    <div class="wrap">
+      <div class="section-head"><p class="eyebrow">Stay connected</p><h2>Follow us for visa updates, job openings and Umrah offers</h2></div>
+      <div class="socials" data-socials></div>
+    </div>
+  </div>
+
+  <div class="section" style="padding-top:0">
+    <div class="wrap faq-wrap">
+      <div class="section-head"><p class="eyebrow">FAQs</p><h2>Common questions</h2><p class="muted">Can't find your answer? <a href="#ask">Ask our AI assistant</a> or WhatsApp us.</p></div>
+      <div id="faq"></div>
+    </div>
+  </div>
+
+  <div class="wrap" style="padding-bottom:8px">
+    <div class="cta-band on-dark">
+      <div class="stack" style="gap:8px"><h2>Ready to start your visa or attestation?</h2><p style="opacity:.9">Send your visa number or documents on WhatsApp. We reply within 24 hours.</p></div>
+      <div class="btns"><a class="btn btn-gold btn-lg" href="#contact">Book an appointment</a><a class="btn btn-wa btn-lg" href="https://wa.me/923373398405" target="_blank" rel="noopener">WhatsApp us</a></div>
+    </div>
+  </div>
+</section>
+
+<!-- ================= GUIDES HUB ================= -->
+<section class="page" id="guides" hidden>
+  <div class="page-head on-dark"><div class="wrap"><p class="crumb"><a href="#home">Home</a> / Visa Guides</p><h1>Visa Guides</h1><p class="lead">Everything about each step of a Saudi and Gulf work visa: what it is, fees, documents, timelines, rules and the mistakes that cause delays. Compiled from the official Wafid, Tasheer, PACC (QVP and SVP), NAVTTC and Bureau of Emigration sources.</p></div></div>
+  <div class="section"><div class="wrap stack">
+    <div class="grid" id="guideGrid2"></div>
+    <div class="card">
+      <h3>Typical government fees at a glance</h3>
+      <p class="muted" style="font-size:.93rem">Official fees as published on each portal. Agency service charges are separate. Amounts can change; we confirm before you pay.</p>
+      <div class="tbl-wrap"><table>
+        <thead><tr><th>Step</th><th>Who runs it</th><th>Official fee</th><th>Usual time</th></tr></thead>
+        <tbody id="feeRows"></tbody>
+      </table></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- guide pages are generated into #guidePages -->
+<div id="guidePages"></div>
+
+<!-- ================= WORK VISA ================= -->
+<section class="page" id="work-visa" hidden>
+  <div class="page-head on-dark"><div class="wrap"><p class="crumb"><a href="#home">Home</a> / Work Visa</p><h1>Saudi Work Visa</h1><p class="lead">Saudi work visas follow one of two routes, depending on the job title on your visa. We handle both, from the skill test or attestation to stamping, protector and your ticket.</p></div></div>
+  <div class="section"><div class="wrap stack">
+    <div class="tbl-wrap"><table>
+      <thead><tr><th></th><th>Skilled / labour visa</th><th>Professional / education-based visa</th></tr></thead>
+      <tbody>
+        <tr><td><b>Typical jobs</b></td><td>Electrician, plumber, welder, mason, driver, technician, cleaner, cook</td><td>Engineer, accountant, IT specialist, manager, teacher, doctor, nurse</td></tr>
+        <tr><td><b>Main check</b></td><td>Takamol skill test (SVP) at a NAVTTC-approved centre, USD 85</td><td>Degree attestation + QVP, USD 280</td></tr>
+        <tr><td><b>Degree needed?</b></td><td>No</td><td>Yes</td></tr>
+        <tr><td><b>Then</b></td><td colspan="2">Wafid medical → Tasheer submission and biometrics → visa stamped → protector → fly</td></tr>
+      </tbody></table></div>
+    <div class="cols" id="workVisaCards"></div>
+    <div class="card feature" id="handle">
+      <p class="eyebrow">We handle your visa from start to finish</p>
+      <h2>E-Wakala, stamping, protector and premium service</h2>
+      <div class="cols">
+        <div class="stack"><h3>E-Wakala in our agency's name</h3><p>Ask your Saudi employer to issue the E-Wakala (visa authorization) in favour of Professional Travel &amp; Visa Services. Once we receive it, we take over your visa file and handle every step.</p></div>
+        <div class="stack"><h3>Visa stamping</h3><p>We book your Wafid medical and Tasheer appointment, submit your passport and documents, and collect your passport with the visa stamped.</p></div>
+        <div class="stack"><h3>Protector</h3><p>We get your protector stamp and Overseas Employment Certificate from the Bureau of Emigration &amp; Overseas Employment, so you are cleared to travel for work.</p></div>
+      </div>
+      <h3>Premium services</h3>
+      <ul class="check">
+        <li>Priority handling of your file by a dedicated case officer</li>
+        <li>Fast-track booking for Wafid medical, Tasheer and biometrics</li>
+        <li>Document pickup and passport delivery to your door</li>
+        <li>Full file check before submission to avoid objections and delays</li>
+        <li>Regular WhatsApp updates at every stage</li>
+        <li>Air ticket booking for your travel date</li>
+      </ul>
+      <p class="note"><b>Get started:</b> send your visa number and passport copy on WhatsApp and we will tell you which route applies and what to prepare.</p>
+    </div>
+  </div></div>
+</section>
+
+<!-- ================= WAKALA ================= -->
+<section class="page" id="wakala" hidden>
+  <div class="page-head on-dark"><div class="wrap"><p class="crumb"><a href="#home">Home</a> / Wakala</p><h1>Wakala (E-Wakala) Services</h1><p class="lead">Wakala, also called E-Wakala or visa authorization, is the online authorization a Saudi employer issues to a licensed Pakistani agency so that agency can process the visa. Without a Wakala in an agency's name, the visa cannot be stamped through that agency.</p></div></div>
+  <div class="section"><div class="wrap cols">
+    <div class="card"><h3>What we do</h3><ul class="check">
+      <li>Give your Saudi employer our agency details exactly as they must appear on the Wakala</li>
+      <li>Check the Wakala once issued: visa number, profession, number of visas and agency name</li>
+      <li>Use the Wakala to complete Wafid medical, Tasheer biometrics, visa stamping and protector for each worker</li>
+      <li>Handle single visas and bulk Wakala for companies hiring several workers</li></ul></div>
+    <div class="card"><h3>What we need</h3><ul class="check">
+      <li>Visa number(s) and the Saudi employer's name</li>
+      <li>Copy of the issued Wakala</li>
+      <li>Each worker's passport and CNIC copies</li></ul>
+      <p class="note"><b>Ask your employer to issue the Wakala in our name</b>, then send it to us on WhatsApp and we take it from there.</p>
+      <div class="btns"><a class="btn btn-wa" href="https://wa.me/923373398405" target="_blank" rel="noopener">Send your Wakala on WhatsApp</a></div></div>
+  </div></div>
+</section>
+
+<!-- ================= VISIT / FAMILY ================= -->
+<section class="page" id="visit-visa" hidden>
+  <div class="page-head on-dark"><div class="wrap"><p class="crumb"><a href="#home">Home</a> / Family &amp; Visit Visas</p><h1>Family Visa &amp; Visit Visa</h1><p class="lead">Family visit, family residence (Iqama), business visit and tourist visas, with document review, Tasheer booking and status tracking. Pick your visa type to see its checklist.</p></div></div>
+  <div class="section"><div class="wrap stack">
+    <div class="doc-index" id="visitIndex"></div>
+    <div class="stack" id="visitDocs"></div>
+  </div></div>
+</section>
+
+<!-- ================= ATTESTATION ================= -->
+<section class="page" id="attestation" hidden>
+  <div class="page-head on-dark"><div class="wrap"><p class="crumb"><a href="#home">Home</a> / Attestation</p><h1>Saudi Embassy Attestation</h1><p class="lead">Every education document is first attested by the body that issued or regulates it, then by MOFA Pakistan (Lahore / Peshawar / Islamabad), before any embassy attestation. No visa or job letter is needed for most documents; you can attest in advance.</p></div></div>
+  <div class="section"><div class="wrap stack">
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Document</th><th>Attested first by</th><th>Then</th></tr></thead>
+      <tbody id="ruleRows"></tbody></table></div>
+    <div class="stack" style="gap:10px">
+      <label for="docSearch">Find your document</label>
+      <input class="search" id="docSearch" type="search" placeholder="e.g. degree, marriage, CA, birth">
+      <div class="doc-index" id="attIndex"></div>
+    </div>
+    <div class="stack" id="attDocs"></div>
+  </div></div>
+</section>
+
+<!-- ================= RECRUITMENT ================= -->
+<section class="page" id="recruitment" hidden>
+  <div class="page-head on-dark"><div class="wrap"><p class="crumb"><a href="#home">Home</a> / Recruitment</p><h1>Recruitment of Skilled Labour and Professionals</h1><p class="lead">We help companies recruit qualified Pakistani professionals and trained, tested skilled workers for all Gulf countries, Europe (EU), Australia, Malaysia, Uzbekistan and other countries, from sourcing and testing to visa, protector and travel.</p></div></div>
+  <div class="section"><div class="wrap stack">
+    <div class="tbl-wrap"><table><thead><tr><th>Region</th><th>Countries</th></tr></thead><tbody>
+      <tr><td>Gulf (all GCC countries)</td><td>Saudi Arabia, Qatar, UAE, Kuwait, Bahrain, Oman</td></tr>
+      <tr><td>Europe</td><td>European Union (EU) countries</td></tr>
+      <tr><td>Australia</td><td>Australia</td></tr>
+      <tr><td>Asia</td><td>Malaysia, Uzbekistan</td></tr>
+      <tr><td>Other countries</td><td>Any other country with a valid demand from a registered employer</td></tr>
+    </tbody></table></div>
+    <div class="cols">
+      <div class="card"><h3>Professionals we recruit</h3><ul class="check">
+        <li><b>Engineering:</b> civil, mechanical, electrical, chemical, petroleum and other engineers</li>
+        <li><b>Healthcare:</b> doctors, specialists, nurses and allied health staff</li>
+        <li><b>Finance and accounting:</b> Chartered Accountants (CA), accountants, finance officers and managers</li>
+        <li><b>Health and safety:</b> safety officers, safety supervisors and HSE managers</li>
+        <li><b>Technical:</b> technicians, electronic devices technicians, IT and maintenance staff</li>
+        <li><b>Management and admin:</b> managers, HR, sales, administration and office staff</li></ul>
+        <p class="note">Professionals need a degree or diploma attested by the relevant body (HEC, ICAP, ICMAP, PM&amp;DC, IBCC) and MOFA Pakistan, a QVP result where required, and Saudi professional council registration where the job needs it.</p></div>
+      <div class="card"><h3>Skilled trades we recruit</h3><ul class="check">
+        <li><b>Construction:</b> mason, steel fixer, carpenter, shuttering carpenter, scaffolder, labourer</li>
+        <li><b>Electrical and mechanical:</b> electrician, plumber, welder, pipe fitter, HVAC technician, mechanic</li>
+        <li><b>Drivers:</b> light and heavy vehicle drivers, bus drivers, equipment operators</li>
+        <li><b>Hospitality and services:</b> cook, waiter, cleaner, housekeeping, security guard</li>
+        <li><b>Warehouse and factory:</b> storekeeper, forklift operator, machine operator, packer</li></ul>
+        <p class="note">Skilled workers pass the Takamol skill test (SVP) at a NAVTTC-approved centre before the visa. <a href="#g-svp">See the skill test guide</a>.</p></div>
+    </div>
+    <div class="card feature" id="audit-firms">
+      <p class="eyebrow">Led by our Chartered Accountant CEO</p>
+      <h2>Recruitment for Audit and Accounting Firms</h2>
+      <p>We recruit Pakistani audit, tax and finance professionals for the <b>Big 4, Top 10 firms and leading audit firms in Saudi Arabia and the Gulf</b>.</p>
+      <div class="cols">
+        <div><h3>Roles we fill</h3><ul class="check" style="margin-top:10px">
+          <li>Audit associates, seniors, assistant managers and managers</li>
+          <li>Tax, Zakat and VAT consultants</li>
+          <li>Advisory, risk, internal audit and IT audit staff</li>
+          <li>Accountants, financial reporting (IFRS) and consolidation specialists</li></ul></div>
+        <div class="stack"><p><b>Candidates we supply:</b> qualified and part-qualified CA (ICAP), ACCA, CMA (ICMAP), CIA and CPA professionals, many with Big 4 or mid-tier audit firm experience in Pakistan.</p>
+          <p><b>For firms:</b> send us your vacancies, grade and salary range. We shortlist and pre-screen candidates, arrange interviews, then handle attestation, QVP, SOCPA requirements, visa, protector and travel.</p>
+          <p><b>For candidates:</b> looking for an audit or accounting job in Saudi Arabia or the Gulf? Send your CV on WhatsApp.</p></div>
+      </div>
+    </div>
+    <div class="card" id="employers"><h2>For employers: how it works</h2>
+      <ol class="steps">
+        <li><span><b>Send your requirement:</b> job titles, number of workers, salary, contract period and benefits.</span></li>
+        <li><span><b>Demand letter and power of attorney:</b> issued in our agency's name, attested as required.</span></li>
+        <li><span><b>E-Wakala:</b> you issue the visa authorization in our agency's name.</span></li>
+        <li><span><b>Sourcing and shortlisting:</b> we advertise, screen and shortlist matching candidates.</span></li>
+        <li><span><b>Interviews and trade tests:</b> interview online or in person; we arrange practical trade tests.</span></li>
+        <li><span><b>Skill verification:</b> skilled workers pass the Takamol SVP test; professionals complete degree attestation and QVP.</span></li>
+        <li><span><b>Medical:</b> workers complete the Wafid (GAMCA) medical at approved centres.</span></li>
+        <li><span><b>Visa stamping and protector:</b> Tasheer biometrics, visa stamping, and each worker's protector and OEC.</span></li>
+        <li><span><b>Deployment:</b> we book flights and send each worker's travel details before arrival.</span></li>
+      </ol>
+      <div class="cols">
+        <div><h3>Documents from the employer</h3><ul class="check" style="margin-top:10px">
+          <li>Demand letter on company letterhead (trades, numbers, salary, contract period)</li>
+          <li>Power of attorney in favour of our agency</li>
+          <li>Employment contract / agreement for each trade</li>
+          <li>Copy of company Commercial Registration (CR)</li>
+          <li>Visa block / visa numbers</li>
+          <li>E-Wakala in our agency's name</li></ul></div>
+        <div><h3>Documents from each worker</h3><ul class="check" style="margin-top:10px">
+          <li>Valid passport and CNIC</li>
+          <li>Recent passport-size photos with white background</li>
+          <li>Experience or trade certificate, if available</li>
+          <li>Takamol skill verification certificate (we arrange the test)</li>
+          <li>Wafid medical fitness report (we arrange the appointment)</li></ul></div>
+      </div>
+      <div class="btns"><a class="btn btn-gold" href="#contact">Request a recruitment quote</a><a class="btn btn-wa" href="https://wa.me/923373398405" target="_blank" rel="noopener">Send your demand on WhatsApp</a></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ================= UMRAH ================= -->
+<section class="page" id="umrah" hidden>
+  <div class="page-head on-dark"><div class="wrap"><p class="crumb"><a href="#home">Home</a> / Umrah</p><h1>Umrah Packages &amp; Family Umrah Visa</h1><p class="lead">Choose a package that fits your budget. We handle the visa, hotels and transfers so you can focus on your worship.</p></div></div>
+  <div class="section"><div class="wrap stack">
+    <div class="tbl-wrap"><table>
+      <thead><tr><th>Package</th><th>Duration</th><th>Group size</th><th>Price</th><th>Included</th></tr></thead>
+      <tbody>
+        <tr><td><b>Economy Umrah</b></td><td>21 days</td><td>2–4 travellers</td><td><span class="price">Rs 240,000</span><br><span class="muted" style="font-size:.86rem">Flights from Lahore / Multan / Islamabad to Jeddah</span></td><td>Return flights, hotel booking, Umrah visa, ground transfers</td></tr>
+        <tr><td><b>Premium Umrah</b></td><td>14 days</td><td>2–6 travellers</td><td><span class="price">Rs 245,000</span></td><td>Better hotels closer to the Haram, Umrah visa, ground transfers, travel consultation</td></tr>
+      </tbody></table></div>
+    <p class="muted">Prices change with the season, airline and hotel availability. Contact us on WhatsApp for today's price.</p>
+    <div class="cols">
+      <div class="card"><h3>Documents required</h3><ul class="check">
+        <li>Passport valid for at least 6 months</li>
+        <li>Recent passport-size photo with white background</li>
+        <li>CNIC copy</li>
+        <li>Family travel: B-Form or birth certificate for children, Nikah Nama for spouses</li>
+        <li>Vaccination certificate, if required at the time of travel</li></ul></div>
+      <div class="card feature" id="family-umrah"><p class="eyebrow">Family Umrah Visa for Saudi Arabia</p><h3>Perform Umrah together as a family</h3>
+        <p>We arrange the Umrah visa for every family member, register you on Nusuk, book hotels and transport, and check each person's documents and vaccinations before you fly.</p>
+        <ul class="check">
+          <li>Passport valid for at least 6 months from entry (we recommend 8 months)</li>
+          <li>Two recent passport-size photos, plain white background</li>
+          <li>CNIC copy (adults) or B-Form / birth certificate (children)</li>
+          <li>Nikah Nama or Marriage Registration Certificate for husband and wife</li>
+          <li>Meningitis (ACWY) vaccination, at least 10 days before arrival</li>
+          <li>Polio vaccination certificate (mandatory from Pakistan) on the NADRA card</li>
+          <li>Confirmed return ticket and hotel booking (arranged with your package)</li></ul>
+        <dl class="kv">
+          <dt>Family rules</dt><dd>Women of any age can perform Umrah without a mahram. Children travel with a parent or legal guardian. Up to 7 family members per Nusuk account.</dd>
+          <dt>Validity</dt><dd>Follows your package dates, maximum stay 90 days. Medical insurance included.</dd>
+          <dt>Processing</dt><dd>Usually 1 to 3 working days after all documents are ready; longer in Ramadan and peak season.</dd>
+        </dl>
+        <a class="btn btn-wa" href="https://wa.me/923373398405" target="_blank" rel="noopener" style="justify-self:start">Get a family quote on WhatsApp</a></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ================= MORE ================= -->
+<section class="page" id="more" hidden>
+  <div class="page-head on-dark"><div class="wrap"><p class="crumb"><a href="#home">Home</a> / More services</p><h1>More Services</h1><p class="lead">Attestation for other countries, certified translation, NADRA certificates, sealed envelopes for WES/CES, IBCC equivalence and document pickup.</p></div></div>
+  <div class="section"><div class="wrap stack">
+    <div class="doc-index" id="moreIndex"></div>
+    <div class="stack" id="moreDocs"></div>
+  </div></div>
+</section>
+
+<!-- ================= AI QUICK REPLY ================= -->
+<section class="page" id="ask" hidden>
+  <div class="page-head on-dark"><div class="wrap"><p class="crumb"><a href="#home">Home</a> / AI Quick Reply</p><h1>✦ AI Quick Reply</h1><p class="lead">Ask anything about Saudi visas, Wakala, Wafid medical, Tasheer, stamping, protector, QVP, the skill test, attestation, recruitment or Umrah. You get an instant answer from our verified knowledge base, and you can ask our AI assistant for a detailed reply.</p></div></div>
+  <div class="section"><div class="wrap qr">
+    <div class="chat">
+      <div class="chat-head"><span class="avatar">AI</span><div><b style="font-family:var(--display)">PTVS Assistant</b><div class="status" id="aiStatus">Instant answers ready</div></div>
+        <button class="btn btn-soft" id="clearChat" type="button" style="margin-left:auto;padding:8px 12px;font-size:.85rem">New chat</button></div>
+      <div class="msgs" id="msgs" aria-live="polite"></div>
+      <form class="composer" id="composer">
+        <label for="qInput" style="position:absolute;left:-9999px">Your question</label>
+        <textarea id="qInput" rows="1" placeholder="Type your question in English or Urdu…"></textarea>
+        <button class="btn btn-gold" id="sendBtn" type="submit">Send</button>
+        <button class="btn btn-line" id="stopBtn" type="button" hidden>Stop</button>
+      </form>
+    </div>
+    <aside class="stack">
+      <div class="card"><h3>Popular questions</h3><div class="doc-index" id="popular"></div></div>
+      <div class="card"><h3>How it works</h3>
+        <ul class="check" style="font-size:.93rem">
+          <li><b>Instant answer:</b> matched from our verified guides, with a link to the full page.</li>
+          <li><b>Ask AI:</b> our assistant writes a detailed reply using the same verified information.</li>
+          <li><b>Your case:</b> for your exact file, send it to our team on WhatsApp.</li></ul>
+        <p class="muted" style="font-size:.85rem">Answers are general guidance. Rules and fees can change; our team confirms before you pay.</p>
+      </div>
+    </aside>
+  </div></div>
+</section>
+
+<!-- ================= PREMIUM ================= -->
+<section class="page" id="premium" hidden>
+  <div class="page-head on-dark prem-head"><div class="wrap"><p class="crumb"><a href="#home">Home</a> / Premium &amp; Corporate</p><p class="eyebrow">Premium services</p><h1>Premium &amp; Corporate Packages</h1><p class="lead">We provide premium service with dedicated support staff and step-by-step guidance at every stage. Priority handling and fast-track appointments for individuals, and complete hiring and visa management for companies in Saudi Arabia and the Gulf. Led by our Chartered Accountant CEO.</p>
+    <div class="facts" style="max-width:900px"><div class="fact"><span>Support</span><b>Dedicated staff</b><small>one named person for your file</small></div><div class="fact"><span>Guidance</span><b>Every step</b><small>what to do, what to bring, what's next</small></div><div class="fact"><span>Updates</span><b>WhatsApp</b><small>at every stage of your file</small></div></div>
+    <div class="btns"><a class="btn btn-gold btn-lg" href="#p-company">Packages for companies</a><a class="btn btn-line btn-lg" href="#p-individual">Packages for individuals</a></div></div></div>
+
+  <div class="section" id="p-individual"><div class="wrap">
+    <div class="section-head"><p class="eyebrow">For individuals and families</p><h2>Choose how much we handle for you</h2><p class="muted">Government fees (Wafid, Tasheer, QVP, SVP, protector, attestation) are paid at cost and shown separately. Our service charge depends on your visa and documents; we quote before you pay.</p></div>
+    <div class="plans">
+      <article class="plan">
+        <p class="eyebrow">Standard</p><h3>Guided file</h3><p class="plan-price">Quote on request</p>
+        <p class="muted">For applicants who want expert checking and booking.</p>
+        <ul class="check">
+          <li>Free file check and exact checklist</li>
+          <li>Wafid medical and Tasheer appointment booking</li>
+          <li>Document review before submission</li>
+          <li>Passport submission and collection</li>
+          <li>WhatsApp updates</li></ul>
+        <a class="btn btn-soft" href="#contact" data-pkg="Standard package">Choose Standard</a>
+      </article>
+      <article class="plan plan-hot">
+        <span class="ribbon">Most popular</span>
+        <p class="eyebrow">Premium</p><h3>Priority, start to finish</h3><p class="plan-price">Quote on request</p>
+        <p class="muted">For a fast, stress-free visa with one person responsible for your file.</p>
+        <ul class="check">
+          <li><b>Everything in Standard</b></li>
+          <li>Dedicated support staff: one case officer for your whole file</li>
+          <li>Step-by-step guidance: what to do, what to bring and what comes next</li>
+          <li>Fast-track booking for Wafid medical, Tasheer and biometrics</li>
+          <li>Tasheer premium lounge booking, where available</li>
+          <li>Priority follow-up on HEC, MOFA, Mosadaqa and QVP</li>
+          <li>Document pickup and passport delivery to your door</li>
+          <li>Protector, OEC and air ticket booking</li>
+          <li>Status updates at every stage</li></ul>
+        <a class="btn btn-gold" href="#contact" data-pkg="Premium package">Choose Premium</a>
+      </article>
+      <article class="plan">
+        <p class="eyebrow">Family Premium</p><h3>The whole family</h3><p class="plan-price">Quote on request</p>
+        <p class="muted">For family visit, family Iqama and family Umrah visas.</p>
+        <ul class="check">
+          <li><b>Premium service for every family member</b></li>
+          <li>Dedicated support staff and step-by-step guidance for the family</li>
+          <li>Nikah Nama, birth certificate and FRC attestation</li>
+          <li>Arabic translation by authorised centres</li>
+          <li>Group Tasheer appointments and biometrics</li>
+          <li>Medical and vaccination guidance for children</li>
+          <li>Tickets and travel planning for the family</li></ul>
+        <a class="btn btn-soft" href="#contact" data-pkg="Family Premium package">Choose Family Premium</a>
+      </article>
+    </div>
+  </div></div>
+
+  <div class="section corp-band on-dark" id="p-company"><div class="wrap">
+    <div class="section-head"><p class="eyebrow">Premium services for companies</p><h2>Your hiring and visa desk in Pakistan</h2><p style="opacity:.9">For Saudi and Gulf employers, contractors, hospitals and audit firms. One account manager handles your Wakala, candidates, tests, medicals, stamping, protector and travel, with regular reports.</p></div>
+    <div class="plans">
+      <article class="plan dark">
+        <p class="eyebrow">Corporate Essential</p><h3>Visa processing</h3><p class="plan-price">Per-visa quote</p>
+        <p class="muted">You already have the workers; we process their visas.</p>
+        <ul class="check">
+          <li>Wakala in our agency's name, checked on receipt</li>
+          <li>SVP skill test and QVP coordination</li>
+          <li>Group Wafid medical bookings</li>
+          <li>Bulk Tasheer submission and biometrics</li>
+          <li>Protector and OEC for every worker</li>
+          <li>Status sheet for every worker</li></ul>
+        <a class="btn btn-soft" href="#contact" data-pkg="Corporate Essential">Request a quote</a>
+      </article>
+      <article class="plan dark plan-hot">
+        <span class="ribbon">Best for bulk hiring</span>
+        <p class="eyebrow">Corporate Premium</p><h3>Recruitment + visas</h3><p class="plan-price">Per-hire quote</p>
+        <p class="muted">We find, test and deploy the people you need.</p>
+        <ul class="check">
+          <li><b>Everything in Corporate Essential</b></li>
+          <li>Dedicated account manager and support staff for your company</li>
+          <li>Step-by-step guidance for your HR team and every candidate</li>
+          <li>Sourcing, screening and shortlisting to your job descriptions</li>
+          <li>Online or in-person interviews; practical trade tests</li>
+          <li>Degree attestation and QVP for professionals</li>
+          <li>Batch deployment planning and flight bookings</li>
+          <li>Weekly progress report on every candidate</li>
+          <li>Replacement support as agreed in your contract</li></ul>
+        <a class="btn btn-gold" href="#contact" data-pkg="Corporate Premium">Request a proposal</a>
+      </article>
+      <article class="plan dark">
+        <p class="eyebrow">Enterprise Partnership</p><h3>Ongoing hiring desk</h3><p class="plan-price">Annual agreement</p>
+        <p class="muted">For companies hiring throughout the year.</p>
+        <ul class="check">
+          <li><b>Everything in Corporate Premium</b></li>
+          <li>Priority on candidate pipelines and test slots</li>
+          <li>Meetings with our team in Saudi Arabia and the Gulf</li>
+          <li>Workforce planning for projects and contract renewals</li>
+          <li>Specialist hiring for audit, finance and engineering, led by our CA CEO</li>
+          <li>Single monthly invoice and reporting</li></ul>
+        <a class="btn btn-soft" href="#contact" data-pkg="Enterprise Partnership">Book a meeting</a>
+      </article>
+    </div>
+  </div></div>
+
+  <div class="section"><div class="wrap stack">
+    <div class="section-head"><p class="eyebrow">Compare</p><h2>What each package includes</h2></div>
+    <div class="tbl-wrap"><table class="cmp">
+      <thead><tr><th>Service</th><th>Standard</th><th>Premium</th><th>Family Premium</th><th>Corporate Essential</th><th>Corporate Premium</th><th>Enterprise</th></tr></thead>
+      <tbody id="cmpRows"></tbody></table></div>
+    <div class="cols">
+      <div class="card feature"><h3>Audit &amp; finance hiring, led by a Chartered Accountant</h3><p>For the Big 4, Top 10 firms and leading audit firms in Saudi Arabia and the Gulf: our CA CEO screens CA, ACCA, CMA, CIA and CPA candidates and handles their attestation, QVP and SOCPA requirements.</p><a class="btn btn-soft" href="#audit-firms" style="justify-self:start">Audit firm hiring →</a></div>
+      <div class="card"><h3>How to start</h3><ol class="steps"><li><span>Send your requirement or visa details on WhatsApp, or book a meeting.</span></li><li><span>We send a written quote or proposal with timelines.</span></li><li><span>You approve, and your case officer or account manager takes over.</span></li></ol>
+        <div class="btns"><a class="btn btn-gold" href="#contact" data-pkg="Premium or corporate package">Book a meeting</a><a class="btn btn-wa" href="https://wa.me/923373398405?text=Assalam%20o%20Alaikum%2C%20I%20want%20details%20of%20your%20premium%20%2F%20corporate%20packages." target="_blank" rel="noopener">WhatsApp us</a></div></div>
+    </div>
+  </div></div>
+</section>
+
+<!-- ================= CONTACT ================= -->
+<section class="page" id="contact" hidden>
+  <div class="page-head on-dark"><div class="wrap"><p class="crumb"><a href="#home">Home</a> / Contact</p><h1>Book an Appointment</h1><p class="lead">Meet us in Pakistan, in Saudi Arabia and the Gulf, or online. Fill in the form and send it to us on WhatsApp. We aim to reply within 24 hours.</p></div></div>
+  <div class="section"><div class="wrap cols" style="align-items:start">
+    <div class="card">
+      <form id="bookForm" novalidate>
+        <div class="fgrid">
+          <label for="fName">Full name<input id="fName" name="name" autocomplete="name" required></label>
+          <label for="fPhone">Phone / WhatsApp<input id="fPhone" name="phone" type="tel" autocomplete="tel" required placeholder="+92 or +966"></label>
+        </div>
+        <div class="fgrid">
+          <label for="fService">Service<select id="fService" name="service" required></select></label>
+          <label for="fWhere">Where to meet<select id="fWhere" name="where">
+            <option>Online (video call)</option><option>Your office in Pakistan</option><option>Saudi Arabia</option><option>Other Gulf country</option><option>At my office</option></select></label>
+        </div>
+        <div class="fgrid">
+          <label for="fDate">Preferred date<input id="fDate" name="date" type="date"></label>
+          <label for="fTime">Preferred time<select id="fTime" name="time"><option>Morning</option><option>Afternoon</option><option>Evening</option></select></label>
+        </div>
+        <label for="fMsg">Your question or requirement<textarea id="fMsg" name="msg" placeholder="e.g. I have a Saudi visa for an accountant post and need degree attestation"></textarea></label>
+        <p class="err" id="fErr" hidden></p>
+        <button class="btn btn-gold" type="submit" style="justify-self:start">Prepare my booking</button>
+      </form>
+      <div class="out" id="bookOut" hidden>
+        <h3>Your booking is ready to send</h3>
+        <pre id="bookText"></pre>
+        <div class="btns"><a class="btn btn-wa" id="bookWa" href="#" target="_blank" rel="noopener"><svg class="ico"><use href="#i-wa"/></svg>Send on WhatsApp</a><button class="btn btn-line" id="bookCopy" type="button">Copy text</button></div>
+        <p class="muted" id="copyMsg" style="font-size:.9rem">The booking is confirmed once our team replies on WhatsApp.</p>
+      </div>
+    </div>
+    <div class="stack">
+      <div class="card">
+        <h3>Professional Travel &amp; Visa Services</h3>
+        <dl class="kv">
+          <dt>WhatsApp</dt><dd><span class="copytxt">+92 337 3398405</span></dd>
+          <dt>Teams</dt><dd>Pakistan office, Saudi Arabia and the Gulf</dd>
+          <dt>Reply time</dt><dd>Within 24 hours</dd>
+        </dl>
+        <div class="btns"><a class="btn btn-wa" href="https://wa.me/923373398405" target="_blank" rel="noopener">WhatsApp us</a></div>
+      </div>
+      <div class="socials" data-socials></div>
+    </div>
+  </div></div>
+</section>
+
+</main>
+
+<footer class="on-dark">
+  <div class="wrap">
+    <div class="stack">
+      <b style="font-family:var(--display);font-size:1.15rem">Professional Travel &amp; Visa Services</b>
+      <p style="opacity:.85">Saudi and Gulf visas, Wakala, visa stamping, protector, attestation, recruitment and Umrah. WhatsApp: <span class="copytxt">+92 337 3398405</span></p>
+      <div class="btns">
+        <a class="btn btn-line" href="https://www.facebook.com/share/18bFUxHA2G/" target="_blank" rel="noopener"><svg class="ico"><use href="#i-fb"/></svg>Facebook</a>
+        <a class="btn btn-line" href="https://www.tiktok.com/@professionalvisa" target="_blank" rel="noopener"><svg class="ico"><use href="#i-tt"/></svg>TikTok</a>
+        <a class="btn btn-line" href="https://whatsapp.com/channel/0029VbBVDfNC1FuIbM55930C" target="_blank" rel="noopener"><svg class="ico"><use href="#i-wa"/></svg>Channel</a>
+      </div>
+    </div>
+    <div><b>Visa guides</b><ul id="footGuides"></ul></div>
+    <div><b>Services</b><ul>
+      <li><a href="#work-visa">Saudi Work Visa</a></li><li><a href="#wakala">Wakala</a></li><li><a href="#visit-visa">Family &amp; Visit Visa</a></li><li><a href="#umrah">Umrah</a></li><li><a href="#more">Other countries</a></li></ul></div>
+    <div><b>Company</b><ul>
+      <li><a href="#attestation">Attestation</a></li><li><a href="#recruitment">Recruitment</a></li><li><a href="#audit-firms">Audit firm hiring</a></li><li><a href="#ask">AI Quick Reply</a></li><li><a href="#contact">Book an appointment</a></li></ul></div>
+    <p class="fine">Requirements and processing times are estimates based on current practice and can change at any time. The final checklist is decided by the relevant authority. Official portals: wafid.com, vc.tasheer.com, qvp.qiwa.sa, svp-international.qiwa.sa, beoe.gov.pk. Contact us before submitting so we can confirm the latest requirements for your case.</p>
+  </div>
+</footer>
+
+<div class="wa-float">
+  <a class="fab ai" href="#ask" aria-label="AI Quick Reply">✦ <span>Ask AI</span></a>
+  <a class="fab wa" href="https://wa.me/923373398405" target="_blank" rel="noopener" aria-label="WhatsApp us"><svg class="ico"><use href="#i-wa"/></svg><span>WhatsApp</span></a>
+</div>
+
+<script>
+const WA = "923373398405";
+const MOFA = "MOFA Pakistan (Lahore / Peshawar / Islamabad)";
+const esc = s => String(s).replace(/[&<>"]/g, c => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const waLink = t => `https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+
+/* ---------------- GUIDES (official-source content) ---------------- */
+const GUIDES = [
+ {id:"g-wafid", short:"Wafid / GAMCA", code:"MED", title:"Wafid (GAMCA) Medical", tag:"Medical test",
+  lead:"Wafid is the Gulf Health Council's program (formerly known as GAMCA) for people going to work or live in any GCC country. You book your medical check-up on wafid.com, get an appointment slip, and do the examination at an approved medical centre. The result goes straight into the system that the embassy checks.",
+  facts:[["Booking fee","USD 10","per applicant, paid online"],["Exam fee","At the centre","paid separately at the medical centre"],["Result","Up to 26 days","as stated by Wafid; often sooner"],["Official site","wafid.com","Gulf Health Council"]],
+  sections:[
+   {id:"what",h:"What Wafid is",p:["Wafid is a program under the Gulf Health Council. It lets anyone bound to work or reside in the GCC book a medical check-up appointment and confirms they are medically fit.","Pakistan is one of the countries covered, along with Bangladesh, Egypt, India, Ethiopia, Ghana, Indonesia, Jordan, Kenya, Lebanon, Mali, Morocco, Nepal, Niger, Philippines, Sri Lanka, Sudan, Tanzania, Thailand, Turkey and Uganda.","On wafid.com you can book an appointment, print your appointment slip, check your medical result, and see the list of approved medical centres."]},
+   {id:"book",h:"How to book (step by step)",steps:["Open wafid.com and tap Book an Appointment.","Choose the country where you will take the exam, your city, and the GCC country you are travelling to. The medical centre is assigned automatically based on the city.","Enter all details exactly as in your passport (name, passport number, issue and expiry dates, visa number, profession) and tap Submit. Check every date before submitting.","Pay USD 10 by card. On the payment page the card expiry date is entered as year then month (YYMM).","Print your appointment slip (you can reprint it later from the slip page with your passport number and nationality).","Visit the assigned medical centre as soon as possible with your slip."]},
+   {id:"bring",h:"What to bring to the medical centre",list:["Original passport","Printed Wafid appointment slip","Passport-size photos (white background)","CNIC copy","Visa copy, if you have one","Fee for the examination, paid at the centre"]},
+   {id:"rules",h:"Important rules",list:["You cannot choose a specific medical centre; it is assigned by city.","You can change the city only after the current slip expires; then generate a new slip.","The examination date cannot be changed; it is calculated from the approval date.","If you already have a valid medical report, you can rebook only 2 months after that report's date.","Wrong data on the slip (name, passport, profession, visa number): ask the medical centre to submit a free change request and note the request number.","Any age can register.","You can take the exam in a country other than your nationality by selecting both."]},
+   {id:"result",h:"Check your result",p:["Open the Medical Examination Result page on wafid.com and enter your passport number and nationality, or your slip number. Results appear within 26 days at most."]},
+   {id:"unfit",h:"Conditions that make an applicant unfit",warn:["Infectious: HIV, Hepatitis B surface antigen positive, Hepatitis C antibody positive, microfilaria and malaria, leprosy","Chest X-ray: active or past TB, pulmonary fibrosis or calcification, pleural effusion, lymphadenopathy","Non-infectious: renal failure, liver failure, heart failure, uncontrolled hypertension, uncontrolled diabetes, cancer","Psychiatric and neurological disorders","Physical disability, deformity or amputation that affects work","Very low haemoglobin"],note:"An unfit result stops the visa process. If you have a condition on this list, talk to us before booking."},
+   {id:"help",h:"Payment and technical problems",list:["Payment fails: check card details and balance, enter expiry as YYMM, try another card or browser.","Paid but no slip, or paid twice: email support@wafid.com with nationality, payment date and time, passport number, name, card holder and a bank statement showing the charge.","Slip cancellation: contact support@wafid.com.","Wafid phone: +966 92 002 3560."]}
+  ],
+  faq:[["What is GAMCA?","GAMCA is the old name for the GCC medical test system. It is now called Wafid and is run by the Gulf Health Council. Booking is on wafid.com."],["How much is the Wafid medical?","The Wafid booking fee is USD 10 per applicant, paid online. The medical examination fee is paid separately at the medical centre."],["How long does the Wafid result take?","Wafid states the result appears within 26 days. Many results come sooner."],["Can I choose my medical centre?","No. Wafid assigns the centre automatically based on the city you select."]]},
+
+ {id:"g-tasheer", short:"Tasheer", code:"TSH", title:"Tasheer Visa Centre", tag:"Visa submission",
+  lead:"Tasheer runs the Saudi visa service centres for the Saudi Embassy and Consulate in Pakistan. It checks your documents, enters your application, takes your fingerprints and photo (biometrics), collects fees and sends your passport to the embassy for stamping.",
+  facts:[["Centres","6 cities","Islamabad, Karachi, Lahore, Multan, Peshawar, Quetta"],["Booking","Free online","vc.tasheer.com"],["Work visa service fee","PKR 1,320","+ PKR 198 tax (employer pays visa fee)"],["Biometrics","Age 6–80","in person"]],
+  sections:[
+   {id:"what",h:"What Tasheer does",p:["Tasheer is the official Saudi visa service centre. Work, family visit, residence (family Iqama), business and other visas are submitted here. The embassy decides the visa; Tasheer cannot speed up the decision.","Centres: Islamabad, Karachi, Lahore, Multan, Peshawar and Quetta. Most are open 9 am to 5 pm, Monday to Friday, with a break for Friday prayers. Hours vary by centre."]},
+   {id:"types",h:"Visa types submitted at Tasheer",table:{head:["Visa type","Who it is for","Key documents"],rows:[["Work (employment)","Workers with a Saudi employer visa and Wakala","Passport, CNIC, E-number/visa, Wafid medical, SVP or QVP"],["Family visit","Relatives of a Saudi resident","MOFA visit approval, sponsor Iqama, MOFA-attested relationship proof"],["Family residence (Iqama)","Wife and children joining a resident","Attested Nikah Nama / birth certificates, medical, vaccination cards"],["Business visit","Business people invited by a Saudi company","Chamber-attested invitation, company letters, bank statement"],["Medical treatment","Patients treated in Saudi hospitals","Hospital letter and approvals"],["Student","Students admitted to Saudi universities","University admission and scholarship documents"]]},note:"Tourist e-visa and Umrah visas are issued online and do not need Tasheer."},
+   {id:"book",h:"How to book an appointment",steps:["Open vc.tasheer.com and choose Pakistan and your language.","Go to Appointment, then Schedule.","Select nationality, visa type, number of entries and validity.","Pick a centre and a normal or lounge (premium) slot.","Enter details exactly as in the passport and the visa / MOFA approval.","Confirm and print the appointment letter. Each applicant needs their own slot."]},
+   {id:"docs",h:"Documents to bring",groups:[["Work visa",["Original passport, valid 6+ months, with blank pages","Visa / E-number and Wakala details","Original CNIC","Wafid medical report","Photos (white background)","Takamol SVP certificate or QVP result, where required"]],["Family visit visa",["Original passport, 6+ months valid, 2 blank facing pages","Two 51 × 51 mm photos, white background, taken within 3 months","Copy of the MOFA family visit approval","Sponsor's passport and Iqama copies","Relationship proof attested by MOFA Pakistan (e.g. NADRA FRC)","Applicant's passport and CNIC copies"]],["Family residence (Iqama) visa",["All family visit items","Wafid medical report for adults","Children's vaccination cards","Nikah Nama / birth certificates attested by MOFA and the Saudi Embassy/Consulate"]]]},
+   {id:"fees",h:"Fees (examples)",table:{head:["Item","Amount"],rows:[["Work visa: service fee","PKR 1,320 + PKR 198 tax"],["Family visit visa fee (SAR 300)","about PKR 23,220"],["Application fee (visit visa)","about PKR 3,050"],["Service fee, normal (visit visa)","about PKR 7,260 + tax"],["Lounge (premium) service, optional","about PKR 10,890 + tax"],["Courier, optional","about PKR 1,310 + tax"],["SMS updates, optional","about PKR 260 + tax"],["Medical insurance (visit visas)","Bought at the centre; price depends on age and validity"]]},note:"Booking is free; fees are paid at the centre. Visit visa amounts are the Islamabad family visit example and change with the exchange rate."},
+   {id:"bio",h:"Biometrics rules",list:["Everyone aged 6 to 80 must attend in person for fingerprints and a face photo.","Children under 6 and people over 80 are exempt; a first-degree relative can submit for them."]},
+   {id:"tips",h:"Tips to avoid problems",list:["Arrive 15 minutes early with the printed letter and original documents.","Names and passport numbers must match exactly on every document.","Changes within 3 days of the appointment, or a no-show, block normal booking for 7 days; more than 5 changes block it for 14 days.","Keep the original receipt: you need it to collect your passport.","Collect within 30 days, or the passport is returned to the embassy.","Track your application with Track Status on vc.tasheer.com using your passport number and reference number.","Have clean, dry hands for fingerprinting, and make sure the passport has two blank pages."]},
+   {id:"after",h:"Processing, tracking and collection",list:["The embassy usually decides in about 3 to 10 working days; longer in Ramadan, Hajj season or if more documents are requested.","Track status on vc.tasheer.com, or pay for SMS updates at the counter.","Collect the passport in person with the original receipt, or have it delivered by courier.","Someone else can collect it with a signed authorisation letter.","Passports not collected within 30 days are returned to the embassy."]}
+  ],
+  faq:[["Where are Tasheer centres in Pakistan?","Islamabad, Karachi, Lahore, Multan, Peshawar and Quetta."],["How much is the Tasheer fee for a work visa?","For a work visa, Tasheer charges a service fee of about PKR 1,320 plus PKR 198 tax. The employer pays the visa fee."],["How long does Tasheer take?","After submission the Saudi Embassy usually decides in about 3 to 10 working days. Tasheer cannot speed up the decision."],["Who must give biometrics at Tasheer?","Everyone aged 6 to 80 must attend in person. Children under 6 and people over 80 are exempt."]]},
+
+ {id:"g-stamping", short:"Visa Stamping", code:"STP", title:"Saudi Work Visa Stamping", tag:"Full process",
+  lead:"Visa stamping is the full process of getting your Saudi work visa issued on your passport in Pakistan. It joins every step together: Wakala, skill test or QVP, Wafid medical, Tasheer submission and biometrics, the embassy decision, then protector before you fly.",
+  facts:[["Steps","8","from visa to flight"],["Skilled route","SVP + medical","no degree needed"],["Professional route","Attestation + QVP","degree must match job"],["Check status","visa.mofa.gov.sa","Saudi MOFA"]],
+  sections:[
+   {id:"steps",h:"The complete process",steps:["Your Saudi employer issues the visa (visa number) and the E-Wakala to a licensed Pakistani agency.","Skilled jobs: pass the Takamol skill test (SVP). Professional jobs: attest your degree (HEC → MOFA → Mosadaqa → Saudi Embassy) and complete QVP.","Book and pass the Wafid (GAMCA) medical.","Book a Tasheer appointment and submit your passport, documents and biometrics.","The Saudi Embassy / Consulate decides and stamps the visa.","Collect your passport from Tasheer with the original receipt.","Get your protector stamp and Overseas Employment Certificate (OEC) from the Bureau of Emigration.","Book your flight. Enter Saudi Arabia within the visa validity; your employer then issues your Iqama."]},
+   {id:"docs",h:"Documents checklist",groups:[["Everyone",["Original passport, 6+ months valid, with blank pages","Original CNIC","Visa number and Wakala details","Photos, white background","Wafid medical report","Employment contract / offer letter"]],["Skilled workers",["Takamol SVP certificate (for mandatory trades)"]],["Professionals",["Degree attested by HEC, MOFA, Mosadaqa and the Saudi Embassy","QVP result","Professional council registration where required (engineers, health)","Experience letter matching the visa job title"]]]},
+   {id:"mistakes",h:"Common reasons for delay",warn:["Job title on visa does not match the degree or experience","Names spelled differently on passport, CNIC, degree and visa","Wafid medical result unfit or not yet uploaded","SVP certificate not showing at the embassy (allow up to 5 days)","Wakala issued to a different agency"]}
+  ],
+  faq:[["What is visa stamping?","It is the process of getting the Saudi visa issued on your passport: medical, Tasheer submission and biometrics, and the embassy's approval."],["Can I check my Saudi visa online?","Yes, on visa.mofa.gov.sa with your passport number and visa number."]]},
+
+ {id:"g-protector", short:"Protector", code:"PRT", title:"Protector & OEC (Bureau of Emigration)", tag:"Before you fly",
+  lead:"Every Pakistani going abroad for work must register with the Bureau of Emigration & Overseas Employment (BEOE) and get the protector stamp. You also receive the Overseas Employment Certificate (OEC), which FIA checks at the airport. Registration includes life insurance and Overseas Pakistanis Foundation (OPF) membership.",
+  facts:[["Direct visa cost","≈ Rs 9,200","registration, OPF, insurance, OEC"],["Insurance","Rs 1,000,000","State Life cover for 5 years"],["Who issues","BEOE","Protector of Emigrants offices"],["At airport","OEC","checked by FIA"]],
+  sections:[
+   {id:"routes",h:"Two ways to get protector",p:["Through a licensed Overseas Employment Promoter (OEP), such as a recruitment agency, using the employer's permission and Foreign Service Agreement.","Directly (direct visa / individual), when you got the visa yourself. You need an employment contract signed by the employer, or an undertaking approved by BEOE."]},
+   {id:"docs",h:"Documents (direct registration)",list:["Online registration on beoe.gov.pk","Visa","Valid passport","Valid CNIC (copy)","Employment contract signed by the employer","Fee receipts: registration fee, Welfare Fund (OPF), emigration promotion fee","State Life insurance certificate (original and duplicate)","Soft Skills Certificate","NOC for ex-servicemen, government servants or nurses, if applicable","Police character certificate and medical report, for specified countries only"]},
+   {id:"oep",h:"Documents (through an OEP)",list:["Permission number","Passport and CNIC","Insurance certificate","Welfare Fund and protector fee slips","Registration fee and adhesive stamp fee","Foreign Service Agreement (FSA)","Soft Skills Certificate"]},
+   {id:"process",h:"The process",steps:["Submit documents for verification at the Protector office (or online on e-Protector).","Attend the briefing; a registration number is assigned and the passport gets the protector sticker or stamp.","The Protector of Emigrants signs and embosses the passport.","Final briefing on health and legal rights; collect your passport, documents and OEC."]},
+   {id:"fees",h:"Fees (direct emigrants)",table:{head:["Item","Amount (PKR)"],rows:[["Registration fee","2,500"],["OPF Welfare Fund","4,000"],["State Life insurance (Rs 1,000,000 cover, 5 years)","2,500"],["OEC","200"],["Approximate total","9,200"]]},note:"Fees can change. OEP cases have their own protector and stamp fees. We confirm the current amount before you pay."},
+   {id:"benefits",h:"Benefits you get",list:["Life insurance of Rs 1,000,000 for 5 years through State Life","OPF membership: education help for children, airport help counters, housing schemes, and financial help in case of accident","Legal protection as a registered overseas worker"]}
+  ],
+  faq:[["What is protector?","Protector is the Bureau of Emigration registration and stamp required for every Pakistani going abroad for work. You also get the OEC, which FIA checks at the airport."],["How much does protector cost?","For a direct visa it is about Rs 9,200: registration Rs 2,500, OPF Welfare Fund Rs 4,000, State Life insurance Rs 2,500 and OEC Rs 200. Fees can change."]]},
+
+ {id:"g-qvp", short:"QVP", code:"QVP", title:"QVP – Qualification Verification Program", tag:"Professionals",
+  lead:"QVP is run by Saudi Arabia's Professional Accreditation Center (PACC). It verifies a professional's academic qualifications, work experience and professional certificates against the Saudi Standard Classification of Occupations (SSCO). When you qualify, the result goes directly to the Saudi Ministry of Foreign Affairs for your visa.",
+  facts:[["Fee","USD 280","per verification request"],["Time","≈ 21 days","average"],["Certificate","No expiry","verifiable online"],["Portal","qvp.qiwa.sa","PACC"]],
+  sections:[
+   {id:"who",h:"Who needs QVP",p:["Professional workers (engineers, accountants, IT, managers, health, teachers and similar) whose visa occupation requires qualification verification. You must choose the exact occupation that matches your visa application."]},
+   {id:"verify",h:"What is verified",list:["Educational qualifications (degree and transcript)","Professional experience (experience letters)","Professional certificates","Three levels: issuing authority validation, academic degree alignment, and occupation alignment"]},
+   {id:"docs",h:"Documents to prepare",list:["Passport bio page","Degree and transcript (clear colour scans of both sides)","Experience letters on letterhead with stamp, signature, job title, dates, duties and HR contact","Professional certificates, if any","Major selected exactly as it appears on your degree"]},
+   {id:"steps",h:"How to apply",steps:["Go to the PACC platform, choose the QVP program and sign up.","Verify your email with the OTP.","Select your occupation exactly as on your visa, and your major exactly as on your degree.","Upload your qualifications, experience and certificates.","Pay USD 280 by Visa or MasterCard.","Track your request; you are notified by email of every status change.","When Qualified, the result is sent directly to Saudi MOFA and your certificate appears in your dashboard."]},
+   {id:"status",h:"Request statuses",table:{head:["Status","Meaning"],rows:[["In Progress","The request is being processed"],["For Update","Information is missing; add the requested details"],["On Hold","More time is needed to verify"],["Unable to Verify","The institution did not respond or no longer exists"],["Rejected","Documents suspected of forgery or not meeting standards"],["Verified / Qualified","Verified successfully; result sent to MOFA"]]}},
+   {id:"rules",h:"Important rules",list:["The certificate has no expiry date.","You can appeal an Unqualified result once, within 5 days of the result.","You can withdraw a request, but the fee is not refunded.","You cannot change your registered email.","Experience in a different field can be submitted, but it is assessed for relevance to the chosen occupation."]}
+  ],
+  faq:[["What is QVP?","QVP (Qualification Verification Program) is run by Saudi PACC. It verifies a professional's degree, experience and certificates for a Saudi work visa, and sends the result directly to Saudi MOFA."],["How much is the QVP fee?","USD 280 per verification request, paid by Visa or MasterCard."],["How long does QVP take?","On average about 21 days, depending on how quickly your university and employers respond."],["Does the QVP certificate expire?","No. The QVP certificate has no expiry date."],["Can I appeal a QVP result?","Yes, an Unqualified result can be appealed once, within 5 days of the result."]]},
+
+ {id:"g-svp", short:"Skill Test (SVP)", code:"SVP", title:"Takamol Skill Test (SVP) & NAVTTC", tag:"Skilled workers",
+  lead:"The Skills Verification Program (SVP) by Saudi PACC (Takamol) checks that skilled workers have the skills for their job before they travel. In Pakistan it is run with NAVTTC at approved test centres. It is required only for occupations Saudi Arabia has made mandatory, and the test must be taken outside Saudi Arabia.",
+  facts:[["Fee","USD 85","per attempt (SAR 702.6 inside KSA)"],["Validity","2 or 5 years","2 for computer test only, 5 with practical"],["Attempts","Up to 3","pay for each attempt"],["Result","Usually within 24 h","up to 5 days"]],
+  sections:[
+   {id:"what",h:"About the test",list:["Computer-based test only, or computer-based plus practical, depending on the occupation","Maximum duration 120 minutes","Languages: Urdu, English, Arabic, Hindi, Bengali, Nepali, Tagalog, Sinhala and Tamil","Around 100 trades: electrician, plumber, welder, mason, carpenter, driver, chef, barber, HVAC technician and more","If your occupation is not on the mandatory list, you do not need the test"]},
+   {id:"steps",h:"How to register and book",steps:["Sign up on the SVP International portal (svp-international.qiwa.sa) with your passport details.","Choose your occupation carefully; it cannot be changed later.","Click Start Verification, choose the test language, date and session.","Pay USD 85 by Visa or MasterCard.","Download and print your test ticket. The centre in your city is assigned automatically.","Arrive 30 minutes early with your original passport and test ticket (and CNIC).","Check your result on the portal; the certificate is issued electronically and is visible to the embassy."]},
+   {id:"rules",h:"Important rules",list:["Certificate validity: 2 years for a computer-based-only test, 5 years when it includes a practical test.","You can reschedule or cancel only once, at least 72 hours before the test. A cancellation adds a credit to your account.","If you are absent without a valid excuse you are marked Withdrawn and the fee is not refunded.","If you fail, you pay again for each attempt; up to 3 attempts.","If you pass the practical but fail the computer test, you repeat the whole test.","Fees paid are non-refundable.","Driving occupations: the certificate does not replace a Saudi driving licence."]},
+   {id:"rpl",h:"Recognition of Prior Learning (RPL)",p:["Instead of the test, some occupations can be verified from existing certificates, training or licences (RPL). Fee USD 85; certificate valid for 2 years. You upload a passport copy and your certificate or licence."]},
+   {id:"centres",h:"NAVTTC-approved test centres in Pakistan",table:{head:["City","Active centres"],rows:[["Islamabad","9 (incl. NAVTTC Centre of Excellence, National Skills University, CTTI)"],["Lahore","6 (incl. Descon Technical Institute, PITAC, Culinary & Hotel Institute)"],["Rawalpindi","5 (incl. NUST College of E&ME)"],["Multan","4 (incl. Govt College of Technology, Hunar Foundation)"],["Karachi","4 (incl. Memon Industrial & Technical Institute, Shipyard Training School)"],["Gujranwala","3"],["Peshawar","2 (incl. GTTTC Hayatabad, FWO Risalpur)"],["Faisalabad","2"],["Also","Dina, Sahiwal, Wah, Sargodha, Haripur, Sheikhupura, Swabi, Bhakkar"]]},note:"NAVTTC helpline: 0800 88866. The list changes; the portal shows available centres when you book."},
+   {id:"status",h:"Test statuses",table:{head:["Status","Meaning"],rows:[["Reserved","Booked; test not started"],["Pending","Computer test done; waiting for practical"],["Completed","All parts of the test completed"],["Canceled","Cancelled by applicant, admin or centre"],["Withdrawn","Did not attend, or result not received"],["Violated","Test rules broken; result cancelled"]]}}
+  ],
+  faq:[["What is the Takamol skill test?","It is the Saudi Skills Verification Program (SVP). Skilled workers in mandatory trades must pass it before a Saudi work visa. In Pakistan it is run with NAVTTC at approved centres."],["How much is the SVP / Takamol test fee?","USD 85 per attempt for applicants outside Saudi Arabia."],["How long is the SVP certificate valid?","2 years for a computer-based-only test, 5 years if it includes a practical test."],["How many times can I take the skill test?","Up to 3 attempts, paying the fee each time."],["What do I bring to the skill test?","Your original passport and test ticket, plus CNIC. Arrive 30 minutes early."]]}
+];
+
+/* ---------------- other content ---------------- */
+const SERVICES = [
+  {code:"WKL",tag:"Highlighted",t:"Wakala (E-Wakala) Services",d:"Get your employer to issue the Wakala in our name. We handle the rest.",h:"#wakala",hl:1},
+  {code:"VSA",tag:"Work visa",t:"Saudi Work Visa – Skilled & Professional",d:"Skill test or degree attestation and QVP, then stamping.",h:"#work-visa",hl:1},
+  {code:"FAM",tag:"Family",t:"Family Visa & Family Visit Visa",d:"Parents, in-laws, spouse and children, Iqama visas and extensions.",h:"#visit-visa",hl:1},
+  {code:"MED",tag:"Medical",t:"Wafid (GAMCA) Medical",d:"Booking, slip, medical centre and result follow-up.",h:"#g-wafid"},
+  {code:"TSH",tag:"Stamping",t:"Tasheer, Biometrics & Visa Stamping",d:"Appointments booked, file checked, passport collected.",h:"#g-tasheer"},
+  {code:"PRT",tag:"Travel",t:"Protector, OEC & Air Tickets",d:"Bureau of Emigration registration and your flight.",h:"#g-protector"},
+  {code:"QVP",tag:"Tests",t:"QVP & Takamol Skill Test",d:"Qualification verification and NAVTTC skill tests.",h:"#g-qvp"},
+  {code:"ATT",tag:"Documents",t:"Document Attestation",d:"HEC, IBCC, ICAP, ICMAP, MOFA, Mosadaqa and embassy.",h:"#attestation",hl:1},
+  {code:"JOB",tag:"Jobs",t:"Recruitment of Professionals & Skilled Labour",d:"Gulf, EU, Australia, Malaysia, Uzbekistan and more.",h:"#recruitment"},
+  {code:"UMR",tag:"Umrah",t:"Umrah & Family Umrah Visa",d:"Economy from Rs 240,000. Visa, hotels and transfers.",h:"#umrah"},
+  {code:"PRM",tag:"Premium",t:"Premium & Corporate Packages",d:"Dedicated case officer, fast-track service, and full hiring desks for companies.",h:"#premium",hl:1},
+  {code:"TRN",tag:"Support",t:"Translation, NADRA & Other Countries",d:"Arabic, English, Urdu translation; UAE, Qatar, Bahrain and more.",h:"#more"}
+];
+const JOURNEY = [["01","Visa","Employer issues","#g-stamping"],["02","Wakala","In our name","#wakala"],["03","SVP / QVP","Skill or degree check","#g-svp"],["04","Wafid","Medical","#g-wafid"],["05","Tasheer","Biometrics","#g-tasheer"],["06","Stamping","Embassy","#g-stamping"],["07","Protector","BEOE + OEC","#g-protector"],["08","Fly","Iqama in KSA","#g-stamping"]];
+const FEES = [["Takamol skill test (SVP)","PACC / NAVTTC","USD 85 per attempt","Result usually within 24 h"],["QVP","PACC","USD 280","About 21 days"],["Wafid medical booking","Gulf Health Council","USD 10 + centre exam fee","Result up to 26 days"],["Tasheer (work visa)","Tasheer","PKR 1,320 + PKR 198 tax","Embassy decides"],["Protector (direct visa)","BEOE","About Rs 9,200","Same day to a few days"],["Mosadaqa (degree)","Saudi Ministry of Education","About SAR 540","Depends on university"]];
+const SOCIALS = [
+  {i:"i-fb",n:"Facebook",s:"Client stories and updates",h:"https://www.facebook.com/share/18bFUxHA2G/"},
+  {i:"i-tt",n:"TikTok",s:"@professionalvisa",h:"https://www.tiktok.com/@professionalvisa"},
+  {i:"i-wa",n:"WhatsApp Channel",s:"Visa rules, jobs and Umrah offers first",h:"https://whatsapp.com/channel/0029VbBVDfNC1FuIbM55930C"}
+];
+const FAQ = [
+  ["Do you handle both visa and attestation work?","Yes. We help with Saudi visa processing, Wakala, Wafid medical, Tasheer, QVP, HEC, MOFA, Mosadaqa and embassy attestation, protector and travel bookings, all from one office."],
+  ["Is QVP the same as embassy attestation?","No. Embassy attestation confirms your document is genuine. QVP (run by Saudi Arabia's Professional Accreditation Center) verifies your qualification and experience for a Saudi work visa. Many professional visas need both."],
+  ["Do I need a visa or job letter to attest my degree?","No. You can attest your degree in advance, before you have a visa or job offer."],
+  ["Do you accept distance-learning degrees for Saudi Arabia?","The Saudi Cultural Attaché generally does not attest degrees earned through distance, online or private/external-candidate study. We review your degree before you pay any government fees."],
+  ["How long does attestation take?","Family documents usually take 3 to 12 working days; degrees usually take 15 to 20 working days. These are estimates, not guarantees."],
+  ["Do you recruit staff for Saudi and Gulf employers?","Yes. We help companies recruit professionals (engineers, doctors, nurses, accountants, safety staff, technicians) and skilled workers for companies in all Gulf countries, Europe, Australia, Malaysia, Uzbekistan and other countries, from sourcing and testing to visa, protector and travel."],
+  ["How quickly will you reply?","We aim to reply within 24 hours on WhatsApp."]
+];
+const WORK = [
+  {id:"skilled",t:"Skilled / Labour Work Visa",intro:"For trade jobs on Saudi Arabia's mandatory list, you must pass the Takamol skill test (SVP) before the visa. No degree or attestation is needed. In Pakistan the test is run with NAVTTC at approved centres.",
+   lists:[["Documents required",["Valid Pakistani passport","CNIC","Visa number / Wakala from your Saudi employer","Recent passport-size photos with white background","Takamol SVP certificate (after passing the test)","Wafid medical report","Biometrics at Tasheer","Protector stamp and OEC from the Bureau of Emigration"]]],
+   note:"Skill test: USD 85 per attempt, up to 3 attempts, result usually within 24 hours.", link:["#g-svp","Full skill test guide"]},
+  {id:"professional",t:"Professional / Education-Based Work Visa",intro:"For professional job titles, your degree must be attested and verified, and most professions also need a QVP result.",
+   lists:[["Documents required",["Passport valid for at least 6 months, with 2 blank pages","CNIC","Visa number / Wakala from your Saudi employer","Employment contract or offer letter","Recent passport-size photos with white background","Degree and transcript attested by HEC and MOFA, verified through Mosadaqa and attested by the Saudi Embassy","QVP result, where your profession requires it (USD 280, about 21 days)","Professional council registration where required (e.g. engineers, health workers)","Wafid medical report","Biometrics at Tasheer","Protector stamp and OEC"]]],
+   note:"Your degree subject and experience must match the job title on your visa.", link:["#g-qvp","Full QVP guide"]}
+];
+const VISIT = [
+  {id:"v-visit",t:"Saudi Visit Visa (family, business, tourist)",intro:"We help with family visit, business visit and tourist visa applications, including document review, Tasheer booking and status tracking.",
+   lists:[["Documents required",["Passport valid for at least 6 months","Recent passport-size photo (51 × 51 mm, white background)","CNIC copy","Family visit: MOFA visa approval from your relative in Saudi Arabia, their Iqama copy, and proof of relationship (MOFA-attested marriage or birth certificate, or NADRA FRC)","Business visit: invitation from the Saudi company","Biometrics at Tasheer (ages 6 to 80)"]]]},
+  {id:"v-parents",t:"Family Visit Visa for Parents",lists:[["Documents required",["Visa slip issued by the Saudi Ministry of Foreign Affairs","Copies of the son's valid Iqama, passport and CNIC","Original passport of each parent","Copy of each parent's CNIC","Two colour photos (white background) per applicant","Absher printout showing the son's Iqama expiry date","Family Registration Certificate (FRC) attested by MOFA","Two complete sets of photocopies"]]],
+   note:"A married woman visiting her father or brother also needs a No Objection Certificate (NOC) from her husband on stamp paper, attested by MOFA."},
+  {id:"v-inlaws",t:"Family Visit Visa for Father-in-Law / Mother-in-Law",lists:[["Documents required",["Visa slip issued by the Saudi Ministry of Foreign Affairs","Copies of the valid Iqama, passport and CNIC of the daughter and son-in-law","Original marriage certificate of the daughter and son-in-law","Original passport of each applicant","Copy of the applicant's CNIC","Two colour photos (white background) per applicant","FRC of the wife's family, attested by MOFA","Absher printout showing the Iqama expiry date","Two complete sets of photocopies"]]]},
+  {id:"v-spouse",t:"Family Visit Visa for Spouse and Children",lists:[["Documents required",["Original passport, valid 6+ months with 2 blank pages","Two recent photos, white background","Proof of relationship: marriage certificate (spouse) or birth certificate (children), attested","Copy of the sponsor's Iqama and the printed MOFA invitation approval","CNIC copy","Health insurance covering the stay","Minors travelling without both parents: notarised consent letter from the absent parent","Biometrics at Tasheer"]]],
+   note:"Who can sponsor: a Saudi citizen or an expatriate with a valid work Iqama. Who can visit: immediate family (spouse, children, parents)."},
+  {id:"v-iqama",t:"Family Residence (Iqama) Visa",lists:[["Documents required",["Visa copy or yellow slip issued by the Saudi Ministry of Foreign Affairs","Wafid medical report for every family member aged 16+","Copies of the husband's valid Iqama, passport and CNIC","Original current and previous passports of the wife and children","Original CNIC of the wife","Original Nikah Nama attested by the Saudi Consulate and MOFA (with QR code), plus Arabic translation","Children: original birth certificate attested by the Saudi Consulate and MOFA, plus Arabic translation","Children's vaccination cards","Two colour photos (white background)","Biometrics in person at Tasheer"]]],
+   note:"Husband's name must appear on the wife's CNIC and passport."},
+  {id:"v-newborn",t:"Newborn Visa Endorsement",lists:[["Documents required",["Copies of both parents' passports, Iqama, CNIC and visas","Mother's original passport, including the original exit/entry page","Newborn's original passport and original birth certificate","Newborn's polio vaccination card from an approved medical centre","Two photos of the newborn, white background"]]]},
+  {id:"v-exit",t:"Exit/Re-entry Visa Extension",lists:[["Documents required",["Current machine-readable passport, 6+ months valid, 2 facing blank pages, plus all previous passports","The visa endorsed by the Saudi Consulate/Embassy","Two passport-size photos","Letter from the Saudi employer or sponsor requesting the extension and giving the reason, attested by the Saudi Chamber of Commerce and Saudi MOFA","Jawazat \"Resident Information\" letter and printout","Copy of the exit/re-entry page, valid Iqama copy and visa copy","Sponsor's Iqama, passport and CNIC copies","One complete set of photocopies"]]],
+   note:"The Iqama must still be valid, and the extension is granted only if the reason for the delay is genuine."},
+  {id:"v-business",t:"Business Visit Visa",lists:[["Documents required",["Visa slip or invitation issued from Saudi Arabia","Original cover letter from the Saudi company, attested by the Saudi Chamber of Commerce","Cover letter from your Pakistani company, signed and stamped","Recommendation letter from your local Chamber of Commerce","Personal bank statement for the last 6 months, with account maintenance certificate","Copy of the Saudi company's Commercial Registration","Current passport and all previous passports","CNIC copy","Two colour photos, white background"]]],
+   note:"The job title on both cover letters and the Chamber letter must match the visa slip."}
+];
+const RULES = [["University degree and transcript","HEC"],["Matric and Intermediate certificates","IBCC"],["Technical diploma","Board of Technical Education / NAVTTC, then IBCC"],["Chartered Accountancy (CA)","ICAP"],["Cost and Management Accountancy (CMA)","ICMAP"],["Medical / dental (MBBS, BDS) registration","PM&DC"],["Engineering registration","PEC"],["School leaving certificate, report card, bona fide","Provincial Education Department"]];
+const ATT = [
+  {id:"d-degree",g:"Education",t:"Degree Attestation for Saudi Arabia",route:["HEC","MOFA Pakistan","Mosadaqa","Saudi Embassy / Consulate"],
+   lists:[["Documents required",["Original degree attested by HEC and "+MOFA,"Original mark sheet or consolidated transcript","Screenshot from the HEC system showing your name, degree title and document type","University verification letter on original coloured letterhead, signed and stamped by the Registrar, confirming you studied as a regular student, attested by MOFA","Original paid fee slip for the university's email verification to the Saudi Cultural Mission","Original passport, or a clear colour scan if you live abroad","Original CNIC (front and back)","Iqama holders: Iqama copy and Absher printout. New applicants: E-Wakala copy","Two complete sets of photocopies","Married women: Marriage Registration Certificate or Nikah Nama, and an affidavit for change of name"]]],
+   note:"Your name and father's name must match exactly on every document. Distance, online, private/external or overseas-campus degrees are not attested. No visa or job letter is needed; you can attest in advance.",time:"15–20 working days"},
+  {id:"d-diploma",g:"Education",t:"Diploma Attestation",route:["Board of Technical Education","IBCC","MOFA Pakistan","Saudi Embassy"],
+   lists:[["Documents required",["Original diploma attested by the Board of Technical Education, IBCC and MOFA","Diploma marks sheet or transcript","Copies of Matric and Intermediate certificates","CNIC or NICOP copy","Passport bio page copy","Iqama copy, if you already live in Saudi Arabia","Two complete sets of photocopies"]]],note:"No visa or job letter is needed to attest your diploma.",time:"15–20 working days"},
+  {id:"d-hec",g:"Education",t:"HEC Degree Attestation",intro:"Since 11 May 2026 HEC runs attestation fully online at eservices.hec.gov.pk, so you no longer need to visit an HEC office.",route:["HEC (online)","MOFA Pakistan"],
+   lists:[["What you need",["HEC eServices account with your personal and academic details","Clear scans of your degree and transcript (and Matric/Inter where asked)","CNIC","PEC registration (engineers) or PM&DC registration (doctors)","Online fee payment through 1-Link"]],
+     ["HEC checks these, so get them right first",["Name and father's name spelled identically everywhere","Date of birth the same on CNIC and Matric certificate","Degree title the same as on the transcript","Married women whose CNIC shows the husband's name: add the Nikah Nama","Hard-laminated documents are not accepted"]]],time:"Varies by university response"},
+  {id:"d-mosadaqa",g:"Education",t:"Mosadaqa Verification (Bachelor / Master)",intro:"Mosadaqa is the Saudi Ministry of Education's online service for verifying foreign degrees, at mosadaqa.sa.",
+   lists:[["Before you apply",["Degree and transcript attested by HEC and MOFA","Clear scans of degree, transcript, passport and CNIC","Master's applicants: Bachelor's degree and transcript as well"]]],
+   steps:["Create an account at mosadaqa.sa.","Choose New Request and enter your country, university and degree.","Upload degree, transcript, passport, CNIC, attestation stamps and signed consent form.","Pay the fee online (about SAR 540 incl. VAT, non-refundable).","Mosadaqa sends your file to your university.","Track the status: Under Review, Sent to University, Approved or Not Approved."],time:"Depends on your university's reply"},
+  {id:"d-marriage",g:"Family",t:"Marriage Certificate / Nikah Nama Attestation",route:["NADRA / Union Council","MOFA Pakistan","Saudi Embassy / Consulate"],
+   lists:[["Saudi Embassy, Islamabad",["Original Marriage Registration Certificate (MRC) attested by "+MOFA,"Copy of the Urdu Nikah Nama","Husband's and wife's CNIC copies","Passport copies of both spouses","Husband's name must appear on the wife's CNIC and passport","Husband's valid Iqama copy and employment visa page, if he lives in Saudi Arabia","Arabic-English translation on one page, attested by MOFA (optional)","One complete set of photocopies"]],
+     ["Saudi Consulate, Karachi: also bring",["Absher or Muqeem printout showing the husband's Iqama expiry","Arabic translation from a centre authorised by the Saudi Consulate (required)"]]],time:"Islamabad 10–12 working days · Karachi 5–7 working days"},
+  {id:"d-birth",g:"Family",t:"Birth Certificate / B-Form Attestation",route:["NADRA","MOFA Pakistan","Saudi Embassy / Consulate"],
+   lists:[["Documents required",["Original birth certificate or B-Form attested by MOFA","Parents' Marriage Registration Certificate already attested by the Saudi Embassy","CNIC copies of both parents","Passport copies of father, mother and child","Iqama copy and Absher/Muqeem printout of the parent in Saudi Arabia, if applicable","One complete set of photocopies"]]],note:"The parents' marriage certificate must be attested first.",time:"4–6 working days"},
+  {id:"d-school",g:"Family",t:"School Leaving Certificate & Report Card",route:["Provincial Education Dept.","MOFA Pakistan","Saudi Embassy / Consulate"],
+   lists:[["Documents required",["Original certificate or report card attested by the Education Department and MOFA (Matric/Inter by IBCC and MOFA)","Student's passport copy and CNIC/B-Form","Parent's passport and CNIC copies","Iqama copies, if the family lives in Saudi Arabia","One complete set of photocopies"]]],time:"3–7 working days"},
+  {id:"d-bonafide",g:"Family",t:"Bona Fide Student Certificate",route:["Provincial Education Dept.","MOFA Pakistan","Saudi Embassy / Consulate"],
+   lists:[["Documents required",["Original bona fide certificate attested by the Education Department and MOFA","Original student ID card","Student's and parent's passport copies","Iqama copies, if the family lives in Saudi Arabia","One complete set of photocopies"]]],time:"3–7 working days"},
+  {id:"d-police",g:"Family",t:"Police Character Certificate",route:["Police","MOFA Pakistan","Saudi Embassy"],
+   lists:[["Documents required",["Original police character certificate attested by MOFA","Passport and CNIC copies, and Iqama copy if you live in Saudi Arabia","Police report from Saudi Arabia (Taqreer Tahqeeq Shakhsi, 2 pages)","One complete set of photocopies"]]],time:"3–7 working days"},
+  {id:"d-ca",g:"Professional",t:"Chartered Accountancy (ICAP) Certificate",route:["ICAP","MOFA Pakistan","Saudi Embassy"],
+   lists:[["Documents required",["Original CA certificate attested by ICAP and "+MOFA,"Cover letter issued by ICAP","Module marks sheet from ICAP","Sealed envelope issued by ICAP","Passport and CNIC copies","Two complete sets of photocopies"]]],time:"10–15 working days"},
+  {id:"d-cma",g:"Professional",t:"Cost & Management Accountancy (ICMAP) Certificate",route:["ICMAP","MOFA Pakistan","Saudi Embassy"],
+   lists:[["Documents required",["Original CMA certificate attested by ICMAP and "+MOFA,"Marks sheet / result card issued by ICMAP","Passport and CNIC copies","Two complete sets of photocopies"]]]},
+  {id:"d-pmdc",g:"Professional",t:"PMDC Certificate Attestation",intro:"For doctors and dentists taking up healthcare jobs in Saudi Arabia.",route:["Ministry of Health","MOFA Pakistan","PM&DC","NHSR&C Islamabad","Saudi Embassy"],
+   lists:[["Documents required",["Original PM&DC registration certificate attested by PM&DC and MOFA","MBBS / BDS degree already attested by the Saudi Cultural Mission and Saudi Embassy","CNIC or NICOP copy","Passport copy","Iqama copy, if you already live in Saudi Arabia"]]],time:"12–15 working days"},
+  {id:"d-death",g:"Legal",t:"Death, Succession & Power of Attorney",intro:"For families collecting a deceased relative's end-of-service dues or benefits from a Saudi employer.",route:["NADRA / Court","MOFA Pakistan","Saudi Embassy"],
+   lists:[["Documents required",["NADRA death certificate attested by MOFA","Succession certificate from the Family Court or Civil Judge, attested by MOFA","Power of attorney for the person collecting the dues, attested by MOFA","Iqama copies of the deceased and of the person collecting the dues","Exit/entry record of the deceased, where applicable","CNIC copies of all legal heirs","One complete set of photocopies"]],
+     ["If the death happened in Saudi Arabia",["Copy of the death certificate issued by the Saudi Ministry of Health","Succession certificate and power of attorney, attested by MOFA","Iqama copies of the deceased and of the person collecting the dues","CNIC copies of all legal heirs"]]],time:"3–7 working days"},
+  {id:"d-commercial",g:"Legal",t:"Commercial Document Attestation",intro:"For exporters and companies sending documents to Saudi Arabia. Each document is reviewed separately; send us a copy for a checklist and quote.",route:["Chamber of Commerce","MOFA Pakistan","Saudi Embassy"],
+   lists:[["Documents we handle",["Export invoices and packing lists","Certificates of origin","Certificates of incorporation and company documents","Commercial powers of attorney","Chemical, physical and food testing reports"]]],time:"Varies by document"}
+];
+const MORE = [
+  {id:"m-uae",t:"UAE Attestation",intro:"Documents for the UAE are attested in Pakistan (MOFA, plus HEC or IBCC for education), then by the UAE Embassy.",
+   lists:[["Marriage (MRC) or FRC",["NADRA MRC or FRC attested by MOFA","CNIC and passport copies of husband and wife","Husband's UAE visa copy","Husband's name on the wife's CNIC and passport"]],["Birth certificate",["NADRA birth certificate attested by MOFA","CNIC copies of both parents","Passport copies of father, mother and child"]],["Degrees",["Original degree and transcript","HEC attestation, then MOFA","CNIC and passport copies"]],["Matric, Inter and diplomas",["IBCC (or NAVTTC/technical board for diplomas), then MOFA","CNIC and passport copies"]]]},
+  {id:"m-qatar",t:"Qatar Embassy Attestation",lists:[["Marriage certificate / Nikah Nama",["Union Council MRC attested by "+MOFA,"Copy of the Urdu Nikah Nama","CNIC and passport copies of husband and wife","Husband's name on the wife's CNIC and passport"]],["Birth certificate",["Union Council birth certificate attested by MOFA","CNIC and passport copies of both parents","Child's passport copy"]],["Degree",["Original degree and transcripts attested by HEC and MOFA","University regular-status letter attested by MOFA, where required","CNIC and passport copies"]]]},
+  {id:"m-bahrain",t:"Bahrain Embassy Attestation",lists:[["Marriage certificate / Nikah Nama",["Union Council MRC attested by "+MOFA,"Husband's name on the wife's CNIC and passport","CNIC and passport copies of husband and wife"]],["Birth certificate",["Union Council birth certificate attested by MOFA","CNIC and passport copies of both parents","Child's passport copy"]],["Degree",["Original degree and transcripts attested by HEC and MOFA","CNIC copy","Matric and Intermediate certificate copies"]]]},
+  {id:"m-turkey",t:"Turkey & Vietnam Attestation",lists:[["Marriage certificate",["MRC attested by MOFA","CNIC and passport copies of husband and wife"]],["Birth certificate",["Birth registration certificate attested by MOFA","Passport copies of the applicant and both parents"]],["Degree",["Original degree attested by HEC and MOFA","CNIC and passport copies"]]],time:"6–7 working days"},
+  {id:"m-translation",t:"Certified Translation",intro:"Certified translation between English, Arabic and Urdu, ready for MOFA and embassy attestation.",lists:[["Documents we translate",["Nikah Nama and marriage certificates","Birth certificates and B-Forms","Degrees and transcripts","Police certificates","Commercial and legal documents"]]]},
+  {id:"m-nadra",t:"NADRA & Personal Certificates",lists:[["Certificates we help you get",["NADRA birth, marriage, death and divorce certificates","Family Registration Certificate (FRC)","Police character certificate","Un-married (non-marriage) certificate"]]]},
+  {id:"m-wes",t:"HEC Sealed Envelope for WES / CES",intro:"For Canada and the USA. We prepare the applications, follow up with HEC and your boards, and courier the sealed envelope to you or directly to WES/CES.",lists:[["What you need",["Original degree and transcripts","Matric and Intermediate certificates","CNIC","Your WES/CES reference number"]]]},
+  {id:"m-ibcc",t:"IBCC Equivalence",intro:"Equivalence of O Level, A Level and foreign school certificates for admissions, jobs and attestation. Regular and urgent options.",lists:[["What you need",["Original result sheets / transcripts","CNIC or B-Form copy","Passport-size photo"]]]},
+  {id:"m-pickup",t:"Document Pickup & Delivery",intro:"We collect your documents from your home or office and return them after attestation, with updates at every step."}
+];
+
+/* ---------------- renderers ---------------- */
+const ul = (items, cls="check") => `<ul class="${cls}">${items.map(i=>`<li>${esc(i)}</li>`).join("")}</ul>`;
+const ol = items => `<ol class="steps">${items.map(s=>`<li><span>${esc(s)}</span></li>`).join("")}</ol>`;
+const tbl = t => `<div class="tbl-wrap"><table><thead><tr>${t.head.map(h=>`<th>${esc(h)}</th>`).join("")}</tr></thead><tbody>${t.rows.map(r=>`<tr>${r.map(c=>`<td>${esc(c)}</td>`).join("")}</tr>`).join("")}</tbody></table></div>`;
+function docCard(d){
+  let h = `<article class="card doc" id="${d.id}" data-key="${esc((d.t+" "+(d.g||"")+" "+(d.route||[]).join(" ")).toLowerCase())}">`;
+  if (d.g) h += `<p class="eyebrow">${esc(d.g)}</p>`;
+  h += `<h3>${esc(d.t)}</h3>`;
+  if (d.intro) h += `<p>${esc(d.intro)}</p>`;
+  if (d.route) h += `<div class="route">${d.route.map(r=>`<span class="stamp">${esc(r.toUpperCase())}</span>`).join('<span class="arrow">→</span>')}</div>`;
+  (d.lists||[]).forEach(([hd,items]) => { h += `<h4>${esc(hd)}</h4>${ul(items)}`; });
+  if (d.steps) h += `<h4>Steps</h4>${ol(d.steps)}`;
+  if (d.note) h += `<p class="note">${esc(d.note)}</p>`;
+  if (d.time) h += `<p class="time">⏱ Estimated time: ${esc(d.time)}</p>`;
+  h += `<div class="btns">${d.link?`<a class="btn btn-soft" href="${d.link[0]}">${esc(d.link[1])} →</a>`:""}<a class="btn btn-wa" href="${waLink("Assalam o Alaikum, I need help with: "+d.t)}" target="_blank" rel="noopener">Ask about this on WhatsApp</a></div>`;
+  return h + `</article>`;
+}
+function guidePage(g){
+  const toc = g.sections.map(s=>`<a href="#${g.id}-${s.id}">${esc(s.h)}</a>`).join("") + `<a href="#${g.id}-faq">Questions</a>`;
+  const secs = g.sections.map(s=>{
+    let b = `<section class="card gsec" id="${g.id}-${s.id}"><h2 style="font-size:1.4rem">${esc(s.h)}</h2>`;
+    if (s.p) b += s.p.map(x=>`<p>${esc(x)}</p>`).join("");
+    if (s.steps) b += ol(s.steps);
+    if (s.list) b += ul(s.list);
+    if (s.warn) b += ul(s.warn,"check warn");
+    if (s.groups) b += `<div class="cols">${s.groups.map(([h,i])=>`<div class="stack" style="gap:8px"><h4>${esc(h)}</h4>${ul(i)}</div>`).join("")}</div>`;
+    if (s.table) b += tbl(s.table);
+    if (s.note) b += `<p class="note warn">${esc(s.note)}</p>`;
+    return b + `</section>`;
+  }).join("");
+  const faq = `<section class="card gsec" id="${g.id}-faq"><h2 style="font-size:1.4rem">Questions about ${esc(g.short)}</h2>${g.faq.map(([q,a])=>`<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join("")}</section>`;
+  return `<section class="page" id="${g.id}" hidden>
+   <div class="page-head on-dark"><div class="wrap"><p class="crumb"><a href="#home">Home</a> / <a href="#guides">Visa Guides</a> / ${esc(g.short)}</p><p class="eyebrow">${esc(g.tag)}</p><h1>${esc(g.title)}</h1><p class="lead">${esc(g.lead)}</p>
+   <div class="facts">${g.facts.map(([l,v,s])=>`<div class="fact"><span>${esc(l)}</span><b>${esc(v)}</b><small>${esc(s)}</small></div>`).join("")}</div></div></div>
+   <div class="section"><div class="wrap guide"><nav class="toc" aria-label="On this page"><span class="lbl">On this page</span>${toc}</nav>
+   <div class="stack">${secs}${faq}
+   <div class="card feature"><h3>Let us handle ${esc(g.short)} for you</h3><p>We book, check and follow up every step, and keep you updated on WhatsApp.</p><div class="btns"><a class="btn btn-gold" href="#contact">Book an appointment</a><a class="btn btn-wa" href="${waLink("Assalam o Alaikum, I need help with "+g.short)}" target="_blank" rel="noopener">WhatsApp us</a><a class="btn btn-soft" href="#ask">✦ Ask AI</a></div></div>
+   </div></div></div></section>`;
+}
+const GICON = {MED:"ic-med",TSH:"ic-finger",STP:"ic-stamp",PRT:"ic-plane",QVP:"ic-pass",SVP:"ic-test"};
+const guideCard = g => `<a class="svc" href="#${g.id}"><svg class="wi"><use href="#${GICON[g.code]}"/></svg><span class="tag">${esc(g.tag)}</span><span class="stack" style="gap:6px"><h3>${esc(g.title)}</h3><p>${esc(g.facts.slice(0,2).map(f=>f[0]+": "+f[1]).join(" · "))}</p></span><span class="go">Read the guide →</span></a>`;
+function index(el, list){ el.innerHTML = list.map(d=>`<a class="chip" href="#${d.id}">${esc(d.t)}</a>`).join(""); }
+
+document.getElementById("guidePages").innerHTML = GUIDES.map(guidePage).join("");
+document.getElementById("guideGrid").innerHTML = GUIDES.map(guideCard).join("");
+document.getElementById("guideGrid2").innerHTML = GUIDES.map(guideCard).join("");
+document.getElementById("footGuides").innerHTML = GUIDES.map(g=>`<li><a href="#${g.id}">${esc(g.short)}</a></li>`).join("");
+document.getElementById("feeRows").innerHTML = FEES.map(r=>`<tr><td><b>${esc(r[0])}</b></td><td>${esc(r[1])}</td><td>${esc(r[2])}</td><td>${esc(r[3])}</td></tr>`).join("");
+document.getElementById("track").innerHTML = JOURNEY.map(([n,t,s,h])=>`<a class="stop" href="${h}"><span class="dot">${n}</span><b>${t}</b><small>${s}</small></a>`).join("");
+/*svc rendered below*/ void 0; ({}).x = SERVICES.map(s=>`<a class="svc${s.hl?" hl":""}" href="${s.h}"><span class="gi">${s.code}</span><span class="tag">${esc(s.tag)}</span><span class="stack" style="gap:6px"><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p></span><span class="go">View details →</span></a>`).join("");
+document.querySelectorAll("[data-socials]").forEach(el => el.innerHTML = SOCIALS.map(s=>`<a class="soc" href="${s.h}" target="_blank" rel="noopener"><svg class="ico"><use href="#${s.i}"/></svg><span style="min-width:0"><b>${s.n}</b><span>${esc(s.s)}</span></span></a>`).join(""));
+document.getElementById("faq").innerHTML = FAQ.map(([q,a])=>`<details><summary>${esc(q)}</summary><p>${esc(a)}</p></details>`).join("");
+document.getElementById("workVisaCards").innerHTML = WORK.map(docCard).join("");
+index(document.getElementById("visitIndex"), VISIT); document.getElementById("visitDocs").innerHTML = VISIT.map(docCard).join("");
+document.getElementById("ruleRows").innerHTML = RULES.map(([a,b])=>`<tr><td>${esc(a)}</td><td>${esc(b)}</td><td>MOFA Pakistan</td></tr>`).join("");
+index(document.getElementById("attIndex"), ATT); document.getElementById("attDocs").innerHTML = ATT.map(docCard).join("") + `<p class="empty" id="noDoc" hidden>No document matches. Ask us on WhatsApp and we will tell you the route.</p>`;
+index(document.getElementById("moreIndex"), MORE); document.getElementById("moreDocs").innerHTML = MORE.map(docCard).join("");
+
+document.getElementById("docSearch").addEventListener("input", e => {
+  const q = e.target.value.trim().toLowerCase(); let n = 0;
+  document.querySelectorAll("#attDocs .doc").forEach(c => { const show = !q || c.dataset.key.includes(q); c.hidden = !show; if (show) n++; });
+  document.getElementById("noDoc").hidden = n > 0;
+});
+
+const FIND = {
+  skilled:`<b>Skilled / labour visa.</b> No degree needed. Pass the Takamol skill test at a NAVTTC-approved centre (USD 85), then Wafid medical, Tasheer biometrics, stamping and protector. <a href="#g-svp">Skill test guide →</a>`,
+  pro:`<b>Professional visa.</b> Your degree needs HEC → MOFA → Mosadaqa → Saudi Embassy attestation, and most professions also need QVP (USD 280, about 21 days). <a href="#g-qvp">QVP guide →</a>`,
+  unsure:`Send us your visa number or visa copy on WhatsApp and we will tell you the route. <a href="${waLink("Assalam o Alaikum, please check which Saudi work visa route applies to me.")}" target="_blank" rel="noopener">Ask on WhatsApp →</a>`
+};
+document.querySelectorAll("[data-job]").forEach(b => b.addEventListener("click", () => {
+  document.querySelectorAll("[data-job]").forEach(x => x.classList.toggle("on", x === b));
+  document.getElementById("finderOut").innerHTML = FIND[b.dataset.job];
+}));
+
+/* ---------------- knowledge base for Quick Reply ---------------- */
+const KB = [];
+const addKB = (q,a,link,label) => KB.push({q,a,link,label,tok:tokens(q+" "+a)});
+const STOP = new Set("the a an and or of to for in on is are do does i my me can how what which who when where much many with your you be it as at by from this that need get".split(" "));
+const SYN = {gamca:"wafid",medical:"wafid",takamol:"svp",navttc:"svp",skill:"svp",protecter:"protector",wakla:"wakala",ewakala:"wakala",mofa:"mofa",embassy:"embassy",fee:"fee",fees:"fee",cost:"fee",price:"fee",charges:"fee",time:"time",long:"time",days:"time",biometric:"biometrics",fingerprint:"biometrics",attest:"attestation",attested:"attestation",degree:"degree",nikah:"marriage",umrah:"umrah",job:"recruitment",jobs:"recruitment",hiring:"recruitment",recruit:"recruitment"};
+function tokens(s){ return String(s).toLowerCase().replace(/[^a-z0-9؀-ۿ ]/g," ").split(/\s+/).filter(w=>w && !STOP.has(w)).map(w=>SYN[w]||w.replace(/s$/,"")); }
+GUIDES.forEach(g => {
+  g.faq.forEach(([q,a]) => addKB(q,a,"#"+g.id,g.short+" guide"));
+  g.sections.forEach(s => {
+    const parts = [...(s.p||[]),...(s.steps||[]),...(s.list||[]),...(s.warn||[]),...((s.groups||[]).flatMap(([h,i])=>[h+":",...i])),...(s.table?s.table.rows.map(r=>r.join(": ")):[]),s.note||""].filter(Boolean);
+    addKB(g.short+" – "+s.h, parts.join(" • "), "#"+g.id+"-"+s.id, g.short+": "+s.h);
+  });
+});
+FAQ.forEach(([q,a]) => addKB(q,a,"#home","FAQs"));
+[...WORK,...VISIT,...ATT,...MORE].forEach(d => addKB(d.t, [d.intro, ...(d.lists||[]).flatMap(([h,i])=>[h+":",...i]), d.note, d.time && ("Time: "+d.time)].filter(Boolean).join(" • "), "#"+d.id, d.t));
+addKB("Wakala E-Wakala visa authorization","Wakala (E-Wakala) is the online authorization a Saudi employer issues to a licensed Pakistani agency so it can process the visa. Ask your employer to issue it in the name of Professional Travel & Visa Services and send it to us on WhatsApp; we then handle medical, Tasheer, stamping and protector.","#wakala","Wakala");
+addKB("Umrah package price","Economy Umrah: 21 days, 2–4 travellers, Rs 240,000 with flights from Lahore / Multan / Islamabad to Jeddah. Premium Umrah: 14 days, 2–6 travellers, Rs 245,000. Family Umrah visa also available; Meningitis (ACWY) and polio vaccination needed.","#umrah","Umrah");
+addKB("Audit firm recruitment Big 4","We recruit audit, tax and finance professionals (CA, ACCA, CMA, CIA, CPA) for the Big 4, Top 10 firms and leading audit firms in Saudi Arabia and the Gulf, led by our Chartered Accountant CEO.","#audit-firms","Audit firm recruitment");
+addKB("Contact phone WhatsApp book appointment office","WhatsApp: +92 337 3398405. Book an appointment online, in Pakistan, or with our team in Saudi Arabia and the Gulf. We aim to reply within 24 hours.","#contact","Contact");
+
+function search(q, n=3){
+  const qt = tokens(q); if (!qt.length) return [];
+  return KB.map(k => {
+    const qk = tokens(k.q); let s = 0;
+    qt.forEach(t => { if (qk.includes(t)) s += 3; else if (k.tok.includes(t)) s += 1; else if (t.length > 3 && k.tok.some(x=>x.startsWith(t.slice(0,4)))) s += .5; });
+    return {k, s: s / Math.sqrt(qt.length)};
+  }).filter(r=>r.s>=1).sort((a,b)=>b.s-a.s).slice(0,n).map(r=>r.k);
+}
+const trim = (s,n=420) => s.length>n ? s.slice(0,n).replace(/\s\S*$/,"")+"…" : s;
+
+/* hero instant answer */
+const POPULAR = ["Premium package services","How much is the Wafid medical?","What is the QVP fee and time?","Takamol skill test fee","Protector fee for direct visa","Tasheer biometrics age","Which documents for degree attestation?","What is Wakala?","Umrah package price"];
+document.getElementById("heroChips").innerHTML = POPULAR.slice(0,4).map(q=>`<button class="chip" type="button" data-hq="${esc(q)}">${esc(q)}</button>`).join("");
+function heroAnswer(q){
+  const out = document.getElementById("heroOut"), hits = search(q,2);
+  out.innerHTML = hits.length ? hits.map(k=>`<div class="mini-a reveal"><b>${esc(k.q)}</b>${esc(trim(k.a,260))} <a href="${k.link}">Read more →</a></div>`).join("") + `<a class="btn btn-soft" href="#ask" data-carry="${esc(q)}" style="justify-self:start">✦ Ask AI for a detailed answer</a>`
+    : `<div class="mini-a">No instant answer for that yet. <a href="#ask" data-carry="${esc(q)}">Ask our AI assistant →</a></div>`;
+}
+document.getElementById("heroAsk").addEventListener("submit", e => { e.preventDefault(); const q = document.getElementById("heroQ").value.trim(); if (q) heroAnswer(q); });
+document.getElementById("heroChips").addEventListener("click", e => { const b = e.target.closest("[data-hq]"); if (b){ document.getElementById("heroQ").value = b.dataset.hq; heroAnswer(b.dataset.hq); }});
+let carried = "";
+document.addEventListener("click", e => { const a = e.target.closest("[data-carry]"); if (a) carried = a.dataset.carry; });
+
+/* ---------------- AI Quick Reply chat ---------------- */
+const msgs = document.getElementById("msgs"), qInput = document.getElementById("qInput"), sendBtn = document.getElementById("sendBtn"), stopBtn = document.getElementById("stopBtn"), aiStatus = document.getElementById("aiStatus");
+let sample = null, aiOff = false, turns = [], ctl = null;
+document.getElementById("popular").innerHTML = POPULAR.map(q=>`<button class="chip" type="button" data-pq="${esc(q)}">${esc(q)}</button>`).join("");
+function addMsg(role, html){ const d = document.createElement("div"); d.className = "msg "+role+" reveal"; d.innerHTML = html; msgs.append(d); msgs.scrollTop = msgs.scrollHeight; return d; }
+function greet(){ msgs.innerHTML = ""; turns = []; addMsg("bot", `Assalam o Alaikum! I'm the PTVS assistant. Ask me about Saudi work and family visas, Wakala, Wafid medical, Tasheer, stamping, protector, QVP, the skill test, attestation, recruitment or Umrah.`); }
+greet();
+const RULES_PROMPT = q => `You are the website assistant for Professional Travel & Visa Services (PTVS), a Pakistan-based agency for Saudi and Gulf visas, Wakala, Wafid medical, Tasheer, visa stamping, protector, QVP, Takamol skill test, document attestation, recruitment and Umrah. WhatsApp: +92 337 3398405.
+Answer the client's question using ONLY the reference notes below. If the notes do not cover it, say you are not sure and suggest contacting the PTVS team on WhatsApp. Never invent fees, dates or rules. Reply in the same language as the question (English or Urdu/Roman Urdu). Be clear and practical: short paragraphs or a short numbered list, under 180 words. End with one line inviting them to WhatsApp PTVS for their exact case.
+
+REFERENCE NOTES:
+${search(q,6).map(k=>"- "+k.q+": "+trim(k.a,900)).join("\n") || "(no matching notes)"}`;
+function answerInstant(q){
+  const hits = search(q,3);
+  let html = hits.length ? `<span class="tag-ai">Instant answer</span>\n<b>${esc(hits[0].q)}</b>\n${esc(trim(hits[0].a))}<span class="src">From: <a href="${hits[0].link}">${esc(hits[0].label)}</a>${hits.slice(1).map(h=>` · <a href="${h.link}">${esc(h.label)}</a>`).join("")}</span>`
+    : `I couldn't find an instant answer for that in our guides.`;
+  const d = addMsg("bot", html);
+  const acts = document.createElement("div"); acts.className = "acts";
+  if (!aiOff) acts.innerHTML += `<button type="button" data-ai="${esc(q)}">✦ Ask AI for a detailed answer</button>`;
+  acts.innerHTML += `<a href="${waLink("Assalam o Alaikum, my question: "+q)}" target="_blank" rel="noopener">Ask our team on WhatsApp</a>`;
+  d.append(acts);
+}
+async function askAI(q){
+  if (!sample) sample = await claude?.use?.("sample") ?? null;
+  if (!sample){ aiOff = true; aiStatus.textContent = "AI replies unavailable here · instant answers on"; addMsg("bot", `The AI assistant isn't available in this view. You can still use instant answers, or <a href="${waLink("Assalam o Alaikum, my question: "+q)}" target="_blank" rel="noopener">ask our team on WhatsApp</a>.`); return; }
+  const bubble = addMsg("bot", `<span class="tag-ai">✦ AI answer</span>\n<span class="body">Thinking…</span>`), body = bubble.querySelector(".body");
+  ctl = new AbortController(); sendBtn.disabled = true; stopBtn.hidden = false; aiStatus.textContent = "Writing an answer…";
+  const history = turns.slice(-6);
+  try {
+    const { text } = await sample([{role:"user",content:RULES_PROMPT(q)}, ...history, {role:"user",content:q}], { cache:false, signal:ctl.signal, onText:({text}) => { body.textContent = text; msgs.scrollTop = msgs.scrollHeight; } });
+    turns.push({role:"user",content:q},{role:"assistant",content:text});
+    const acts = document.createElement("div"); acts.className = "acts"; acts.innerHTML = `<a href="${waLink("Assalam o Alaikum, my question: "+q)}" target="_blank" rel="noopener">Continue on WhatsApp</a>`; bubble.append(acts);
+  } catch(e) {
+    body.textContent = e.text || "";
+    const copy = {not_granted:"AI replies were not allowed in this view. Instant answers still work.",sampling_disabled:"AI replies aren't available for this account. Instant answers still work.",rate_limited:"Too many questions at once. Please wait a moment and try again.",refused:"I can't answer that one. Please ask our team on WhatsApp.",cancelled:""}[e.code] ?? "The answer was interrupted. Please try again, or ask our team on WhatsApp.";
+    if (["not_granted","sampling_disabled","not_declared","capability_disabled","capability_removed"].includes(e.code)) aiOff = true;
+    if (copy) body.textContent = (body.textContent ? body.textContent+"\n\n" : "") + copy;
+  } finally { sendBtn.disabled = false; stopBtn.hidden = true; aiStatus.textContent = aiOff ? "AI replies unavailable here · instant answers on" : "Instant answers ready"; }
+}
+function ask(q){ q = q.trim(); if (!q) return; addMsg("user", esc(q)); qInput.value = ""; answerInstant(q); }
+document.getElementById("composer").addEventListener("submit", e => { e.preventDefault(); ask(qInput.value); });
+qInput.addEventListener("keydown", e => { if (e.key === "Enter" && !e.shiftKey){ e.preventDefault(); ask(qInput.value); }});
+stopBtn.addEventListener("click", () => ctl?.abort());
+document.getElementById("clearChat").addEventListener("click", greet);
+document.getElementById("popular").addEventListener("click", e => { const b = e.target.closest("[data-pq]"); if (b) ask(b.dataset.pq); });
+msgs.addEventListener("click", e => { const b = e.target.closest("[data-ai]"); if (b){ b.disabled = true; askAI(b.dataset.ai); }});
+
+
+/* ---------------- homepage v3 extras ---------------- */
+const ICON = {WKL:"ic-hand",VSA:"ic-pass",FAM:"ic-family",MED:"ic-med",TSH:"ic-finger",PRT:"ic-plane",QVP:"ic-test",ATT:"ic-stamp",JOB:"ic-job",UMR:"ic-kaaba",TRN:"ic-lang",PRM:"ic-building"};
+const icon = (id, cls="wi") => `<svg class="${cls}"><use href="#${id}"/></svg>`;
+document.getElementById("svcGrid").innerHTML = SERVICES.map(s=>`<a class="svc${s.hl?" hl":""}" href="${s.h}">${icon(ICON[s.code]||"ic-doc")}<span class="tag">${esc(s.tag)}</span><span class="stack" style="gap:6px"><h3>${esc(s.t)}</h3><p>${esc(s.d)}</p></span><span class="go">View details →</span></a>`).join("");
+const WHO = [
+  ["ic-test","Skilled workers","Electricians, plumbers, welders, drivers and technicians. Skill test, medical, stamping and protector.","#work-visa"],
+  ["ic-pass","Professionals","Engineers, accountants, doctors, nurses and IT. Degree attestation, Mosadaqa and QVP.","#g-qvp"],
+  ["ic-family","Families","Family visit and Iqama visas, Nikah Nama and birth certificate attestation, family Umrah.","#visit-visa"],
+  ["ic-building","Employers","Wakala, bulk visas and recruitment of tested workers and qualified professionals.","#recruitment"]
+];
+document.getElementById("who").innerHTML = WHO.map(([i,t,d,h])=>`<a class="who-card" href="${h}">${icon(i)}<h3>${esc(t)}</h3><p>${esc(d)}</p><span class="go">Learn more →</span></a>`).join("");
+const AUTH = ["HEC","IBCC","MOFA Pakistan","Mosadaqa","Saudi Embassy","Saudi Consulate Karachi","Wafid (GAMCA)","Tasheer","PACC · QVP","Takamol SVP","NAVTTC","Bureau of Emigration","OPF","NADRA","ICAP","ICMAP","PM&DC","Nusuk"];
+document.getElementById("marquee").innerHTML = [...AUTH,...AUTH].map(a=>`<span class="stamp">${esc(a.toUpperCase())}</span>`).join("");
+(function counters(){
+  const els = document.querySelectorAll("[data-count]"), reduce = matchMedia("(prefers-reduced-motion: reduce)").matches;
+  if (reduce) return;
+  els.forEach(el => { const end = +el.dataset.count, suf = el.dataset.suffix||"", t0 = performance.now(), dur = 1400;
+    const step = t => { const p = Math.min(1,(t-t0)/dur), v = Math.round(end*(1-Math.pow(1-p,3))); el.textContent = v.toLocaleString("en-US")+(p===1?suf:""); if (p<1) requestAnimationFrame(step); };
+    requestAnimationFrame(step); });
+})();
+(function dots(){
+  const c = document.getElementById("heroDots"); if (!c) return; const x = c.getContext("2d");
+  function draw(){ const r = c.getBoundingClientRect(), d = devicePixelRatio||1; c.width = r.width*d; c.height = r.height*d; x.scale(d,d);
+    x.fillStyle = "rgba(240,196,106,.35)"; for (let i=0;i<r.width;i+=22) for (let j=0;j<r.height;j+=22){ const f = Math.sin(i*.013)+Math.cos(j*.021+i*.004); if (f>.9){ x.beginPath(); x.arc(i,j,1.3,0,7); x.fill(); } } }
+  draw(); addEventListener("resize", () => { clearTimeout(c._t); c._t = setTimeout(draw,150); });
+})();
+
+
+/* ---------------- premium packages ---------------- */
+const CMP = [
+  ["Free file check and checklist",1,1,1,1,1,1],
+  ["Wafid medical and Tasheer booking",1,1,1,1,1,1],
+  ["Passport submission and collection",1,1,1,1,1,1],
+  ["Dedicated support staff",0,1,1,0,1,1],
+  ["Step-by-step guidance at every stage",1,1,1,1,1,1],
+  ["Fast-track appointments",0,1,1,1,1,1],
+  ["Document pickup and delivery",0,1,1,0,1,1],
+  ["Protector, OEC and air tickets",0,1,1,1,1,1],
+  ["Family document attestation and translation",0,0,1,0,0,0],
+  ["Wakala management and bulk submission",0,0,0,1,1,1],
+  ["Candidate sourcing, interviews and trade tests",0,0,0,0,1,1],
+  ["Weekly candidate reports",0,0,0,0,1,1],
+  ["Meetings with our Saudi / Gulf team",0,0,0,0,0,1]
+];
+document.getElementById("cmpRows").innerHTML = CMP.map(([n,...v])=>`<tr><td>${esc(n)}</td>${v.map(x=>x?'<td class="yes" aria-label="Included">✓</td>':'<td class="no" aria-label="Not included">–</td>').join("")}</tr>`).join("");
+document.addEventListener("click", e => { const a = e.target.closest("[data-pkg]"); if (!a) return;
+  const s = document.getElementById("fService"); const v = a.dataset.pkg;
+  if (![...s.options].some(o=>o.value===v)) s.add(new Option(v,v)); s.value = v; });
+addKB("Premium package services individual dedicated support staff guidance","We provide premium service with dedicated support staff and step-by-step guidance at every stage. Premium package for individuals: one dedicated case officer for your whole file, fast-track booking for Wafid medical, Tasheer and biometrics, Tasheer lounge booking where available, priority follow-up on HEC, MOFA, Mosadaqa and QVP, document pickup and passport delivery, protector, OEC and air tickets, and updates at every stage. Standard and Family Premium packages are also available. Government fees are paid at cost; our service charge is quoted before you pay.","#premium","Premium packages");
+addKB("Corporate premium services for companies employers bulk hiring","For companies: Corporate Essential (visa processing for your workers: Wakala, SVP/QVP, group Wafid medicals, bulk Tasheer, protector), Corporate Premium (adds a dedicated account manager, sourcing, screening, interviews, trade tests, attestation and QVP for professionals, batch deployment and weekly reports) and Enterprise Partnership (ongoing hiring desk, priority pipelines, meetings with our Saudi and Gulf team, specialist audit and finance hiring led by our CA CEO). Quotes on request.","#p-company","Corporate packages");
+
+/* ---------------- booking form ---------------- */
+const sel = document.getElementById("fService");
+sel.innerHTML = `<option value="">Choose a service</option>` + SERVICES.map(s=>`<option>${esc(s.t)}</option>`).join("") + `<option>Audit firm recruitment</option><option>Other</option>`;
+let bookMsg = "";
+document.getElementById("bookForm").addEventListener("submit", e => {
+  e.preventDefault();
+  const f = e.target, err = document.getElementById("fErr");
+  const name = f.name.value.trim(), phone = f.phone.value.trim(), svc = f.service.value;
+  if (!name || !phone || !svc) { err.textContent = "Please add your name, phone number and the service you need."; err.hidden = false; return; }
+  err.hidden = true;
+  bookMsg = `Assalam o Alaikum, I would like to book an appointment.\nName: ${name}\nPhone: ${phone}\nService: ${svc}\nMeeting: ${f.where.value}\nPreferred: ${f.date.value || "Any date"}, ${f.time.value}` + (f.msg.value.trim() ? `\nDetails: ${f.msg.value.trim()}` : "");
+  document.getElementById("bookText").textContent = bookMsg;
+  document.getElementById("bookWa").href = waLink(bookMsg);
+  document.getElementById("bookOut").hidden = false;
+});
+document.getElementById("bookCopy").addEventListener("click", () => {
+  const m = document.getElementById("copyMsg");
+  navigator.clipboard.writeText(bookMsg).then(() => m.textContent = "Copied. Paste it into WhatsApp or email.")
+    .catch(() => { const r = document.createRange(); r.selectNodeContents(document.getElementById("bookText")); const s = getSelection(); s.removeAllRanges(); s.addRange(r); m.textContent = "Text selected. Press copy on your keyboard."; });
+});
+
+/* ---------------- router ---------------- */
+const pages = [...document.querySelectorAll(".page")];
+const navLinks = [...document.querySelectorAll("nav.main a")];
+function route(){
+  const id = (location.hash || "#home").slice(1) || "home";
+  const target = document.getElementById(id);
+  const page = target ? target.closest(".page") : document.getElementById("home");
+  pages.forEach(p => p.hidden = p !== page);
+  const navId = page.id.startsWith("g-") ? "guides" : page.id;
+  navLinks.forEach(a => { if (a.getAttribute("href") === "#"+navId) a.setAttribute("aria-current","page"); else a.removeAttribute("aria-current"); });
+  document.getElementById("mainNav").classList.remove("open");
+  document.getElementById("menuBtn").setAttribute("aria-expanded","false");
+  if (target && target !== page) requestAnimationFrame(() => target.scrollIntoView({block:"start"}));
+  else window.scrollTo(0,0);
+  if (page.id === "ask" && carried){ const q = carried; carried = ""; ask(q); }
+}
+addEventListener("hashchange", route); route();
+document.getElementById("menuBtn").addEventListener("click", e => {
+  const nav = document.getElementById("mainNav"); const open = nav.classList.toggle("open");
+  e.currentTarget.setAttribute("aria-expanded", open);
+});
+</script>

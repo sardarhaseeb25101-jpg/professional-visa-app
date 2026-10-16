@@ -17,8 +17,12 @@ import { UmrahPackages } from './UmrahPackages.jsx';
 
 function Layout({ children }) {
   const [menuOpen, setMenuOpen] = useState(false);
+  const [countryMenuOpen, setCountryMenuOpen] = useState(false);
 
-  const closeMenu = () => setMenuOpen(false);
+  const closeMenu = () => {
+    setMenuOpen(false);
+    setCountryMenuOpen(false);
+  };
 
   return (<>
     <header className="top">
@@ -41,8 +45,22 @@ function Layout({ children }) {
 
       <nav className={menuOpen ? 'nav-open' : ''}>
         <NavLink to="/" onClick={closeMenu}>Home</NavLink>
-        <div className="country-menu" onClick={closeMenu}>
-          <button type="button" className="country-menu__trigger">Services ▾</button>
+        <div
+          className={`country-menu ${countryMenuOpen ? 'is-open' : ''}`}
+          onMouseEnter={() => setCountryMenuOpen(true)}
+          onMouseLeave={() => setCountryMenuOpen(false)}
+          onFocus={() => setCountryMenuOpen(true)}
+          onBlur={() => setCountryMenuOpen(false)}
+        >
+          <button
+            type="button"
+            className="country-menu__trigger"
+            aria-expanded={countryMenuOpen}
+            aria-haspopup="true"
+            onClick={() => setCountryMenuOpen((value) => !value)}
+          >
+            Services ▾
+          </button>
           <div className="country-menu__panel">
             {countryMenu.map((item) => item.disabled ? (
               <span key={item.country} className="country-menu__item country-menu__item--disabled">
