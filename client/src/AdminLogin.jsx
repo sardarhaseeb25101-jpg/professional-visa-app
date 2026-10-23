@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { PageHead } from './ui.jsx';
 
 export function AdminLogin({ onLogin }) {
   const [password, setPassword] = useState('');
@@ -14,10 +15,9 @@ export function AdminLogin({ onLogin }) {
     setError('');
   }
 
-  return (
+  return (<>
+    <PageHead kicker="Admin" title="Admin Dashboard" lead="Enter your admin password to manage packages and hotels." />
     <section className="page narrow">
-      <h1>Admin Dashboard</h1>
-      <p className="lead">Enter your admin password to manage packages and hotels.</p>
       <div className="form">
         <label>
           Password
@@ -33,5 +33,5 @@ export function AdminLogin({ onLogin }) {
         <button className="btn" onClick={handleLogin}>Login</button>
       </div>
     </section>
-  );
+  </>);
 }

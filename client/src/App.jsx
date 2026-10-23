@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Routes, Route, Link, NavLink, useParams } from 'react-router-dom';
+import { Routes, Route, Link, useParams } from 'react-router-dom';
 import { services, saudiSections, guides, stats, highlights, processSteps, faq, testimonials, packagePlans, PHONE, WA, WA_CHANNEL, FACEBOOK_URL, TIKTOK_URL, EMAIL, ADDRESS, BRAND_NAME, BRAND_SHORT, aiReplyBank } from './content.js';
 import {
   countryMenu,
@@ -14,487 +14,30 @@ import {
 import { AdminLogin } from './AdminLogin.jsx';
 import { AdminDashboard } from './AdminDashboard.jsx';
 import { UmrahPackages } from './UmrahPackages.jsx';
+import { Layout } from './Shell.jsx';
+import { Home } from './Home.jsx';
+import { PageHead, Icon, Flag } from './ui.jsx';
 
-function Layout({ children }) {
-  const [menuOpen, setMenuOpen] = useState(false);
-  const [countryMenuOpen, setCountryMenuOpen] = useState(false);
-
-  const closeMenu = () => {
-    setMenuOpen(false);
-    setCountryMenuOpen(false);
-  };
-
+function NotFound({ title = 'Page not found', lead = 'The page you are looking for does not exist or has moved.' }) {
   return (<>
-    <header className="top">
-      <Link to="/" className="brand-wrap" aria-label={BRAND_NAME} onClick={closeMenu}>
-        <img src="/assets/logo.jpeg" alt={BRAND_NAME} className="brand-logo" />
-        <span className="brand">{BRAND_NAME}</span>
-      </Link>
-
-      <button
-        type="button"
-        className="mobile-menu-toggle"
-        aria-label="Toggle navigation"
-        aria-expanded={menuOpen}
-        onClick={() => setMenuOpen((value) => !value)}
-      >
-        <span />
-        <span />
-        <span />
-      </button>
-
-      <nav className={menuOpen ? 'nav-open' : ''}>
-        <NavLink to="/" onClick={closeMenu}>Home</NavLink>
-        <div
-          className={`country-menu ${countryMenuOpen ? 'is-open' : ''}`}
-          onMouseEnter={() => setCountryMenuOpen(true)}
-          onMouseLeave={() => setCountryMenuOpen(false)}
-          onFocus={() => setCountryMenuOpen(true)}
-          onBlur={() => setCountryMenuOpen(false)}
-        >
-          <button
-            type="button"
-            className="country-menu__trigger"
-            aria-expanded={countryMenuOpen}
-            aria-haspopup="true"
-            onClick={() => setCountryMenuOpen((value) => !value)}
-          >
-            Services ▾
-          </button>
-          <div className="country-menu__panel">
-            {countryMenu.map((item) => item.disabled ? (
-              <span key={item.country} className="country-menu__item country-menu__item--disabled">
-                <span className="country-menu__flag">{item.flag || '🌍'}</span>
-                <span>{item.country}</span>
-              </span>
-            ) : (
-              <NavLink key={item.country} to={item.path} className="country-menu__item" onClick={closeMenu}>
-                <span className="country-menu__flag">{item.flag || '🌍'}</span>
-                <span>{item.country}</span>
-              </NavLink>
-            ))}
-          </div>
-        </div>
-        <NavLink to="/umrah-packages" onClick={closeMenu}>Umrah packages</NavLink>
-        <NavLink to="/attestation-calculator" onClick={closeMenu}>Requirements</NavLink>
-        <NavLink to="/guides/mosadaqa" onClick={closeMenu}>Mosadaqa / Saudi Culture</NavLink>
-        <NavLink to="/guides/qvp" onClick={closeMenu}>QVP guide</NavLink>
-      </nav>
-      <div className="nav-actions">
-        <Link to="/attestation-calculator" className="btn header-cta" onClick={closeMenu}>Get consultation</Link>
-      </div>
-    </header>
-    <main>{children}</main>
-    <footer>
-      <div className="footer-trust-block">
-        <p><b>Professional Travel & Visa Services Office:</b> {ADDRESS}</p>
-        <p>OEP / BEOE licence no.: [confirm] · Phone / WhatsApp: {PHONE} · Email: {EMAIL}</p>
-        <p>Office hours: [confirm]</p>
-      </div>
-      <div className="footer-follow-row" style={{ display: 'flex', flexWrap: 'wrap', gap: '12px', margin: '12px 0 18px', alignItems: 'center' }}>
-        <a className="btn ghost" href={WA_CHANNEL} target="_blank" rel="noreferrer">Follow our WhatsApp channel</a>
-        <a href={FACEBOOK_URL} target="_blank" rel="noreferrer" aria-label="Follow us on Facebook">Facebook</a>
-        <a href={TIKTOK_URL} target="_blank" rel="noreferrer" aria-label="Follow us on TikTok">TikTok</a>
-      </div>
-      <p><b>{BRAND_NAME}</b></p>
-      <p>{ADDRESS}</p>
-      <p>{PHONE} · <a href={`mailto:${EMAIL}`}>{EMAIL}</a> · <a href={WA} target="_blank" rel="noreferrer">WhatsApp</a></p>
-    </footer>
-    <a className="wa-float" href={WA} target="_blank" rel="noreferrer" aria-label="Chat on WhatsApp">WhatsApp</a>
-    <AIChatWidget />
+    <PageHead title={title} lead={lead}>
+      <div className="hero-cta-row"><Link className="btn btn-gold" to="/">Back to home</Link></div>
+    </PageHead>
+    <section className="page narrow" />
   </>);
 }
 
-function AIChatWidget() {
-  const [open, setOpen] = useState(false);
-  const [input, setInput] = useState('');
-  const [messages, setMessages] = useState([
-    { from: 'bot', text: 'Assalamu Alaikum! I can help with Saudi visa guidance, document attestation, and Umrah support. Ask me anything.' },
-  ]);
-
-  const getReply = (query) => {
-    const normalized = query.toLowerCase();
-    const match = aiReplyBank.find((entry) => entry.keywords.some((keyword) => normalized.includes(keyword)));
-    return match ? match.response : 'I can help with visa guidance, attestation support, and Umrah planning. Please tell me your case type and I will guide you to the right next step.';
-  };
-
-  const handleSend = () => {
-    const trimmed = input.trim();
-    if (!trimmed) return;
-
-    const userMessage = { from: 'user', text: trimmed };
-    const botReply = { from: 'bot', text: getReply(trimmed) };
-    setMessages((prev) => [...prev, userMessage, botReply]);
-    setInput('');
-  };
-
-  return (
-    <div className="ai-chat-widget">
-      {!open && (
-        <button type="button" className="ai-chat-toggle" onClick={() => setOpen(true)}>
-          AI Help
-        </button>
-      )}
-
-      {open && (
-        <div className="ai-chat-panel" role="dialog" aria-label="AI assistance chat">
-          <div className="ai-chat-header">
-            <div>
-              <strong>AI Concierge</strong>
-              <span>Instant guidance</span>
-            </div>
-            <button type="button" className="ai-close" onClick={() => setOpen(false)} aria-label="Close AI assistant">×</button>
-          </div>
-
-          <div className="ai-chat-body">
-            {messages.map((msg, index) => (
-              <div key={`${msg.from}-${index}`} className={`ai-message ${msg.from === 'user' ? 'user' : 'bot'}`}>
-                {msg.text}
-              </div>
-            ))}
-          </div>
-
-          <div className="ai-quick-answers">
-            {['Saudi visa', 'QVP certificate', 'Saudi Culture', 'Umrah package', 'Attestation', 'Price estimate'].map((item) => (
-              <button key={item} type="button" className="ai-pill" onClick={() => setInput(item)}>{item}</button>
-            ))}
-          </div>
-
-          <div className="ai-input-row">
-            <input value={input} onChange={(e) => setInput(e.target.value)} placeholder="Ask about visa or attestation..." onKeyDown={(e) => { if (e.key === 'Enter') handleSend(); }} />
-            <button type="button" className="btn" onClick={handleSend}>Send</button>
-          </div>
-        </div>
-      )}
-    </div>
-  );
-}
-
-function Home() {
-  const trustItems = [
-    { title: 'Verified process flow', text: 'Every case follows a structured review before submission.' },
-    { title: 'Dedicated guidance', text: 'Clear support for complex documents and embassy requirements.' },
-    { title: 'Travel-ready planning', text: 'Visa, attestation, and Umrah assistance under one roof.' },
-  ];
-  const [activePlan, setActivePlan] = useState(1);
-  const [activeTestimonial, setActiveTestimonial] = useState(0);
-
-  const nextPlan = () => setActivePlan((current) => (current + 1) % packagePlans.length);
-  const prevPlan = () => setActivePlan((current) => (current - 1 + packagePlans.length) % packagePlans.length);
-  const nextTestimonial = () => setActiveTestimonial((current) => (current + 1) % testimonials.length);
-  const prevTestimonial = () => setActiveTestimonial((current) => (current - 1 + testimonials.length) % testimonials.length);
-
-  const currentPlan = packagePlans[activePlan];
-  const currentTestimonial = testimonials[activeTestimonial];
-
-  return (<>
-    <div className="page-shell">
-      <section className="hero parallax-panel">
-        <div className="hero__content parallax-layer" data-depth="0.18">
-          <div className="eyebrow">Trusted visa, attestation & travel specialists</div>
-          <h1>Your journey starts with the right guidance.</h1>
-          <p>
-            We help with Saudi visa processing, QVP, HEC, MOFA, Mosadaqa and embassy attestation, and travel bookings, all from one office.
-          </p>
-          <div className="row">
-            <Link className="btn" to="/attestation-calculator">View requirements</Link>
-            <a className="btn ghost" href={WA}>Chat on WhatsApp</a>
-          </div>
-
-          <div className="hero__badges" aria-label="Supported destinations">
-            {['Saudi Arabia', 'UAE', 'Qatar', 'Turkey', 'Vietnam', 'Bahrain'].map((place) => (
-              <span key={place} className="hero__badge">{place}</span>
-            ))}
-          </div>
-
-          <div className="hero__proof" aria-label="Service highlights">
-            <span>HEC support</span>
-            <span>MOFA guidance</span>
-            <span>Saudi embassy paperwork</span>
-            <span>Umrah planning</span>
-          </div>
-
-          <div className="hero__stats">
-            <div className="mini-stat parallax-layer" data-depth="0.24">
-              <strong>5,000+</strong>
-              <span>people served</span>
-            </div>
-            <div className="mini-stat parallax-layer" data-depth="0.24">
-              <strong>CEO</strong>
-              <span>Chartered Accountant</span>
-            </div>
-            {stats.map((item) => (
-              <div key={item.label} className="mini-stat parallax-layer" data-depth="0.24">
-                <strong>{item.value}</strong>
-                <span>{item.label}</span>
-              </div>
-            ))}
-          </div>
-        </div>
-
-        <div className="hero__visual glass-card parallax-layer" data-depth="0.32" aria-label="Service overview card">
-          <img src="/assets/qvp-pamphlet.jpeg" alt="QVP service overview" className="hero-visual-image" />
-          <div className="floating-card primary">
-            <span className="card-label">Premium service</span>
-            <strong>Saudi work & visit visas</strong>
-            <small>Document review + submission support</small>
-          </div>
-          <div className="floating-card secondary">
-            <span className="card-label">Fast response</span>
-            <strong>24h case review</strong>
-            <small>WhatsApp guidance available</small>
-          </div>
-        </div>
-      </section>
-
-      <section className="section parallax-panel">
-        <div className="section-heading">
-          <span className="kicker">Why choose us</span>
-          <h2>Industry experts in documents, visas and stamping.</h2>
-        </div>
-        <div className="trust-note-box">
-          <strong>Industry experts in documents, visas and stamping. Our team knows every step of the process and handles your file from start to finish.</strong>
-          <span>Our CEO is a Chartered Accountant who personally oversees professional visa files, so engineers, accountants, doctors and other professionals get advice from someone who understands degrees, qualifications and Saudi requirements first-hand.</span>
-        </div>
-        <div className="grid highlight-grid">
-          {highlights.map((item) => (
-            <div key={item.title} className="panel feature-card parallax-layer" data-depth="0.12">
-              <span className="feature-icon">{item.icon}</span>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="section section--soft parallax-panel">
-        <div className="section-heading">
-          <span className="kicker">Our team in Saudi Arabia and the Gulf</span>
-          <h2>We are close to you.</h2>
-        </div>
-        <div className="team-brief">
-          <p>We are close to you. Besides our office in Pakistan, our team is on the ground in Saudi Arabia and across the Gulf, so employers and applicants can meet us in person. [confirm: cities, e.g. Riyadh, Jeddah, Dammam, Dubai, Doha]</p>
-          <p>Book an appointment to discuss how we can help you with recruitment, visas, attestation or travel. Choose a meeting at your office, at ours, or online.</p>
-          <div className="row cta-row">
-            <Link className="btn" to="/contact">Book an appointment</Link>
-            <a className="btn ghost" href={WA} target="_blank" rel="noreferrer">WhatsApp us</a>
-          </div>
-        </div>
-      </section>
-
-      <section className="section section--dark parallax-panel process-visual-section">
-        <div className="section-heading light">
-          <span className="kicker">How we work</span>
-          <h2>A professional process designed to reduce stress and delays.</h2>
-        </div>
-        <div className="process-visual-wrap">
-          <img src="/assets/visa-process-roadmap.jpeg" alt="Visa process roadmap" className="process-visual" />
-          <div className="process-grid">
-            {processSteps.map((step) => (
-              <article key={step.step} className="process-card parallax-layer" data-depth="0.14">
-                <span className="process-step">{step.step}</span>
-                <h3>{step.title}</h3>
-                <p>{step.text}</p>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      <section className="section section--soft parallax-panel">
-        <div className="results-showcase">
-          <div className="results-showcase__copy">
-            <span className="kicker">Why families and professionals choose us</span>
-            <h2>Support that keeps your application organized, transparent, and moving.</h2>
-            <p>From first document review to embassy filing, we help you understand every stage, reduce unnecessary delays, and prepare a cleaner application from the start.</p>
-          </div>
-          <div className="results-grid">
-            <div className="result-card result-card--image">
-              <img src="/assets/qvp-available-services.jpeg" alt="QVP available services" />
-            </div>
-            <div className="result-card">
-              <strong>1:1</strong>
-              <span>case review</span>
-            </div>
-            <div className="result-card">
-              <strong>24h</strong>
-              <span>response window</span>
-            </div>
-            <div className="result-card">
-              <strong>100%</strong>
-              <span>clarity-first guidance</span>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="section country-spotlight parallax-panel">
-        <div className="section-heading">
-          <span className="kicker">Country coverage</span>
-          <h2>Focused expertise across the destinations clients trust most.</h2>
-        </div>
-        <div className="country-grid">
-          {countryMenu.map((country) => (
-            <Link key={country.country} to={country.path} className="country-card parallax-layer" data-depth="0.08">
-              <span className="country-card__flag">{country.flag}</span>
-              <div>
-                <strong>{country.country}</strong>
-                <small>Visa & attestation support</small>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      <section className="section parallax-panel">
-        <div className="section-heading">
-          <span className="kicker">Core services</span>
-          <h2>Everything you need for visa success and international travel.</h2>
-        </div>
-        <div className="grid">{services.map(s => (
-          <div key={s.title} className="panel service-card parallax-layer" data-depth="0.1">
-            <h3>{s.title}</h3>
-            <ul>{s.items.map(i => <li key={i}>{i}</li>)}</ul>
-          </div>
-        ))}</div>
-      </section>
-
-      <section className="section section--soft parallax-panel">
-        <div className="section-heading">
-          <span className="kicker">Popular destinations</span>
-          <h2>A focused line-up of Saudi visa and documentation services.</h2>
-        </div>
-        <div className="grid service-coverage">
-          {saudiSections.slice(0, 6).map((s) => (
-            <article key={s.id} className="panel coverage-card parallax-layer" data-depth="0.12">
-              <h3>{s.title}</h3>
-              <p>{s.text}</p>
-              {s.link && <Link to={s.link}>Read guide</Link>}
-            </article>
-          ))}
-        </div>
-      </section>
-
-      <section className="section faq-section parallax-panel">
-        <div className="section-heading">
-          <span className="kicker">FAQs</span>
-          <h2>Common questions from clients before they apply.</h2>
-        </div>
-        <div className="faq-list">
-          {faq.map((item) => (
-            <div key={item.q} className="faq-item parallax-layer" data-depth="0.1">
-              <h3>{item.q}</h3>
-              <p>{item.a}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="premium-strip parallax-panel">
-        <div className="premium-strip__header">
-          <span className="kicker">The professional promise</span>
-          <h2>Travel support shaped around precision, trust, and speed.</h2>
-        </div>
-        <div className="trust-grid">
-          {trustItems.map((item) => (
-            <div key={item.title} className="trust-card parallax-layer" data-depth="0.12">
-              <div className="trust-icon">✓</div>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
-            </div>
-          ))}
-        </div>
-      </section>
-
-      <section className="section package-slider-section parallax-panel">
-        <div className="section-heading">
-          <span className="kicker">Service plans</span>
-          <h2>Flexible support for every stage of your journey.</h2>
-        </div>
-        <div className="package-slider">
-          <button type="button" className="slider-arrow" onClick={prevPlan} aria-label="Previous plan">‹</button>
-          <div className={`package-card ${currentPlan.highlight ? 'package-card--highlight' : ''}`}>
-            <span className="package-badge">{currentPlan.name}</span>
-            <h3>{currentPlan.price}</h3>
-            <ul>
-              {currentPlan.features.map((feature) => (
-                <li key={feature}>{feature}</li>
-              ))}
-            </ul>
-            <Link className="btn" to="/attestation-calculator">Explore plan</Link>
-          </div>
-          <button type="button" className="slider-arrow" onClick={nextPlan} aria-label="Next plan">›</button>
-        </div>
-      </section>
-
-      <section className="section testimonial-section parallax-panel">
-        <div className="section-heading">
-          <span className="kicker">Client feedback</span>
-          <h2>People trust us when the process matters most.</h2>
-        </div>
-        <div className="testimonial-carousel">
-          <button type="button" className="slider-arrow" onClick={prevTestimonial} aria-label="Previous testimonial">‹</button>
-          <div className="testimonial-card">
-            <div className="stars">★★★★★</div>
-            <p>“{currentTestimonial.quote}”</p>
-            <div className="testimonial-meta">
-              <strong>{currentTestimonial.name}</strong>
-              <span>{currentTestimonial.role}</span>
-            </div>
-          </div>
-          <button type="button" className="slider-arrow" onClick={nextTestimonial} aria-label="Next testimonial">›</button>
-        </div>
-      </section>
-
-      <section className="contact-showcase parallax-panel">
-        <div className="contact-showcase__content">
-          <span className="kicker">Book a consultation</span>
-          <h2>Start your next visa or travel plan with a trusted expert.</h2>
-          <p>
-            Whether you need a fast Saudi visa review, document attestation help, or a premium Umrah package,
-            our consultants are ready to guide your next step.
-          </p>
-          <div className="contact-highlights">
-            <span>Saudi Visa</span>
-            <span>QVP</span>
-            <span>MOFA</span>
-            <span>Umrah</span>
-          </div>
-        </div>
-        <div className="contact-form-card parallax-layer" data-depth="0.2">
-          <h3>Request a callback</h3>
-          <div className="mini-form">
-            <input type="text" placeholder="Your full name" />
-            <input type="tel" placeholder="Phone / WhatsApp" />
-            <input type="email" placeholder="Email address" />
-            <textarea rows="3" placeholder="Tell us what you need help with" />
-            <div className="row contact-row">
-              <button className="btn" type="button">Send request</button>
-              <a className="btn ghost" href={WA}>WhatsApp</a>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      <section className="cta-band parallax-panel">
-        <div>
-          <span className="kicker">Ready when you are</span>
-          <h2>Let’s plan the right next step for your visa, attestation, or Umrah journey.</h2>
-        </div>
-        <div className="row cta-band__actions">
-          <a className="btn" href={WA}>WhatsApp now</a>
-          <a className="btn ghost" href={`tel:${PHONE.replace(/\s+/g, '')}`}>Call {PHONE}</a>
-        </div>
-      </section>
-    </div>
-  </>);
-}
 
 function ServicePage({ title, intro, sections = [], keyPoints = [] }) {
   return (
+    <>
+    <PageHead title={title} lead={intro} kicker="Service guide">
+      <div className="hero-cta-row">
+        <Link className="btn btn-gold" to="/contact">Book an appointment <Icon name="arrow" size={16} /></Link>
+        <a className="btn btn-glass" href={WA} target="_blank" rel="noreferrer"><Icon name="wa" size={18} /> WhatsApp us</a>
+      </div>
+    </PageHead>
     <section className="page narrow service-page">
-      <h1>{title}</h1>
-      <p className="lead">{intro}</p>
 
       {keyPoints.length > 0 && (
         <div className="info-grid">
@@ -525,15 +68,16 @@ function ServicePage({ title, intro, sections = [], keyPoints = [] }) {
         Requirements and processing times are estimates based on current practice and can change at any time. The final checklist is decided by the relevant authority. Contact us before submitting so we can confirm the latest requirements for your case.
       </p>
     </section>
+    </>
   );
 }
 
 function Saudi() {
-  return (<section className="page"><h1>Saudi visa services</h1>
-    <p className="lead">Saudi visa services, QVP, Tasheer, biometric and medical appointments, and attestation in one place.</p>
-    <div className="grid">{saudiSections.map(s => (<article key={s.id} id={s.id} className="panel"><h2>{s.title}</h2><p>{s.text}</p>
+  return (<>
+    <PageHead title="Saudi visa services" lead="Saudi visa services, QVP, Tasheer, biometric and medical appointments, and attestation in one place." />
+    <section className="page"><div className="grid">{saudiSections.map(s => (<article key={s.id} id={s.id} className="panel"><h2>{s.title}</h2><p>{s.text}</p>
       {s.link && <Link to={s.link}>Read the guide</Link>}</article>))}</div>
-    <InquiryForm /></section>);
+    <InquiryForm /></section></>);
 }
 
 function SaudiWorkVisaPage() {
@@ -1007,17 +551,29 @@ function RecruitmentPage() {
 }
 
 function ContactPage() {
-  return (
+  return (<>
+    <PageHead title="Contact us" lead="Book an appointment, message us on WhatsApp, or visit the office. We reply within 24 hours.">
+      <div className="hero-cta-row">
+        <a className="btn btn-gold" href={WA} target="_blank" rel="noreferrer"><Icon name="wa" size={18} /> WhatsApp us</a>
+        <a className="btn btn-glass" href={`tel:${PHONE.replace(/\s+/g, '')}`}><Icon name="phone" size={18} /> Call {PHONE}</a>
+      </div>
+    </PageHead>
     <section className="page narrow">
-      <h1>Contact us</h1>
-      <p className="lead">Professional Travel & Visa Services Office: [confirm full address, city] OEP / BEOE licence no.: [confirm] Phone / WhatsApp: +92 337 3398405 Email: info.professionalvisa@gmail.com Office hours: [confirm].</p>
       <div className="info-grid">
+        <div className="panel stat-box">
+          <strong>Office</strong>
+          <ul className="contact-list">
+            <li><Icon name="pin" size={18} /><span>Professional Travel &amp; Visa Services Office: {ADDRESS}</span></li>
+            <li><Icon name="phone" size={18} /><span>Phone / WhatsApp: {PHONE}</span></li>
+            <li><Icon name="mail" size={18} /><span><a href={`mailto:${EMAIL}`}>{EMAIL}</a></span></li>
+            <li><Icon name="shield" size={18} /><span>OEP / BEOE licence no.: [confirm]</span></li>
+            <li><Icon name="clock" size={18} /><span>Office hours: [confirm]</span></li>
+          </ul>
+        </div>
         <div className="panel stat-box">
           <strong>Book an appointment</strong>
           <p>We help with recruitment, visas, attestation and travel. Choose a meeting at your office, at ours, or online.</p>
-        </div>
-        <div className="panel stat-box">
-          <strong>WhatsApp</strong>
+          <strong style={{ marginTop: 18 }}>WhatsApp</strong>
           <p>Send your details on WhatsApp and we will reply quickly with the next step.</p>
         </div>
       </div>
@@ -1026,7 +582,7 @@ function ContactPage() {
         <a className="btn ghost" href={WA} target="_blank" rel="noreferrer">WhatsApp us</a>
       </div>
     </section>
-  );
+  </>);
 }
 
 function SaudiArabiaAttestationHome() {
@@ -1048,21 +604,14 @@ function SaudiArabiaAttestationHome() {
   ];
 
   return (
-    <section className="page attestation-landing">
-      <div className="service-hero premium-hero">
-        <div className="premium-hero__content">
-          <span className="kicker">🇸🇦 Saudi Arabia attestation</span>
-          <h1>Saudi Arabia Attestation & Document Legalization</h1>
-          <p className="lead">Reliable assistance for degree verification, marriage records, birth certificates, police reports, business documents, and other paperwork required for Saudi Arabia.</p>
-          <div className="hero-cta-row">
-            <a className="btn ghost" href={WA} target="_blank" rel="noreferrer">WhatsApp us</a>
-          </div>
-          <div className="trust-pills">
-            {trustPoints.map((item) => <span key={item}>{item}</span>)}
-          </div>
-        </div>
-
-        <div className="premium-hero__card panel">
+    <>
+    <PageHead
+      kicker={<><Flag emoji="🇸🇦" /> Saudi Arabia attestation</>}
+      crumb="Saudi Arabia attestation"
+      title="Saudi Arabia Attestation & Document Legalization"
+      lead="Reliable assistance for degree verification, marriage records, birth certificates, police reports, business documents, and other paperwork required for Saudi Arabia."
+      aside={(
+        <div className="premium-hero__card panel" data-tilt="4">
           <div className="mini-kicker">Service snapshot</div>
           <h3>Document review support for Saudi Arabia</h3>
           <ul>
@@ -1081,7 +630,17 @@ function SaudiArabiaAttestationHome() {
             </div>
           </div>
         </div>
+      )}
+    >
+      <div className="hero-cta-row">
+        <Link className="btn btn-gold" to="/contact">Book an appointment <Icon name="arrow" size={16} /></Link>
+        <a className="btn btn-glass" href={WA} target="_blank" rel="noreferrer"><Icon name="wa" size={18} /> WhatsApp us</a>
       </div>
+      <div className="trust-pills">
+        {trustPoints.map((item) => <span key={item}><Icon name="check" size={14} />{item}</span>)}
+      </div>
+    </PageHead>
+    <section className="page attestation-landing">
 
       <div className="document-filter-wrap">
         <div className="document-filter-header">
@@ -1162,6 +721,7 @@ function SaudiArabiaAttestationHome() {
 
       <InquiryForm quote={{ country: 'Saudi Arabia', service: 'Saudi Arabia document attestation' }} />
     </section>
+    </>
   );
 }
 
@@ -1170,16 +730,12 @@ function SaudiAttestationDetail() {
   const page = saudiAttestationPages[slug];
 
   if (!page) {
-    return <section className="page"><h1>Service not found</h1><p className="lead">This attestation page does not exist yet.</p></section>;
+    return <NotFound title="Service not found" lead="This attestation page does not exist yet." />;
   }
 
-  return (
+  return (<>
+    <PageHead kicker={<><Flag emoji="🇸🇦" /> Saudi Arabia attestation</>} crumb={page.title} title={page.title} lead={page.intro} />
     <section className="page narrow">
-      <div className="service-hero">
-        <span className="kicker">🇸🇦 Saudi Arabia attestation</span>
-        <h1>{page.title}</h1>
-        <p className="lead">{page.intro}</p>
-      </div>
 
       <div className="info-grid">
         <div className="panel stat-box">
@@ -1209,21 +765,17 @@ function SaudiAttestationDetail() {
 
       <InquiryForm quote={{ country: 'Saudi Arabia', document: page.title, service: page.title }} />
     </section>
-  );
+  </>);
 }
 
 function CountryContentPage({ page }) {
   if (!page) {
-    return <section className="page"><h1>Country service not found</h1></section>;
+    return <NotFound title="Country service not found" />;
   }
 
-  return (
+  return (<>
+    <PageHead kicker={<><Flag emoji={page.flag || '🌍'} /> Document attestation</>} crumb={page.title} title={page.title} lead={page.intro} />
     <section className="page narrow">
-      <div className="service-hero">
-        <span className="kicker">{page.flag || '🌍'} Document attestation</span>
-        <h1>{page.title}</h1>
-        <p className="lead">{page.intro}</p>
-      </div>
 
       {page.sections.map((section) => (
         <div key={section.id || section.heading} className="page-section">
@@ -1238,16 +790,18 @@ function CountryContentPage({ page }) {
 
       <InquiryForm quote={{ country: page.title, document: page.title, service: page.title }} />
     </section>
-  );
+  </>);
 }
 
 function Guide() {
   const g = guides[useParams().slug];
-  if (!g) return <section className="page"><h1>Guide not found</h1></section>;
-  return (<section className="page narrow"><h1>{g.title}</h1><p className="lead">{g.intro}</p>
-    {g.blocks.map(([h, items]) => (<div key={h}><h2>{h}</h2>
+  if (!g) return <NotFound title="Guide not found" />;
+  return (<>
+    <PageHead kicker="Guide" title={g.title} lead={g.intro} />
+    <section className="page narrow">
+    {g.blocks.map(([h, items]) => (<div key={h} className="page-section"><h2>{h}</h2>
       {h === 'Steps' ? <ol>{items.map(i => <li key={i}>{i}</li>)}</ol> : <ul>{items.map(i => <li key={i}>{i}</li>)}</ul>}</div>))}
-    <InquiryForm /></section>);
+    <InquiryForm /></section></>);
 }
 
 const fallbackCalculator = {
@@ -1288,7 +842,7 @@ function Calculator() {
       .catch(() => setCfg(fallbackCalculator));
   }, []);
 
-  if (!cfg) return <section className="page"><p>Loading...</p></section>;
+  if (!cfg) return <section className="page"><p className="loading-note">Loading...</p></section>;
 
   const opts = cfg.services[sel.country] || cfg.services.default;
   const svc = opts.find((o) => o.id === sel.service) || opts[0];
@@ -1296,9 +850,9 @@ function Calculator() {
     ...(svc.id.includes('mosadaqa') || svc.id === 'full' ? cfg.mosadaqaDocs : [])];
   const set = (k) => (e) => setSel((s) => ({ ...s, [k]: e.target.value, ...(k === 'country' ? { service: '' } : {}) }));
 
-  return (
+  return (<>
+    <PageHead kicker="Requirements" title="Document requirements" lead="Choose your country, document and service to see the estimated timeline and the documents you need." />
     <section className="page narrow">
-      <h1>Document requirements</h1>
       <div className="form">
         <label>Country<select value={sel.country} onChange={set('country')}>{cfg.countries.map((c) => <option key={c}>{c}</option>)}</select></label>
         <label>Document<select value={sel.document} onChange={set('document')}>{cfg.documents.map((c) => <option key={c}>{c}</option>)}</select></label>
@@ -1314,7 +868,7 @@ function Calculator() {
       <h2>Get started</h2>
       <InquiryForm quote={{ country: sel.country, document: sel.document, service: svc.label }} />
     </section>
-  );
+  </>);
 }
 
 function InquiryForm({ quote }) {
@@ -1367,7 +921,7 @@ export default function App() {
   }
 
   return (
-    <div className="app-shell luxury">
+    <div className="app-shell">
       <Layout>
         <Routes>
           <Route path="/" element={<Home />} />
@@ -1406,7 +960,7 @@ export default function App() {
               )
             }
           />
-          <Route path="*" element={<section className="page"><h1>Page not found</h1></section>} />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </Layout>
     </div>

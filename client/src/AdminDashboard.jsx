@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { PageHead } from './ui.jsx';
 
 export function AdminDashboard({ adminPassword, onLogout }) {
   const [tab, setTab] = useState('packages');
@@ -91,39 +92,29 @@ export function AdminDashboard({ adminPassword, onLogout }) {
     }
   }
 
-  return (
-    <section className="page">
-      <div style={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', marginBottom: '20px' }}>
-        <h1>Admin Dashboard</h1>
-        <button className="btn ghost" onClick={onLogout}>Logout</button>
+  return (<>
+    <PageHead kicker="Admin" title="Admin Dashboard" lead="Manage Umrah packages and hotels.">
+      <div className="hero-cta-row">
+        <button className="btn btn-glass" onClick={onLogout}>Logout</button>
       </div>
-
+    </PageHead>
+    <section className="page admin">
       {message && <p className="ok">{message}</p>}
 
-      <div style={{ borderBottom: '1px solid #e1e8ed', marginBottom: '20px', display: 'flex', gap: '20px' }}>
+      <div className="admin-tabs" role="tablist">
         <button
+          role="tab"
+          aria-selected={tab === 'packages'}
+          className={tab === 'packages' ? 'is-active' : ''}
           onClick={() => setTab('packages')}
-          style={{
-            padding: '12px 20px',
-            background: tab === 'packages' ? '#0b5d4b' : 'transparent',
-            color: tab === 'packages' ? '#fff' : '#666',
-            border: 'none',
-            cursor: 'pointer',
-            fontWeight: 600,
-          }}
         >
           Packages
         </button>
         <button
+          role="tab"
+          aria-selected={tab === 'hotels'}
+          className={tab === 'hotels' ? 'is-active' : ''}
           onClick={() => setTab('hotels')}
-          style={{
-            padding: '12px 20px',
-            background: tab === 'hotels' ? '#0b5d4b' : 'transparent',
-            color: tab === 'hotels' ? '#fff' : '#666',
-            border: 'none',
-            cursor: 'pointer',
-            fontWeight: 600,
-          }}
         >
           Hotels
         </button>
@@ -137,36 +128,26 @@ export function AdminDashboard({ adminPassword, onLogout }) {
           {packages.length === 0 ? (
             <p>No packages yet.</p>
           ) : (
-            <div style={{ overflowX: 'auto' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '20px' }}>
+            <div className="table-scroll">
+              <table className="admin-table">
                 <thead>
-                  <tr style={{ borderBottom: '2px solid #e1e8ed' }}>
-                    <th style={{ padding: '12px', textAlign: 'left' }}>Name</th>
-                    <th style={{ padding: '12px', textAlign: 'left' }}>Duration</th>
-                    <th style={{ padding: '12px', textAlign: 'left' }}>Price</th>
-                    <th style={{ padding: '12px', textAlign: 'left' }}>Hotel</th>
-                    <th style={{ padding: '12px', textAlign: 'left' }}>Actions</th>
+                  <tr>
+                    <th>Name</th>
+                    <th>Duration</th>
+                    <th>Price</th>
+                    <th>Hotel</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {packages.map((pkg) => (
-                    <tr key={pkg._id} style={{ borderBottom: '1px solid #e1e8ed' }}>
-                      <td style={{ padding: '12px' }}>{pkg.name}</td>
-                      <td style={{ padding: '12px' }}>{pkg.duration} days</td>
-                      <td style={{ padding: '12px' }}>Rs. {pkg.pricePerPerson}</td>
-                      <td style={{ padding: '12px' }}>{pkg.hotel?.name || 'N/A'}</td>
-                      <td style={{ padding: '12px' }}>
-                        <button
-                          onClick={() => deletePackage(pkg._id)}
-                          style={{
-                            background: '#a3262a',
-                            color: '#fff',
-                            border: 'none',
-                            padding: '6px 12px',
-                            borderRadius: '4px',
-                            cursor: 'pointer',
-                          }}
-                        >
+                    <tr key={pkg._id}>
+                      <td>{pkg.name}</td>
+                      <td>{pkg.duration} days</td>
+                      <td>Rs. {pkg.pricePerPerson}</td>
+                      <td>{pkg.hotel?.name || 'N/A'}</td>
+                      <td>
+                        <button className="btn btn-danger btn-sm" onClick={() => deletePackage(pkg._id)}>
                           Delete
                         </button>
                       </td>
@@ -187,36 +168,26 @@ export function AdminDashboard({ adminPassword, onLogout }) {
           {hotels.length === 0 ? (
             <p>No hotels yet.</p>
           ) : (
-            <div style={{ overflowX: 'auto' }}>
-              <table style={{ width: '100%', borderCollapse: 'collapse', marginBottom: '20px' }}>
+            <div className="table-scroll">
+              <table className="admin-table">
                 <thead>
-                  <tr style={{ borderBottom: '2px solid #e1e8ed' }}>
-                    <th style={{ padding: '12px', textAlign: 'left' }}>Name</th>
-                    <th style={{ padding: '12px', textAlign: 'left' }}>Stars</th>
-                    <th style={{ padding: '12px', textAlign: 'left' }}>Location</th>
-                    <th style={{ padding: '12px', textAlign: 'left' }}>Price/Night</th>
-                    <th style={{ padding: '12px', textAlign: 'left' }}>Actions</th>
+                  <tr>
+                    <th>Name</th>
+                    <th>Stars</th>
+                    <th>Location</th>
+                    <th>Price/Night</th>
+                    <th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {hotels.map((hotel) => (
-                    <tr key={hotel._id} style={{ borderBottom: '1px solid #e1e8ed' }}>
-                      <td style={{ padding: '12px' }}>{hotel.name}</td>
-                      <td style={{ padding: '12px' }}>⭐ {hotel.stars}</td>
-                      <td style={{ padding: '12px' }}>{hotel.location}</td>
-                      <td style={{ padding: '12px' }}>Rs. {hotel.pricePerNight}</td>
-                      <td style={{ padding: '12px' }}>
-                        <button
-                          onClick={() => deleteHotel(hotel._id)}
-                          style={{
-                            background: '#a3262a',
-                            color: '#fff',
-                            border: 'none',
-                            padding: '6px 12px',
-                            borderRadius: '4px',
-                            cursor: 'pointer',
-                          }}
-                        >
+                    <tr key={hotel._id}>
+                      <td>{hotel.name}</td>
+                      <td>⭐ {hotel.stars}</td>
+                      <td>{hotel.location}</td>
+                      <td>Rs. {hotel.pricePerNight}</td>
+                      <td>
+                        <button className="btn btn-danger btn-sm" onClick={() => deleteHotel(hotel._id)}>
                           Delete
                         </button>
                       </td>
@@ -229,7 +200,7 @@ export function AdminDashboard({ adminPassword, onLogout }) {
         </div>
       )}
     </section>
-  );
+  </>);
 }
 
 function PackageForm({ onSave }) {
@@ -254,7 +225,7 @@ function PackageForm({ onSave }) {
   };
 
   return (
-    <div className="panel" style={{ marginBottom: '20px' }}>
+    <div className="panel admin-form">
       <h3>Add/Edit Package</h3>
       <div className="form">
         <label>
@@ -299,9 +270,9 @@ function PackageForm({ onSave }) {
           />
         </label>
         <label>Inclusions</label>
-        <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fit, minmax(120px, 1fr))', gap: '10px' }}>
+        <div className="check-grid">
           {inclusions.map((item) => (
-            <label key={item} style={{ display: 'flex', alignItems: 'center', gap: '8px' }}>
+            <label key={item} className="check">
               <input
                 type="checkbox"
                 checked={form.inclusions.includes(item)}
@@ -326,7 +297,7 @@ function HotelForm({ onSave }) {
   });
 
   return (
-    <div className="panel" style={{ marginBottom: '20px' }}>
+    <div className="panel admin-form">
       <h3>Add Hotel</h3>
       <div className="form">
         <label>

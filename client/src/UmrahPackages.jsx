@@ -1,5 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
+import { PageHead, Icon } from './ui.jsx';
+import { WA } from './content.js';
 
 const fallbackPackages = [
   {
@@ -39,89 +41,76 @@ export function UmrahPackages() {
       });
   }, []);
 
-  if (loading) return <section className="page"><p>Loading packages...</p></section>;
+  const head = (
+    <PageHead kicker="Umrah" title="Umrah Packages" lead="Choose the perfect Umrah package tailored to your budget and preferences.">
+      <div className="hero-cta-row">
+        <a className="btn btn-gold" href={WA} target="_blank" rel="noreferrer"><Icon name="wa" size={18} /> Ask about dates</a>
+      </div>
+    </PageHead>
+  );
 
-  return (
+  if (loading) return <>{head}<section className="page"><p className="loading-note">Loading packages...</p></section></>;
+
+  return (<>
+    {head}
     <section className="page">
-      <h1>Umrah Packages</h1>
-      <p className="lead">Choose the perfect Umrah package tailored to your budget and preferences.</p>
-
-      <div className="grid" style={{ marginTop: '40px' }}>
+      <div className="umrah-grid">
         {packages.map((pkg) => (
           <PackageCard key={pkg._id} pkg={pkg} />
         ))}
       </div>
     </section>
-  );
+  </>);
 }
 
 function PackageCard({ pkg }) {
   const [showForm, setShowForm] = useState(false);
 
   const getIcon = (name) => {
-    const icons = { Economy: '💼', Premium: '✨', Family: '👨‍👩‍👧‍👦', VIP: '👑' };
-    return icons[name] || '🕋';
+    const icons = { Economy: 'briefcase', Premium: 'spark', Family: 'users', VIP: 'star' };
+    return icons[name] || 'moon';
   };
 
   return (
-    <div className="panel" style={{ display: 'flex', flexDirection: 'column', cursor: 'pointer' }}>
-      <div style={{ fontSize: '3rem', marginBottom: '12px', textAlign: 'center' }}>
-        {getIcon(pkg.name)}
-      </div>
-      <h2 style={{ marginTop: 0 }}>{pkg.name} Umrah</h2>
+    <div className={`panel umrah-card spot ${/premium|vip/i.test(pkg.name) ? 'umrah-card--hl' : ''}`}>
+      <span className="umrah-card__icon"><Icon name={getIcon(pkg.name)} size={26} /></span>
+      <h2>{pkg.name} Umrah</h2>
 
-      <p style={{ fontSize: '0.9rem', color: '#6b7a7e', marginBottom: '16px' }}>
+      <p className="umrah-card__desc">
         {pkg.description || 'Experience the spiritual journey of Umrah'}
       </p>
 
-      <div style={{ marginBottom: '16px', padding: '12px', background: '#f5f7fa', borderRadius: '6px' }}>
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-          <span style={{ fontWeight: 600 }}>Duration:</span>
-          <span>{pkg.duration} days</span>
-        </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between', marginBottom: '8px' }}>
-          <span style={{ fontWeight: 600 }}>Group Size:</span>
-          <span>{pkg.groupSize || '2-4 persons'}</span>
-        </div>
-        <div style={{ display: 'flex', justifyContent: 'space-between' }}>
-          <span style={{ fontWeight: 600 }}>Price:</span>
-          <span style={{ fontSize: '1.2rem', color: '#0b5d4b', fontWeight: 700 }}>
-            Rs. {pkg.pricePerPerson?.toLocaleString()}
-          </span>
-        </div>
+      <div className="umrah-facts">
+        <div><span>Duration</span><b>{pkg.duration} days</b></div>
+        <div><span>Group size</span><b>{pkg.groupSize || '2-4 persons'}</b></div>
+        <div className="umrah-facts__price"><span>Price</span><b>Rs. {pkg.pricePerPerson?.toLocaleString()}</b></div>
       </div>
 
       {pkg.hotel && (
-        <div style={{ marginBottom: '16px', padding: '12px', background: '#f5f7fa', borderRadius: '6px' }}>
-          <h4 style={{ margin: '0 0 8px 0' }}>🏨 Hotel</h4>
-          <p style={{ margin: 0, fontSize: '0.95rem' }}>
+        <div className="umrah-hotel">
+          <h4><Icon name="pin" size={16} /> Hotel</h4>
+          <p>
             <strong>{pkg.hotel.name}</strong>
-            <br />
-            <span style={{ fontSize: '0.85rem', color: '#6b7a7e' }}>
-              ⭐ {pkg.hotel.stars} stars • Rs. {pkg.hotel.price?.toLocaleString()}/night
-            </span>
+            <span>{pkg.hotel.stars} stars • Rs. {pkg.hotel.price?.toLocaleString()}/night</span>
           </p>
         </div>
       )}
 
       {pkg.inclusions && pkg.inclusions.length > 0 && (
-        <div style={{ marginBottom: '16px' }}>
-          <h4 style={{ margin: '0 0 8px 0' }}>✓ Included</h4>
-          <ul style={{ margin: 0, padding: '0 0 0 1.2em', fontSize: '0.9rem' }}>
+        <div className="umrah-incl">
+          <h4>Included</h4>
+          <ul>
             {pkg.inclusions.map((item) => (
-              <li key={item} style={{ marginBottom: '4px' }}>
-                {item}
-              </li>
+              <li key={item}><Icon name="check" size={16} />{item}</li>
             ))}
           </ul>
         </div>
       )}
 
-      <div style={{ marginTop: 'auto', display: 'flex', flexDirection: 'column', gap: '10px' }}>
+      <div className="umrah-card__cta">
         <button
           className="btn"
           onClick={() => setShowForm(!showForm)}
-          style={{ width: '100%' }}
         >
           {showForm ? 'Cancel' : 'Book Now'}
         </button>
@@ -159,17 +148,15 @@ function BookingForm({ pkg, onClose }) {
 
   if (state === 'sent') {
     return (
-      <div style={{ marginTop: '16px', padding: '16px', background: '#f0fdf4', borderRadius: '6px', borderLeft: '4px solid #0b5d4b' }}>
-        <p style={{ margin: 0, color: '#0b5d4b', fontWeight: 600 }}>
-          Booking request sent! We will contact you on {form.phone}.
-        </p>
+      <div className="booking-ok">
+        <p>Booking request sent! We will contact you on {form.phone}.</p>
       </div>
     );
   }
 
   return (
-    <div style={{ marginTop: '16px', padding: '16px', background: '#f5f7fa', borderRadius: '6px' }}>
-      <h4 style={{ marginTop: 0 }}>Complete Your Booking</h4>
+    <div className="booking-form">
+      <h4>Complete Your Booking</h4>
       <div className="form">
         <label>
           Name
@@ -193,7 +180,7 @@ function BookingForm({ pkg, onClose }) {
         </label>
         {state === 'missing' && <p className="err">Enter your name and phone number.</p>}
         {state === 'error' && <p className="err">Could not send. Message us on WhatsApp instead.</p>}
-        <div style={{ display: 'flex', gap: '10px' }}>
+        <div className="row booking-actions">
           <button className="btn" onClick={submit} disabled={state === 'sending'}>
             {state === 'sending' ? 'Sending...' : 'Confirm Booking'}
           </button>
