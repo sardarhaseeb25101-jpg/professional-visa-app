@@ -8,7 +8,6 @@ import {
   uaeAttestationPage,
   qatarAttestationPage,
   turkeyAttestationPage,
-  vietnamAttestationPage,
   bahrainAttestationPage
 } from './countries/index.js';
 import { AdminLogin } from './AdminLogin.jsx';
@@ -890,7 +889,7 @@ function InquiryForm({ quote }) {
     <label>Phone / WhatsApp<input value={f.phone} onChange={on('phone')} /></label>
     <label>Email (optional)<input value={f.email} onChange={on('email')} /></label>
       <label>Country<select value={f.country || 'Saudi Arabia'} onChange={on('country')}>
-        <option>Saudi Arabia</option><option>UAE</option><option>Qatar</option><option>Turkey</option><option>Vietnam</option><option>Bahrain</option>
+        <option>Saudi Arabia</option><option>UAE</option><option>Qatar</option><option>Turkey</option><option>Bahrain</option>
       </select></label>
       <label>Service Type<select value={f.serviceType || 'QVP certificate and verification'} onChange={on('serviceType')}>
         <option>QVP certificate and verification</option><option>Attestation</option><option>Mosadaqa / Saudi Culture</option><option>Saudi visa</option><option>Umrah package</option>
@@ -945,7 +944,6 @@ export default function App() {
           <Route path="/country/uae" element={<CountryContentPage page={uaeAttestationPage} />} />
           <Route path="/country/qatar" element={<CountryContentPage page={qatarAttestationPage} />} />
           <Route path="/country/turkey" element={<CountryContentPage page={turkeyAttestationPage} />} />
-          <Route path="/country/vietnam" element={<CountryContentPage page={vietnamAttestationPage} />} />
           <Route path="/country/bahrain" element={<CountryContentPage page={bahrainAttestationPage} />} />
           <Route path="/umrah-packages" element={<UmrahPackages />} />
           <Route path="/attestation-calculator" element={<Calculator />} />
