@@ -54,12 +54,24 @@ html {
   scroll-behavior: smooth;
   -webkit-text-size-adjust: 100%;
 }
+html,
+body,
+#root,
+.app-shell,
+main,
+.route-fade {
+  width: 100%;
+  max-width: 100%;
+  min-width: 0;
+}
 body {
   margin: 0;
+  width: 100%;
+  max-width: 100%;
   background: var(--bg);
   color: var(--ink);
   font: 400 17px/1.65 var(--body);
-  overflow-x: clip;
+  overflow-x: hidden;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -530,7 +542,8 @@ header.top nav > a.active {
   position: absolute;
   top: calc(100% + 10px);
   left: 50%;
-  width: 560px;
+  width: min(560px, calc(100vw - 24px));
+  max-width: calc(100vw - 24px);
   z-index: 30;
   opacity: 0;
   visibility: hidden;
