@@ -3,7 +3,6 @@ export const countryMenu = [
   { country: 'UAE', path: '/country/uae', flag: '🇦🇪' },
   { country: 'Qatar', path: '/country/qatar', flag: '🇶🇦' },
   { country: 'Turkey', path: '/country/turkey', flag: '🇹🇷' },
-  { country: 'Vietnam', path: '/country/vietnam', flag: '🇻🇳' },
   { country: 'Bahrain', path: '/country/bahrain', flag: '🇧🇭' },
 ];
 
