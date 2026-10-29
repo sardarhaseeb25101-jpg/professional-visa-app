@@ -64,14 +64,19 @@ main,
   max-width: 100%;
   min-width: 0;
 }
+html {
+  overflow-x: hidden;
+}
 body {
   margin: 0;
   width: 100%;
   max-width: 100%;
+  min-width: 0;
   background: var(--bg);
   color: var(--ink);
   font: 400 17px/1.65 var(--body);
   overflow-x: hidden;
+  position: relative;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
 }
@@ -544,10 +549,11 @@ header.top nav > a.active {
   left: 50%;
   width: min(560px, calc(100vw - 24px));
   max-width: calc(100vw - 24px);
+  box-sizing: border-box;
   z-index: 30;
   opacity: 0;
   visibility: hidden;
-  transform: translate(-50%, 10px) scale(.98);
+  transform: translateX(-50%) translateY(10px) scale(.98);
   transform-origin: top center;
   transition:
     opacity .25s var(--ease),
@@ -563,7 +569,7 @@ header.top nav > a.active {
 .country-menu.is-open .country-menu__panel {
   opacity: 1;
   visibility: visible;
-  transform: translate(-50%) scale(1);
+  transform: translateX(-50%) scale(1);
 }
 .mega {
   display: grid;
