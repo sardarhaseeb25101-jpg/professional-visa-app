@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
-import { services, saudiSections, stats, highlights, processSteps, faq, testimonials, packagePlans, PHONE, WA } from './content.js';
+import { services, saudiSections, stats, highlights, processSteps, faq, testimonials, packagePlans, PHONE, WA, TEAM_CONTACTS } from './content.js';
 import { countryMenu } from './countries/index.js';
 import { Icon, Flag, CountUp, FlightMap, SkyPlanes, DriftingDocs, HeroStage, RotatingWord, Accordion, Marquee } from './ui.jsx';
 
@@ -363,9 +363,21 @@ export function Home() {
             <div className="contact-highlights">
               {['Saudi Visa', 'QVP', 'MOFA', 'Umrah'].map((t) => <span key={t}><Icon name="check" size={16} />{t}</span>)}
             </div>
-            <div className="contact-lines">
-              <a href={`tel:${PHONE.replace(/\s+/g, '')}`}><Icon name="phone" size={18} />{PHONE}</a>
-              <a href={WA} target="_blank" rel="noreferrer"><Icon name="wa" size={18} />WhatsApp</a>
+            <div className="contact-groups-compact">
+              {TEAM_CONTACTS.map((group) => (
+                <div key={group.title} className="contact-group-compact">
+                  <div className="contact-group-compact__title">
+                    {group.flag && <span aria-hidden="true">{group.flag}</span>}
+                    <span>{group.title}</span>
+                  </div>
+                  {group.people.map((person) => (
+                    <a key={person.tel} className="contact-person-compact" href={`tel:${person.tel}`} style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) auto', alignItems: 'center', gap: '12px' }}>
+                      <span>{person.name}</span>
+                      <strong style={{ marginLeft: '8px', whiteSpace: 'nowrap' }}>{person.phone}</strong>
+                    </a>
+                  ))}
+                </div>
+              ))}
             </div>
           </div>
           <div className="contact-form-card" data-tilt="3">

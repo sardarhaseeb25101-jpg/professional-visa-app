@@ -1,6 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import { Link, NavLink, useLocation } from 'react-router-dom';
-import { WA, WA_CHANNEL, FACEBOOK_URL, TIKTOK_URL, EMAIL, ADDRESS, PHONE, BRAND_NAME, aiReplyBank } from './content.js';
+import { WA, WA_CHANNEL, FACEBOOK_URL, TIKTOK_URL, EMAIL, ADDRESS, PHONE, BRAND_NAME, aiReplyBank, TEAM_CONTACTS } from './content.js';
 import { countryMenu } from './countries/index.js';
 import { Icon, Flag, SiteEffects } from './ui.jsx';
 
@@ -179,8 +179,22 @@ function Footer() {
           <p><Icon name="pin" size={16} /><span><b>Professional Travel &amp; Visa Services Office:</b> {ADDRESS}</span></p>
           <p><Icon name="phone" size={16} /><span>Phone / WhatsApp: {PHONE}</span></p>
           <p><Icon name="mail" size={16} /><span><a href={`mailto:${EMAIL}`}>{EMAIL}</a></span></p>
-          <p><Icon name="shield" size={16} /><span>OEP / BEOE licence no.: [confirm]</span></p>
-          <p><Icon name="clock" size={16} /><span>Office hours: [confirm]</span></p>
+          <div className="footer-contact-groups">
+            {TEAM_CONTACTS.map((group) => (
+              <div key={group.title} className="footer-contact-group">
+                <div className="footer-contact-group__title">
+                  {group.flag && <span aria-hidden="true">{group.flag}</span>}
+                  <span>{group.title}</span>
+                </div>
+                {group.people.map((person) => (
+                  <a key={person.tel} className="footer-contact-person" href={`tel:${person.tel}`} style={{ display: 'grid', gridTemplateColumns: 'minmax(0, 1fr) auto', alignItems: 'center', gap: '12px' }}>
+                    <span>{person.name}</span>
+                    <strong style={{ marginLeft: '8px', whiteSpace: 'nowrap' }}>{person.phone}</strong>
+                  </a>
+                ))}
+              </div>
+            ))}
+          </div>
           <div className="footer-follow-row">
             <a className="btn btn-gold btn-sm" href={WA_CHANNEL} target="_blank" rel="noreferrer">Follow our WhatsApp channel</a>
           </div>

@@ -1,12 +1,45 @@
 export const BRAND_NAME = 'Professional Travel & Visa Services';
 export const BRAND_SHORT = 'PTVS';
-export const PHONE = '+92 337 3398405';
-export const WA = 'https://wa.me/923373398405';
+export const PHONE = '+92 319 4910973';
+export const WA = 'https://wa.me/923194910973';
 export const WA_CHANNEL = 'https://whatsapp.com/channel/0029VbBVDfNC1FuIbM55930C';
 export const FACEBOOK_URL = 'https://www.facebook.com/share/18bFUxHA2G/';
 export const TIKTOK_URL = 'https://www.tiktok.com/@professionalvisa';
-export const EMAIL = 'info.professionalvisa@gmail.com';
+export const EMAIL = 'info@professionalsvisaservices.com';
 export const ADDRESS = 'Office # 8 Civic Centre, near Gourmet Bakery, Barkat Market, Lahore';
+
+export const TEAM_CONTACTS = [
+  {
+    title: 'CEO',
+    flag: '�🇦',
+    people: [
+      { name: 'Amir Mehmood', role: 'CEO', phone: '+966 55 964 5785', tel: '+966559645785' },
+    ],
+  },
+  {
+    title: 'QVP & Document Attestation Services',
+    flag: '🇸🇦 / 🇵🇰',
+    people: [
+      { name: 'Muhammad Waqas', role: 'Consultant', phone: '+92 319 4910973', tel: '+923194910973' },
+      { name: 'Faizan Abdul Rauf', role: 'Consultant', phone: '+966 53 637 4196', tel: '+966536374196' },
+    ],
+  },
+  {
+    title: 'Hajj, Umrah & Hospitality Services',
+    flag: '🇸🇦',
+    people: [
+      { name: 'Rashid Mehmood', role: 'Consultant', phone: '+966 53 689 6533', tel: '+966536896533' },
+    ],
+  },
+  {
+    title: 'Pakistan Main Office',
+    flag: '🇵🇰',
+    people: [
+      { name: 'Nasir Mehmood', role: 'Office Contact', phone: '+92 312 9746452', tel: '+923129746452' },
+      { name: 'Haseeb Sajid', role: 'Office Contact', phone: '+92 325 1555504', tel: '+923251555504' },
+    ],
+  },
+];
 
 export const aiReplyBank = [
   { keywords: ['visa', 'saudi', 'work visa', 'visit visa', 'qvp', 'qvp certificate'], response: 'We assist with Saudi visa requirements, QVP certificate and verification support, work and visit visa guidance, and document review. For Saudi embassy attestation, the common mandatory steps are HEC, MOFA, and Mosadaqa / Saudi Culture, depending on your document type and case.' },

@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Routes, Route, Link, useParams } from 'react-router-dom';
-import { services, saudiSections, guides, stats, highlights, processSteps, faq, testimonials, packagePlans, PHONE, WA, WA_CHANNEL, FACEBOOK_URL, TIKTOK_URL, EMAIL, ADDRESS, BRAND_NAME, BRAND_SHORT, aiReplyBank } from './content.js';
+import { services, saudiSections, guides, stats, highlights, processSteps, faq, testimonials, packagePlans, PHONE, WA, WA_CHANNEL, FACEBOOK_URL, TIKTOK_URL, EMAIL, ADDRESS, BRAND_NAME, BRAND_SHORT, aiReplyBank, TEAM_CONTACTS } from './content.js';
 import {
   countryMenu,
   saudiAttestationServices,
@@ -550,38 +550,103 @@ function RecruitmentPage() {
 }
 
 function ContactPage() {
-  return (<>
-    <PageHead title="Contact us" lead="Book an appointment, message us on WhatsApp, or visit the office. We reply within 24 hours.">
-      <div className="hero-cta-row">
-        <a className="btn btn-gold" href={WA} target="_blank" rel="noreferrer"><Icon name="wa" size={18} /> WhatsApp us</a>
-        <a className="btn btn-glass" href={`tel:${PHONE.replace(/\s+/g, '')}`}><Icon name="phone" size={18} /> Call {PHONE}</a>
-      </div>
-    </PageHead>
-    <section className="page narrow">
-      <div className="info-grid">
-        <div className="panel stat-box">
-          <strong>Office</strong>
-          <ul className="contact-list">
-            <li><Icon name="pin" size={18} /><span>Professional Travel &amp; Visa Services Office: {ADDRESS}</span></li>
-            <li><Icon name="phone" size={18} /><span>Phone / WhatsApp: {PHONE}</span></li>
-            <li><Icon name="mail" size={18} /><span><a href={`mailto:${EMAIL}`}>{EMAIL}</a></span></li>
-            <li><Icon name="shield" size={18} /><span>OEP / BEOE licence no.: [confirm]</span></li>
-            <li><Icon name="clock" size={18} /><span>Office hours: [confirm]</span></li>
-          </ul>
+  const [featuredGroup, ...supportingGroups] = TEAM_CONTACTS;
+  const iconMap = {
+    CEO: 'user',
+    'QVP & Document Attestation Services': 'doc',
+    'Hajj, Umrah & Hospitality Services': 'plane',
+    'Pakistan Main Office': 'users',
+  };
+
+  return (
+    <>
+      <PageHead title="Contact us" lead="Book an appointment, message us on WhatsApp, or visit the office. We reply within 24 hours.">
+        <div className="hero-cta-row">
+          <a className="btn btn-gold" href={WA} target="_blank" rel="noreferrer"><Icon name="wa" size={18} /> WhatsApp us</a>
+          <a className="btn btn-glass" href={`tel:${PHONE.replace(/\s+/g, '')}`}><Icon name="phone" size={18} /> Call {PHONE}</a>
         </div>
-        <div className="panel stat-box">
-          <strong>Book an appointment</strong>
-          <p>We help with recruitment, visas, attestation and travel. Choose a meeting at your office, at ours, or online.</p>
-          <strong style={{ marginTop: 18 }}>WhatsApp</strong>
-          <p>Send your details on WhatsApp and we will reply quickly with the next step.</p>
+      </PageHead>
+
+      <section className="page narrow">
+        <div className="info-grid">
+          <div className="panel stat-box">
+            <strong>Office</strong>
+            <ul className="contact-list">
+              <li><Icon name="pin" size={18} /><span>Professional Travel &amp; Visa Services Office: {ADDRESS}</span></li>
+              <li><Icon name="phone" size={18} /><span>Phone / WhatsApp: {PHONE}</span></li>
+              <li><Icon name="mail" size={18} /><span><a href={`mailto:${EMAIL}`}>{EMAIL}</a></span></li>
+            </ul>
+          </div>
+
+          <div className="panel stat-box">
+            <strong>Book an appointment</strong>
+            <p>We help with recruitment, visas, attestation and travel. Choose a meeting at your office, at ours, or online.</p>
+            <strong style={{ marginTop: 18 }}>WhatsApp</strong>
+            <p>Send your details on WhatsApp and we will reply quickly with the next step.</p>
+          </div>
         </div>
-      </div>
-      <div className="row cta-row">
-        <Link className="btn" to="/">Back to home</Link>
-        <a className="btn ghost" href={WA} target="_blank" rel="noreferrer">WhatsApp us</a>
-      </div>
-    </section>
-  </>);
+
+        <div className="contact-cards-wrap">
+          <article className="contact-card contact-card--featured">
+            <div className="contact-card__header">
+              <span className="contact-card__flag">{featuredGroup.flag}</span>
+              <span className="contact-card__icon"><Icon name={iconMap[featuredGroup.title]} size={20} /></span>
+              <h3>{featuredGroup.title}</h3>
+            </div>
+            <div className="contact-card__people">
+              {featuredGroup.people.map((person) => (
+                <div key={person.name} className="contact-person">
+                  <div className="contact-person__avatar">{person.name.split(' ').map((part) => part[0]).slice(0, 2).join('')}</div>
+                  <div className="contact-person__meta">
+                    <span className="contact-person__name">{person.name}</span>
+                    <span className="contact-person__role">{person.role}</span>
+                    <span className="contact-person__number">{person.phone}</span>
+                  </div>
+                  <div className="contact-person__actions">
+                    <a className="contact-btn" href={`tel:${person.tel}`}>Call</a>
+                    <a className="contact-btn contact-btn--wa" href={`https://wa.me/${person.tel.replace(/\D/g, '')}`} target="_blank" rel="noreferrer">WhatsApp</a>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </article>
+
+          <div className="contact-card-grid">
+            {supportingGroups.map((group) => (
+              <article key={group.title} className="contact-card">
+                <div className="contact-card__header">
+                  <span className="contact-card__flag">{group.flag}</span>
+                  <span className="contact-card__icon"><Icon name={iconMap[group.title]} size={18} /></span>
+                  <h3>{group.title}</h3>
+                </div>
+                <div className="contact-card__people">
+                  {group.people.map((person) => (
+                    <div key={person.name} className="contact-person">
+                      <div className="contact-person__avatar">{person.name.split(' ').map((part) => part[0]).slice(0, 2).join('')}</div>
+                      <div className="contact-person__meta">
+                        <span className="contact-person__name">{person.name}</span>
+                        <span className="contact-person__role">{person.role}</span>
+                        <span className="contact-person__number">{person.phone}</span>
+                      </div>
+                      <div className="contact-person__actions">
+                        <a className="contact-btn" href={`tel:${person.tel}`}>Call</a>
+                        <a className="contact-btn contact-btn--wa" href={`https://wa.me/${person.tel.replace(/\D/g, '')}`} target="_blank" rel="noreferrer">WhatsApp</a>
+                      </div>
+                    </div>
+                  ))}
+                </div>
+              </article>
+            ))}
+          </div>
+        </div>
+
+        <div className="row cta-row">
+          <Link className="btn" to="/">Back to home</Link>
+          <a className="btn ghost" href={WA} target="_blank" rel="noreferrer">WhatsApp us</a>
+        </div>
+      </section>
+    </>
+  );
 }
 
 function SaudiArabiaAttestationHome() {
